@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import ShowList from "@/app/(shows)/_components/ShowList";
 
-export default async function Page() {
+export default function Page() {
 
 
   return (
