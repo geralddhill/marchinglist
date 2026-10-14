@@ -6,8 +6,11 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export function formatDuration(totalSeconds: number) {
+  if (totalSeconds < 0) {
+    throw new RangeError("totalSeconds must be greater than 0");
+  }
   if (totalSeconds >= 3600) {
-    throw new Error("Shows cannot be longer than one hour.");
+    throw new RangeError("Shows cannot be longer than one hour.");
   }
 
   const minutes = Math.floor(totalSeconds / 60);
@@ -16,8 +19,11 @@ export function formatDuration(totalSeconds: number) {
 }
 
 export function secondsToISO(totalSeconds: number) {
+  if (totalSeconds < 0) {
+    throw new RangeError("totalSeconds must be greater than 0");
+  }
   if (totalSeconds >= 3600) {
-    throw new Error("Shows cannot be longer than one hour.")
+    throw new RangeError("Shows cannot be longer than one hour.")
   }
 
   const minutes = Math.floor(totalSeconds / 60);
@@ -33,5 +39,8 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
 })
 
 export function formatPrice(amount: number) {
+  if (amount < 0) {
+    throw new RangeError("Amount must be greater than 0");
+  }
   return priceFormatter.format(amount);
 }
