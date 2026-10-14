@@ -117,7 +117,11 @@ describe("Navbar", () => {
 
     const button = screen.getByRole("button", { name: /menu/i });
     await user.click(button);
-    await user.click(screen.getByRole("link", { name: "Log In" }));
+
+    const link = screen.getByRole("link", { name: "Log In" });
+    // Prevents link from trying to navigate, since jsdom does not implement navigation
+    link.addEventListener("click", (e) => {e.preventDefault()})
+    await user.click(link);
 
     expect(button).toHaveAttribute("aria-expanded", "false");
   });
