@@ -3,18 +3,19 @@ import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
 
 type Show = {
+  id: number;
   title: string;
-  price: number;
+  price: number | null;
   duration: number;
-  thumbnail_url: string;
+  thumbnail_url: string | null;
 };
 
 export default function ShowCard({ show }: { show: Show }) {
   const {title, price, duration, thumbnail_url} = show;
   return (
     <article className="relative flex w-full h-full flex-col items-center justify-center space-y-2 rounded-2xl bg-gray-900 p-4">
-      <div className="relative aspect-5/4 w-full">
-        <Image src={thumbnail_url} alt={`Thumbnail for ${title}`} fill={true} />
+      <div className="relative aspect-5/4 w-full bg-gray-800 rounded-2xl">
+        {thumbnail_url && <Image src={thumbnail_url} alt={`Thumbnail for ${title}`} fill={true} />}
       </div>
 
       {/*TODO: Reevaluate header level once page is fully developed*/}
@@ -28,7 +29,7 @@ export default function ShowCard({ show }: { show: Show }) {
         <div className="inline-flex max-w-1/2 space-x-1 truncate">
           <dt>Price:</dt>
           <dd>
-            <data value={price}>{formatPrice(price)}</data>
+            {price ? <data value={price}>{formatPrice(price)}</data> : <span>N/A</span>}
           </dd>
         </div>
 
