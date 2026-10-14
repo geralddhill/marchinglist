@@ -2,10 +2,8 @@ import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import Navbar from "@/components/Navbar/Navbar";
-import {axe, toHaveNoViolations} from "jest-axe";
+import {axe} from "jest-axe";
 import { mockUsePathname } from "@/test-utils/navigation";
-
-expect.extend(toHaveNoViolations);
 
 jest.mock("next/dist/client/components/navigation");
 
