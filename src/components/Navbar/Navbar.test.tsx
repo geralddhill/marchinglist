@@ -12,133 +12,142 @@ beforeEach(() => {
 });
 
 describe("Navbar", () => {
-  // Header tests
-  it("Renders logo as h1 if on home page", () => {
-    render(<Navbar />);
+  describe("Logo header", () => {
+    it("Renders logo as h1 if on home page", () => {
+      render(<Navbar />);
 
-    const heading = screen.getByRole("heading", { level: 1 });
+      const heading = screen.getByRole("heading", { level: 1 });
 
-    expect(heading).toBeInTheDocument();
-    expect(heading).toHaveTextContent("MarchingList");
-  });
+      expect(heading).toBeInTheDocument();
+      expect(heading).toHaveTextContent("MarchingList");
+    });
 
-  it("Does not render logo as h1 if not on home page", () => {
-    mockUsePathname.mockReturnValue("/not-home");
-    render(<Navbar />);
+    it("Does not render logo as h1 if not on home page", () => {
+      mockUsePathname.mockReturnValue("/not-home");
+      render(<Navbar />);
 
-    const heading = screen.queryByRole("heading", { level: 1 });
+      const heading = screen.queryByRole("heading", { level: 1 });
 
-    expect(heading).toBeNull();
-  });
+      expect(heading).toBeNull();
+    });
 
-  it("Logo links home with an accessible name", () => {
-    render(<Navbar/>);
+    it("Logo links home with an accessible name", () => {
+      render(<Navbar />);
 
-    expect(screen.getByRole("link", { name: /MarchingList home/i })).toHaveAttribute("href", "/");
+      expect(
+        screen.getByRole("link", { name: /MarchingList home/i }),
+      ).toHaveAttribute("href", "/");
+    });
   })
 
-  // Tests nav structure and links
-  it("Renders a labeled navigation bar with correct links", () => {
-    render(<Navbar />);
+  describe("Structure and Links", () => {
+    it("Renders a labeled navigation bar with correct links", () => {
+      render(<Navbar />);
 
-    const nav = screen.getByRole("navigation");
+      const nav = screen.getByRole("navigation");
 
-    expect(nav).toBeInTheDocument();
+      expect(nav).toBeInTheDocument();
 
-    // TODO: Add links as navigation links are decided
-    expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute(
-      "href",
-      "/",
-    );
-    expect(screen.getByRole("link", { name: "Log In" })).toHaveAttribute(
-      "href",
-      "/login",
-    );
-  });
+      // TODO: Add links as navigation links are decided
+      expect(screen.getByRole("link", { name: "Home" })).toHaveAttribute(
+        "href",
+        "/",
+      );
+      expect(screen.getByRole("link", { name: "Log In" })).toHaveAttribute(
+        "href",
+        "/login",
+      );
+    });
 
-  it("Renders navigation links as list items", () => {
-    render(<Navbar />);
-    // TODO: Update length when navigation links are decided
-    expect(screen.getAllByRole("listitem")).toHaveLength(5);
-  });
+    it("Renders navigation links as list items", () => {
+      render(<Navbar />);
+      // TODO: Update length when navigation links are decided
+      expect(screen.getAllByRole("listitem")).toHaveLength(5);
+    });
 
-  it("Links are reachable with the keyboard in order", async () => {
-    const user = userEvent.setup();
-    render(<Navbar />);
+    it("Links are reachable with the keyboard in order", async () => {
+      const user = userEvent.setup();
+      render(<Navbar />);
 
-    // Skips logo and menu toggle
-    await user.tab();
-    await user.tab();
+      // Skips logo and menu toggle
+      await user.tab();
+      await user.tab();
 
-    await user.tab();
-    expect(screen.getByRole("link", { name: "Home" })).toHaveFocus();
+      await user.tab();
+      expect(screen.getByRole("link", { name: "Home" })).toHaveFocus();
 
-    // TODO: Check for all navigation links once they are decided
-    await user.tab();
-    await user.tab();
-    await user.tab();
+      // TODO: Check for all navigation links once they are decided
+      await user.tab();
+      await user.tab();
+      await user.tab();
 
-    await user.tab();
-    expect(screen.getByRole("link", { name: "Log In" })).toHaveFocus();
-  });
+      await user.tab();
+      expect(screen.getByRole("link", { name: "Log In" })).toHaveFocus();
+    });
+  })
 
   // TODO: Add tests for current page state once pages are decided
 
-  // Mobile menu tests
-  it("Menu toggle button expands and collapses menu", async () => {
-    const user = userEvent.setup();
-    render(<Navbar />);
+  describe("Mobile menu", () => {
+    it("Menu toggle button expands and collapses menu", async () => {
+      const user = userEvent.setup();
+      render(<Navbar />);
 
-    const button = screen.getByRole("button", { name: /menu/i });
-    expect(button).toHaveAttribute("aria-expanded", "false");
+      const button = screen.getByRole("button", { name: /menu/i });
+      expect(button).toHaveAttribute("aria-expanded", "false");
 
-    await user.click(button);
-    expect(button).toHaveAttribute("aria-expanded", "true");
+      await user.click(button);
+      expect(button).toHaveAttribute("aria-expanded", "true");
 
-    await user.click(button);
-    expect(button).toHaveAttribute("aria-expanded", "false");
-  });
+      await user.click(button);
+      expect(button).toHaveAttribute("aria-expanded", "false");
+    });
 
-  it("Menu toggle button controls an element that exists", () => {
-    render(<Navbar />);
+    it("Menu toggle button controls an element that exists", () => {
+      render(<Navbar />);
 
-    const controlledId = screen
-      .getByRole("button", { name: /menu/i })
-      .getAttribute("aria-controls");
-    if (controlledId === null) {
-      throw new Error("Button is missing attribute aria-controls.");
-    }
-    expect(document.getElementById(controlledId)).toBeInTheDocument();
-  });
+      const controlledId = screen
+        .getByRole("button", { name: /menu/i })
+        .getAttribute("aria-controls");
+      if (controlledId === null) {
+        throw new Error("Button is missing attribute aria-controls.");
+      }
+      expect(document.getElementById(controlledId)).toBeInTheDocument();
+    });
 
-  it("Clicking a link closes the mobile menu", async () => {
-    const user = userEvent.setup();
-    render(<Navbar />);
+    it("Clicking a link closes the mobile menu", async () => {
+      const user = userEvent.setup();
+      render(<Navbar />);
 
-    const button = screen.getByRole("button", { name: /menu/i });
-    await user.click(button);
+      const button = screen.getByRole("button", { name: /menu/i });
+      await user.click(button);
 
-    const link = screen.getByRole("link", { name: "Log In" });
-    // Prevents link from trying to navigate, since jsdom does not implement navigation
-    link.addEventListener("click", (e) => {e.preventDefault()})
-    await user.click(link);
+      const link = screen.getByRole("link", { name: "Log In" });
+      // Prevents link from trying to navigate, since jsdom does not implement navigation
+      link.addEventListener("click", (e) => {
+        e.preventDefault();
+      });
+      await user.click(link);
 
-    expect(button).toHaveAttribute("aria-expanded", "false");
-  });
+      expect(button).toHaveAttribute("aria-expanded", "false");
+    });
 
-  it("Menu toggle button works with keyboard", async () => {
-    const user = userEvent.setup();
-    render(<Navbar />);
+    it("Menu toggle button works with keyboard", async () => {
+      const user = userEvent.setup();
+      render(<Navbar />);
 
-    const button = screen.getByRole("button", { name: /menu/i });
-    button.focus();
-    await user.keyboard("{Enter}");
+      const button = screen.getByRole("button", { name: /menu/i });
+      button.focus();
+      await user.keyboard("{Enter}");
 
-    expect(button).toHaveAttribute("aria-expanded", "true");
-  });
+      expect(button).toHaveAttribute("aria-expanded", "true");
+    });
+  })
 
-  it("Has no detectable accessibility violations", async () => {
-    const { container } = render(<Navbar/>);
-    expect(await axe(container)).toHaveNoViolations();
+  describe("Accessibility", () => {
+    it("Has no detectable accessibility violations", async () => {
+      const { container } = render(<Navbar />);
+      expect(await axe(container)).toHaveNoViolations();
+    });
   })
 });
