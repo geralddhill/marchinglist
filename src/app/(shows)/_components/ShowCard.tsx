@@ -1,14 +1,9 @@
 import { Image } from "next/dist/client/image-component";
 import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
+import { showsTable } from "@/db/schema";
 
-type Show = {
-  id: number;
-  title: string;
-  price: number | null;
-  duration: number;
-  thumbnail_url: string | null;
-};
+type Show = typeof showsTable.$inferSelect;
 
 export default function ShowCard({ show }: { show: Show }) {
   const {title, price, duration, thumbnail_url} = show;
