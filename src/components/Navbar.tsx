@@ -27,7 +27,7 @@ export default function Navbar() {
         <Link
           aria-current={pathname === "/" ? "page" : undefined}
           aria-label="MarchingList home"
-          href="/"
+          href="/public"
           className="flex items-center h-full w-full p-6 2xl:px-12 2xl:py-0 focus-visible:outline-2 focus-visible:-outline-offset-2"
         >
           <Logo className="h-auto w-full"/>
