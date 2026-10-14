@@ -5,11 +5,18 @@ import ShowCard from "@/app/(shows)/_components/ShowCard";
 
 describe("ShowCard", () => {
   const show = {
+    id: 1,
     title: "Test Title",
     price: 1200,
     duration: 300,
     thumbnail_url: "./test_show.jpg"
   }
+
+  it("Renders card as article", () => {
+    render(<ShowCard show={show}/>);
+
+    expect(screen.getByRole("article")).toBeInTheDocument();
+  })
 
   it("Renders correct heading with link inside", () => {
     render(<ShowCard show={show} />);
