@@ -14,10 +14,7 @@ export default function Page() {
         {shows.map((show, index) => (
           <li key={index}>
             <ShowCard
-              title={show.title}
-              price={show.price}
-              duration={show.duration}
-              thumbnail_url={show.thumbnail_url}
+              show={show}
             />
           </li>
         ))}
