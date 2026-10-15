@@ -4,6 +4,7 @@ import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/dist/client/components/navigation";
 import Input from "@/app/(authentication)/_components/Input";
+import PasswordInput from "@/app/(authentication)/_components/PasswordInput";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -50,11 +51,10 @@ export default function SignInForm() {
           required
           autoComplete="username"
         />
-        <Input
+        <PasswordInput
           label="Password"
           id="password"
           name="password"
-          type="password"
           required
           autoComplete="current-password"
         />

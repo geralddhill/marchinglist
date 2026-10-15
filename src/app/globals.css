@@ -6,6 +6,7 @@
   --background3: var(--color-light3);
   --foreground: var(--color-dark);
   --foreground2: var(--color-dark2);
+  --foreground3: var(--color-dark3);
   --primary: var(--color-indigo-600);
   --primary2: var(--color-indigo-700);
   --primary3: var(--color-indigo-800);
@@ -24,6 +25,7 @@
   --color-background3: var(--background3);
   --color-foreground: var(--foreground);
   --color-foreground2: var(--foreground2);
+  --color-foreground3: var(--foreground3);
   --color-primary: var(--primary);
   --color-primary2: var(--primary2);
   --color-primary3: var(--primary3);
@@ -37,6 +39,7 @@
     --background3: var(--color-dark3);
     --foreground: var(--color-light);
     --foreground2: var(--color-light2);
+    --foreground3: var(--color-light3);
     --primary: var(--color-indigo-700);
     --primary2: var(--color-indigo-600);
     --primary3: var(--color-indigo-500);
