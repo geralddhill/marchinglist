@@ -7,7 +7,8 @@ import {
   text,
   timestamp,
   boolean,
-  index
+  index,
+  varchar,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
@@ -39,6 +40,8 @@ export const users = pgTable("users", {
     .defaultNow()
     .$onUpdate(() => /* @__PURE__ */ new Date())
     .notNull(),
+  username: varchar("username", { length: 255 }).unique(),
+  displayUsername: text("display_username"),
 });
 
 export const sessions = pgTable(

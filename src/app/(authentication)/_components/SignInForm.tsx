@@ -15,10 +15,12 @@ export default function SignInForm() {
     setError(null);
     const form = new FormData(e.currentTarget);
 
-    const { error } = await authClient.signIn.email({
-      email: String(form.get("email")),
-      password: String(form.get("password")),
-    });
+    const identifier = String(form.get("identifier")).trim();
+    const password = String(form.get("password"));
+
+    const { error } = identifier.includes("@")
+      ? await authClient.signIn.email({ email: identifier, password })
+      : await authClient.signIn.username({ username: identifier, password });
 
     setPending(false);
     if (error) return setError(error.message ?? "Sign in failed due to unknown error.");
@@ -39,18 +41,17 @@ export default function SignInForm() {
       >
         <div className="flex w-full flex-col-reverse">
           <input
-            id="email"
-            name="email"
-            type="email"
-            placeholder="example@email.com"
+            id="identifier"
+            name="identifier"
+            type="text"
             required
             className="peer border-dark focus-visible:border-primary w-full rounded-2xl border-2 p-4 focus-visible:outline-none"
           />
           <label
-            htmlFor="email"
+            htmlFor="identifier"
             className="peer-focus-visible:text-primary ml-4"
           >
-            Email
+            Email or Username
           </label>
         </div>
 
@@ -70,7 +71,11 @@ export default function SignInForm() {
           </label>
         </div>
 
-        {error && <p role="alert" className="text-red-500 dark:text-red-600">{error}</p>}
+        {error && (
+          <p role="alert" className="text-red-500 dark:text-red-600">
+            {error}
+          </p>
+        )}
 
         <button type="submit" className="btn-primary" disabled={pending}>
           Sign In
