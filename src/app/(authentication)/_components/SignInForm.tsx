@@ -1,10 +1,29 @@
 "use client"
-import { SubmitEvent } from "react";
+import { SubmitEvent, useState } from "react";
 import Link from "next/dist/client/link";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/dist/client/components/navigation";
 
 export default function SignInForm() {
+  const router = useRouter();
+  const [error, setError] = useState<string | null>(null);
+  const [pending, setPending] = useState(false);
+
   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
+    setPending(true);
+    setError(null);
+    const form = new FormData(e.currentTarget);
+
+    const { error } = await authClient.signIn.email({
+      email: String(form.get("email")),
+      password: String(form.get("password")),
+    });
+
+    setPending(false);
+    if (error) return setError(error.message ?? "Sign in failed due to unknown error.");
+    router.push("/");
+    router.refresh();
   }
 
   return (
@@ -51,7 +70,9 @@ export default function SignInForm() {
           </label>
         </div>
 
-        <button type="submit" className="btn-primary">
+        {error && <p role="alert" className="text-red-500 dark:text-red-600">{error}</p>}
+
+        <button type="submit" className="btn-primary" disabled={pending}>
           Sign In
         </button>
       </form>
