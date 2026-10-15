@@ -21,7 +21,7 @@ export default function PasswordInput(props: PasswordInputProps) {
           }}
           aria-label={visible ? "Hide password" : "Show password"}
           aria-pressed={visible}
-          className="text-foreground3 hover:text-foreground md:dark:text-dark3 md:dark:hover:text-dark focus-visible:outline-2 p-2"
+          className="text-foreground3 hover:text-foreground md:dark:text-dark3 md:dark:hover:text-dark focus-visible:outline-2"
         >
           {visible ? <EyeOff size={32} /> : <Eye size={32} />}
         </button>

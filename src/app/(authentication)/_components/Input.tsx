@@ -34,7 +34,7 @@ export default function Input({
           {...props}
         />
         {endAdornment && (
-          <div className="absolute inset-y-0 right-0 flex items-center pr-2">
+          <div className="absolute inset-y-0 right-0 flex items-center p-2 pr-4">
             {endAdornment}
           </div>
         )}
