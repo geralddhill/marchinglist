@@ -27,7 +27,7 @@ export default function SignInForm() {
   }
 
   return (
-    <div className="bg-foreground text-background flex flex-col items-center space-y-16 p-24 text-xl rounded-4xl">
+    <div className="bg-light2 dark:bg-light text-dark flex flex-col items-center space-y-16 rounded-4xl p-24 text-xl">
       <div className="flex flex-col items-center space-y-2">
         <h1 className="text-4xl font-bold">Welcome to MarchingList!</h1>
         <p>Please sign in!</p>
@@ -44,7 +44,7 @@ export default function SignInForm() {
             type="email"
             placeholder="example@email.com"
             required
-            className="peer border-background focus-visible:border-primary w-full rounded-2xl border border-2 p-4 focus-visible:outline-none"
+            className="peer border-dark focus-visible:border-primary w-full rounded-2xl border-2 p-4 focus-visible:outline-none"
           />
           <label
             htmlFor="email"
@@ -60,7 +60,7 @@ export default function SignInForm() {
             name="password"
             type="password"
             required
-            className="peer border-background focus-visible:border-primary w-full rounded-2xl border border-2 p-4 focus-visible:outline-none"
+            className="peer border-dark focus-visible:border-primary w-full rounded-2xl border-2 p-4 focus-visible:outline-none"
           />
           <label
             htmlFor="password"

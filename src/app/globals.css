@@ -15,9 +15,9 @@
   --color-light: var(--color-zinc-50);
   --color-light2: var(--color-zinc-300);
   --color-light3: var(--color-zinc-400);
-  --color-dark: var(--color-zinc-950);
-  --color-dark2: var(--color-zinc-900);
-  --color-dark3: var(--color-zinc-800);
+  --color-dark: var(--color-zinc-900);
+  --color-dark2: var(--color-zinc-800);
+  --color-dark3: var(--color-zinc-700);
 
   --color-background: var(--background);
   --color-background2: var(--background2);
