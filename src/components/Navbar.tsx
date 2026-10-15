@@ -22,7 +22,7 @@ export default function Navbar() {
   const Wrapper = pathname === "/" ? "h1" : "span"
 
   return (
-    <div className="relative flex w-full flex-col bg-gray-900 md:static md:flex-row md:px-24 xl:px-36 2xl:px-64">
+    <div className="relative flex w-full flex-col bg-background2 md:static md:flex-row md:px-24 xl:px-36 2xl:px-64">
       <header className="flex w-full items-center justify-between">
         <Link
           aria-current={pathname === "/" ? "page" : undefined}
@@ -65,10 +65,10 @@ export default function Navbar() {
                   href={href}
                   aria-current={isActive ? "page" : undefined}
                   className={cn(
-                    "block w-full p-8 text-xl font-semibold hover:bg-gray-800 focus-visible:outline-2 focus-visible:-outline-offset-2 md:px-6 md:py-10 md:text-center xl:text-2xl",
+                    "block w-full p-8 text-xl font-semibold hover:bg-background3 focus-visible:outline-2 focus-visible:-outline-offset-2 md:px-6 md:py-10 md:text-center xl:text-2xl",
                     {
-                      "bg-gray-800": isActive,
-                      "bg-gray-900": !isActive,
+                      "bg-background3": isActive,
+                      "bg-background2": !isActive,
                     },
                   )}
                   onClick={() => {
@@ -83,7 +83,7 @@ export default function Navbar() {
           <li className="w-full md:w-1/5">
             <Link
               href="/signin"
-              className="md:bg-foreground md:hover:bg-foreground block w-full bg-gray-900 p-8 text-xl font-semibold hover:bg-gray-800 focus-visible:outline-2 focus-visible:-outline-offset-2 md:m-8 md:rounded-4xl md:p-10 md:px-4 md:py-2 md:text-center md:text-gray-900 xl:text-2xl"
+              className="md:bg-foreground md:hover:bg-foreground block w-full bg-background2 p-8 text-xl font-semibold hover:bg-background3 focus-visible:outline-2 focus-visible:-outline-offset-2 md:m-8 md:rounded-4xl md:p-10 md:px-4 md:py-2 md:text-center md:text-background2 xl:text-2xl"
               onClick={() => {
                 setShowMenu(false);
               }}
