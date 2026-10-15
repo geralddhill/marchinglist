@@ -3,6 +3,7 @@ import { SubmitEvent, useState } from "react";
 import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/dist/client/components/navigation";
+import Input from "@/app/(authentication)/_components/Input";
 
 export default function SignInForm() {
   const router = useRouter();
@@ -29,9 +30,11 @@ export default function SignInForm() {
   }
 
   return (
-    <div className="bg-light2 dark:bg-light text-dark flex flex-col items-center space-y-16 rounded-4xl p-24 text-xl">
+    <div className="md:bg-light2 md:dark:bg-light md:text-dark flex flex-col items-center space-y-16 p-4 text-xl md:rounded-4xl md:p-0 md:p-24">
       <div className="flex flex-col items-center space-y-2">
-        <h1 className="text-4xl font-bold">Welcome to MarchingList!</h1>
+        <h1 className="text-center text-4xl font-bold">
+          Welcome to MarchingList!
+        </h1>
         <p>Please sign in!</p>
       </div>
 
@@ -39,37 +42,22 @@ export default function SignInForm() {
         onSubmit={handleSubmit}
         className="flex w-full flex-col items-center space-y-12"
       >
-        <div className="flex w-full flex-col-reverse">
-          <input
-            id="identifier"
-            name="identifier"
-            type="text"
-            required
-            className="peer border-dark focus-visible:border-primary w-full rounded-2xl border-2 p-4 focus-visible:outline-none"
-          />
-          <label
-            htmlFor="identifier"
-            className="peer-focus-visible:text-primary ml-4"
-          >
-            Email or Username
-          </label>
-        </div>
-
-        <div className="flex w-full flex-col-reverse">
-          <input
-            id="password"
-            name="password"
-            type="password"
-            required
-            className="peer border-dark focus-visible:border-primary w-full rounded-2xl border-2 p-4 focus-visible:outline-none"
-          />
-          <label
-            htmlFor="password"
-            className="peer-focus-visible:text-primary ml-4"
-          >
-            Password
-          </label>
-        </div>
+        <Input
+          label="Email or Username"
+          id="identifier"
+          name="identifier"
+          type="text"
+          required
+          autoComplete="username"
+        />
+        <Input
+          label="Password"
+          id="password"
+          name="password"
+          type="password"
+          required
+          autoComplete="current-password"
+        />
 
         {error && (
           <p role="alert" className="text-red-500 dark:text-red-600">

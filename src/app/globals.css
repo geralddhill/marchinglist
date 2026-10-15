@@ -27,6 +27,7 @@
   --color-primary: var(--primary);
   --color-primary2: var(--primary2);
   --color-primary3: var(--primary3);
+  --color-primary-light: var(--color-indigo-300)
 }
 
 @media (prefers-color-scheme: dark) {
