@@ -1,26 +1,55 @@
 @import "tailwindcss";
 
 :root {
-  --background: var(--color-zinc-50);
-  --background2: var(--color-zinc-300);
-  --background3: var(--color-zinc-400);
-  --foreground: var(--color-zinc-950);
+  --background: var(--color-light);
+  --background2: var(--color-light2);
+  --background3: var(--color-light3);
+  --foreground: var(--color-dark);
+  --foreground2: var(--color-dark2);
+  --primary: var(--color-indigo-600);
+  --primary2: var(--color-indigo-700);
+  --primary3: var(--color-indigo-800);
 }
 
 @theme {
+  --color-light: var(--color-zinc-50);
+  --color-light2: var(--color-zinc-300);
+  --color-light3: var(--color-zinc-400);
+  --color-dark: var(--color-zinc-950);
+  --color-dark2: var(--color-zinc-900);
+  --color-dark3: var(--color-zinc-800);
+
   --color-background: var(--background);
   --color-background2: var(--background2);
   --color-background3: var(--background3);
   --color-foreground: var(--foreground);
+  --color-foreground2: var(--foreground2);
+  --color-primary: var(--primary);
+  --color-primary2: var(--primary2);
+  --color-primary3: var(--primary3);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: var(--color-zinc-950);
-    --background2: var(--color-zinc-900);
-    --background3: var(--color-zinc-800);
-    --foreground: var(--color-zinc-50);
+    --background: var(--color-dark);
+    --background2: var(--color-dark2);
+    --background3: var(--color-dark3);
+    --foreground: var(--color-light);
+    --foreground2: var(--color-light2);
+    --primary: var(--color-indigo-700);
+    --primary2: var(--color-indigo-600);
+    --primary3: var(--color-indigo-500);
   }
+}
+
+@utility btn {
+  @apply cursor-pointer px-12 py-2 font-semibold focus-visible:outline-2 focus-visible:-outline-offset-2 rounded-4xl
+  text-2xl inline-flex items-center justify-center disabled:opacity-50 disabled:pointer-events-none transition active:scale-[0.98]
+  motion-reduce:transition-none motion-reduce:transform-none shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0;
+}
+
+@utility btn-primary {
+  @apply btn bg-primary hover:bg-primary2 active:bg-primary3 text-light;
 }
 
 body {

@@ -83,7 +83,7 @@ export default function Navbar() {
           <li className="w-full md:w-1/5">
             <Link
               href="/signin"
-              className="md:bg-foreground md:hover:bg-foreground block w-full bg-background2 p-8 text-xl font-semibold hover:bg-background3 focus-visible:outline-2 focus-visible:-outline-offset-2 md:m-8 md:rounded-4xl md:p-10 md:px-4 md:py-2 md:text-center md:text-background2 xl:text-2xl"
+              className="md:btn-primary block w-full bg-background2 p-8 text-xl font-semibold hover:bg-background3 focus-visible:outline-2 focus-visible:-outline-offset-2 md:m-8 xl:text-2xl"
               onClick={() => {
                 setShowMenu(false);
               }}
