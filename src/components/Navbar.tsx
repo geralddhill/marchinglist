@@ -82,13 +82,13 @@ export default function Navbar() {
           })}
           <li className="w-full md:w-1/5">
             <Link
-              href="/login"
+              href="/signin"
               className="md:bg-foreground md:hover:bg-foreground block w-full bg-gray-900 p-8 text-xl font-semibold hover:bg-gray-800 focus-visible:outline-2 focus-visible:-outline-offset-2 md:m-8 md:rounded-4xl md:p-10 md:px-4 md:py-2 md:text-center md:text-gray-900 xl:text-2xl"
               onClick={() => {
                 setShowMenu(false);
               }}
             >
-              Log In
+              Sign In
             </Link>
           </li>
         </ul>

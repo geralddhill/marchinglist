@@ -53,9 +53,9 @@ describe("Navbar", () => {
         "href",
         "/",
       );
-      expect(screen.getByRole("link", { name: "Log In" })).toHaveAttribute(
+      expect(screen.getByRole("link", { name: "Sign In" })).toHaveAttribute(
         "href",
-        "/login",
+        "/signin",
       );
     });
 
@@ -82,7 +82,7 @@ describe("Navbar", () => {
       await user.tab();
 
       await user.tab();
-      expect(screen.getByRole("link", { name: "Log In" })).toHaveFocus();
+      expect(screen.getByRole("link", { name: "Sign In" })).toHaveFocus();
     });
   })
 
@@ -122,7 +122,7 @@ describe("Navbar", () => {
       const button = screen.getByRole("button", { name: /menu/i });
       await user.click(button);
 
-      const link = screen.getByRole("link", { name: "Log In" });
+      const link = screen.getByRole("link", { name: "Sign In" });
       // Prevents link from trying to navigate, since jsdom does not implement navigation
       link.addEventListener("click", (e) => {
         e.preventDefault();
