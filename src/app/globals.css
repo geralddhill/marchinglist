@@ -47,7 +47,7 @@
 }
 
 @utility btn {
-  @apply cursor-pointer px-12 py-2 font-semibold focus-visible:outline-2 focus-visible:-outline-offset-2 rounded-4xl
+  @apply cursor-pointer px-12 py-2 font-semibold focus-visible:outline-2 focus-visible:-outline-offset-2 rounded-4xl text-nowrap
   text-2xl inline-flex items-center justify-center disabled:opacity-50 disabled:pointer-events-none transition active:scale-[0.98]
   motion-reduce:transition-none motion-reduce:transform-none shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0;
 }
