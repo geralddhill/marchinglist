@@ -4,11 +4,26 @@ import userEvent from "@testing-library/user-event";
 import Navbar from "@/components/Navbar";
 import {axe} from "jest-axe";
 import { mockUsePathname } from "@/test-utils/navigation";
+import { authClient } from "@/lib/auth-client";
 
 jest.mock("next/dist/client/components/navigation");
 
+jest.mock("@/lib/auth-client", () => ({
+  authClient: {
+    useSession: jest.fn()
+  }
+}))
+const mockUseSession = jest.mocked(authClient.useSession)
+
 beforeEach(() => {
   mockUsePathname.mockReturnValue("/");
+  mockUseSession.mockReturnValue({
+    data: null,
+    error: null,
+    isPending: false,
+    isRefetching: false,
+    refetch: jest.fn()
+  })
 });
 
 describe("Navbar", () => {
@@ -62,14 +77,15 @@ describe("Navbar", () => {
     it("Renders navigation links as list items", () => {
       render(<Navbar />);
       // TODO: Update length when navigation links are decided
-      expect(screen.getAllByRole("listitem")).toHaveLength(5);
+      expect(screen.getAllByRole("listitem")).toHaveLength(4);
     });
 
     it("Links are reachable with the keyboard in order", async () => {
       const user = userEvent.setup();
       render(<Navbar />);
 
-      // Skips logo and menu toggle
+      // Skips logo, mobile sign in/user buttons, and menu toggle
+      await user.tab();
       await user.tab();
       await user.tab();
 
