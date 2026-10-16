@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { usePathname } from "next/dist/client/components/navigation";
 import Logo from "@/components/Logo";
 import { authClient } from "@/lib/auth-client";
-import { Image } from "next/dist/client/image-component";
+import UserButton from "@/components/UserButton";
 
 const navLinks: {
   href: string;
@@ -25,11 +25,15 @@ export default function Navbar() {
 
   const {data: session} = authClient.useSession();
 
+  async function handleSignOut() {
+    await authClient.signOut();
+  }
+
   return (
     <div className="bg-background2 relative h-24 w-full sm:px-12 lg:flex xl:h-32 xl:px-20">
       <div className="flex h-full min-w-full items-center justify-between space-x-4 px-4 lg:min-w-0 lg:space-x-0 2xl:px-8">
         {/* Logo Header */}
-        <header className="w-42 sm:w-3xs lg:w-lg 2xl:w-4xl">
+        <header className="w-38 sm:w-3xs lg:w-lg 2xl:w-4xl">
           <Link
             aria-current={pathname === "/" ? "page" : undefined}
             aria-label="MarchingList home"
@@ -41,17 +45,21 @@ export default function Navbar() {
           </Link>
         </header>
 
-        <div className="flex h-full items-center justify-end space-x-4 sm:space-x-8">
+        <div className="flex h-full items-center justify-end space-x-4 sm:space-x-8 py-6 lg:hidden">
           {/* Sign Up Button (Mobile) */}
-          <Link
-            href="/signup"
-            className="btn-primary px-4 text-base sm:text-xl lg:hidden"
-            onClick={() => {
-              setShowMenu(false);
-            }}
-          >
-            Sign Up
-          </Link>
+          {session ? (
+            <UserButton avatarUrl={session.user?.image ?? undefined} handleSignOut={handleSignOut} />
+          ) : (
+            <Link
+              href="/signup"
+              className="btn-primary px-4 text-base sm:text-xl"
+              onClick={() => {
+                setShowMenu(false);
+              }}
+            >
+              Sign Up
+            </Link>
+          )}
 
           {/* Mobile Menu Button */}
           <button
@@ -59,7 +67,7 @@ export default function Navbar() {
             aria-expanded={showMenu}
             aria-label="mobile menu"
             aria-controls="menu"
-            className="cursor-pointer p-1 lg:hidden"
+            className="cursor-pointer p-1"
             onClick={() => {
               setShowMenu(!showMenu);
             }}
@@ -116,20 +124,13 @@ export default function Navbar() {
       <div className="hidden p-4 lg:flex lg:w-lg xl:p-6 2xl:w-4xl">
         {session ? (
           <div className="flex h-full w-full items-center justify-end">
-            <button className="h-full cursor-pointer rounded-full aspect-square relative overflow-hidden bg-black">
-              <Image
-                src={session.user?.image || "/default_user_pfp.png"}
-                alt="Your profile photo"
-                fill
-                className="h-full w-full object-contain"
-              />
-            </button>
+            <UserButton avatarUrl={session.user?.image || undefined} handleSignOut={handleSignOut} />
           </div>
         ) : (
           <div className="flex h-full w-full flex-auto items-center space-x-4">
             <Link
               href="/signin"
-              className="btn-primary py-4 hidden w-full 2xl:flex"
+              className="btn-primary hidden w-full py-4 2xl:flex"
               onClick={() => {
                 setShowMenu(false);
               }}
