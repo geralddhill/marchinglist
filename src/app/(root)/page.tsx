@@ -5,9 +5,9 @@ export default function Page() {
 
 
   return (
-    <main>
+    <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
       <Suspense fallback={null}>
-        <ShowList/>
+        <ShowList />
       </Suspense>
     </main>
   );
