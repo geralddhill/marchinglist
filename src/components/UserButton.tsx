@@ -2,7 +2,14 @@ import { DropdownMenu } from "radix-ui";
 import { Image } from "next/dist/client/image-component";
 import Link from "next/dist/client/link";
 
-export default function UserButton({avatarUrl = "/default_avatar.png", handleSignOut}: {avatarUrl?: string, handleSignOut: () => void}) {
+type User = {
+  username?: string | null | undefined;
+  image?: string | null | undefined;
+}
+
+export default function UserButton({user, handleSignOut}: {user: User, handleSignOut: () => void}) {
+  const {username, image} = user;
+  const avatarUrl = image ?? "/default_avatar.png"
 
   return (
     <DropdownMenu.Root>
@@ -21,7 +28,7 @@ export default function UserButton({avatarUrl = "/default_avatar.png", handleSig
         <DropdownMenu.Content className="border text-xl">
           <DropdownMenu.Item asChild className="hover:outline-0">
             <Link
-              href="/"
+              href={`/profile/${encodeURIComponent(username ?? "")}`}
               className="bg-background3 hover:bg-background2 block p-2"
             >
               Profile
