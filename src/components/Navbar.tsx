@@ -23,9 +23,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const Wrapper = pathname === "/" ? "h1" : "span";
 
-  const session_full = authClient.useSession();
-  const session = session_full.data;
-  console.log(session_full);
+  const {data: session} = authClient.useSession();
 
   async function handleSignOut() {
     await authClient.signOut();
