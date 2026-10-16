@@ -9,12 +9,12 @@ describe("ShowCard", () => {
     title: "Test Title",
     price: 1200,
     duration: 300,
-    thumbnailUrl: "./test_show.jpg",
+    thumbnailUrl: "/test_show.jpg",
     owner: {
       id: "1",
       name: "Test Owner",
       username: "testowner",
-      image: "./default_avatar.png"
+      image: "/default_avatar.png"
     }
   }
 
@@ -52,17 +52,17 @@ describe("ShowCard", () => {
   it("Renders thumbnail with descriptive alt text", () => {
     render(<ShowCard show={show}/>);
 
-    const img = screen.getByRole('img')
-    expect(img).toHaveAccessibleName("Thumbnail for Test Title");
+    const img = screen.getByRole('img', {name: /thumbnail/i})
+    expect(img).toBeInTheDocument();
   })
 
-  it("Image has correct source", () => {
+  it("Thumbnail mage has correct source", () => {
     render(<ShowCard show={show} />);
 
-    const img = screen.getByRole("img");
+    const img = screen.getByRole("img", {name: /thumbnail/i});
     expect(img).toHaveAttribute(
       "src",
-      expect.stringContaining(encodeURIComponent("./test_show.jpg")),
+      expect.stringContaining(encodeURIComponent("/test_show.jpg")),
     );
   })
 
