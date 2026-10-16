@@ -65,7 +65,7 @@ export default function ShowCard({ show }: { show: Show }) {
           href={`/profile/${encodeURIComponent(username ?? "")}`}
           className="z-10 flex items-center gap-2 self-start pr-1 xl:text-lg"
         >
-          <div className="relative aspect-square size-[calc(1lh+0.5rem)] overflow-hidden rounded-full">
+          <div className="relative aspect-square size-[calc(1lh+0.5rem)] overflow-hidden rounded-full bg-black">
             <Image
               src={avatarUrl}
               alt={`${name}'s avatar`}
