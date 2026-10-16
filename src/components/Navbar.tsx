@@ -1,12 +1,12 @@
 "use client";
 import { Menu } from "lucide-react";
-import { Suspense, useState } from "react";
+import { useState } from "react";
 import Link from "next/dist/client/link";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/dist/client/components/navigation";
-import Logo from "@/components/Logo";
 import { authClient } from "@/lib/auth-client";
 import UserButton from "@/components/UserButton";
+import NavLink from "@/components/NavLink";
+import NavHeader from "@/components/NavHeader";
 
 const navLinks: {
   href: string;
@@ -20,8 +20,6 @@ const navLinks: {
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
-  const pathname = usePathname();
-  const Wrapper = pathname === "/" ? "h1" : "span";
 
   const {data: session, isPending} = authClient.useSession();
 
@@ -33,25 +31,13 @@ export default function Navbar() {
     <div className="bg-background2 relative h-24 w-full sm:px-12 lg:flex xl:h-32 xl:px-20">
       <div className="flex h-full min-w-full items-center justify-between space-x-4 px-4 lg:min-w-0 lg:space-x-0 2xl:px-8">
         {/* Logo Header */}
-        <header className="w-38 sm:w-3xs lg:w-lg 2xl:w-4xl">
-          <Link
-            aria-current={pathname === "/" ? "page" : undefined}
-            aria-label="MarchingList home"
-            href="/"
-            className="block w-full p-1"
-          >
-            <Logo className="w-full" />
-            <Wrapper className="sr-only">MarchingList home</Wrapper>
-          </Link>
-        </header>
+        <NavHeader />
 
         <div className="flex h-full items-center justify-end space-x-4 py-6 sm:space-x-8 lg:hidden">
           {/* Sign Up Button (Mobile) */}
           {!isPending &&
             (session ? (
-              <Suspense fallback={null}>
-                <UserButton user={session.user} handleSignOut={handleSignOut} />
-              </Suspense>
+              <UserButton user={session.user} handleSignOut={handleSignOut} />
             ) : (
               <Link
                 href="/signup"
@@ -83,7 +69,7 @@ export default function Navbar() {
       {/* Nav Button List */}
       <nav
         className={cn(
-          "bg-background2 absolute top-full z-10 w-full lg:static lg:h-full",
+          "bg-background2 absolute top-full z-50 w-full lg:static lg:h-full",
           {
             "lg:py=0 py-5": showMenu,
           },
@@ -97,26 +83,11 @@ export default function Navbar() {
           })}
         >
           {navLinks.map(({ href, label }) => {
-            const isActive =
-              href === "/" ? pathname === href : pathname.startsWith(href);
             return (
               <li key={href} className="flex-1">
-                <Link
-                  href={href}
-                  aria-current={isActive ? "page" : undefined}
-                  className={cn(
-                    "hover:bg-background3 border-b-background3 flex h-24 w-full items-center border-b text-2xl font-semibold focus-visible:outline-2 focus-visible:-outline-offset-2 lg:h-full lg:justify-center lg:border-b-0 xl:text-3xl",
-                    {
-                      "bg-background3": isActive,
-                      "bg-background2": !isActive,
-                    },
-                  )}
-                  onClick={() => {
-                    setShowMenu(false);
-                  }}
-                >
+                <NavLink href={href}>
                   <div className="ml-12 lg:ml-0">{label}</div>
-                </Link>
+                </NavLink>
               </li>
             );
           })}
@@ -128,9 +99,7 @@ export default function Navbar() {
         {!isPending &&
           (session ? (
             <div className="flex h-full w-full items-center justify-end">
-              <Suspense fallback={null}>
-                <UserButton user={session.user} handleSignOut={handleSignOut} />
-              </Suspense>
+              <UserButton user={session.user} handleSignOut={handleSignOut} />
             </div>
           ) : (
             <div className="flex h-full w-full flex-auto items-center space-x-4">
