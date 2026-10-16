@@ -124,7 +124,7 @@ export default function Navbar() {
       <div className="hidden p-4 lg:flex lg:w-lg xl:p-6 2xl:w-4xl">
         {session ? (
           <div className="flex h-full w-full items-center justify-end">
-            <UserButton avatarUrl={session.user?.image || undefined} handleSignOut={handleSignOut} />
+            <UserButton avatarUrl={session.user?.image ?? undefined} handleSignOut={handleSignOut} />
           </div>
         ) : (
           <div className="flex h-full w-full flex-auto items-center space-x-4">
