@@ -1,5 +1,5 @@
 import { getShows } from "@/data/shows/queries";
-import ShowList from "@/app/(shows)/_components/ShowList";
+import ShowList from "@/app/(root)/_components/ShowList";
 import { render, screen } from "@testing-library/react";
 
 jest.mock("@/data/shows/queries", () => ({

@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import ShowList from "@/app/(shows)/_components/ShowList";
+import ShowList from "@/app/(root)/_components/ShowList";
 
 export default function Page() {
 
