@@ -22,6 +22,7 @@ export const shows = pgTable(
     price: integer("price"),
     duration: smallint().notNull(),
     thumbnailUrl: text("thumbnail_url"),
+    description: text("description").notNull().default(""),
     ownerId: text("owner_id")
       .notNull()
       .references(() => users.id, { onDelete: "cascade" })
