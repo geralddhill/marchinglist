@@ -24,7 +24,7 @@ export default async function Page({params}: {params: Promise<{username: string}
         <h1 className="block flex-1 font-semibold wrap-break-word">{name}</h1>
       </header>
 
-      <h2 className="mb-8 block w-full border-b-2 pb-4 pl-4 text-3xl font-semibold wrap-break-word sm:text-4xl xl:text-5xl">
+      <h2 className="mb-8 block w-full border-b-2 pb-4 text-3xl font-semibold wrap-break-word sm:text-4xl xl:text-5xl">
         Shows
       </h2>
       <Suspense fallback={null}>
