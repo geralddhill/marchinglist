@@ -9,8 +9,11 @@ import {
   boolean,
   index,
   varchar,
+  pgEnum,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
+
+export const difficultyEnum = pgEnum("difficulty", ["beginning", "intermediate", "advanced"]);
 
 export const shows = pgTable(
   "shows",
@@ -23,9 +26,10 @@ export const shows = pgTable(
     duration: smallint().notNull(),
     thumbnailUrl: text("thumbnail_url"),
     description: text("description").notNull().default(""),
+    difficulty: difficultyEnum("difficulty").notNull(),
     ownerId: text("owner_id")
       .notNull()
-      .references(() => users.id, { onDelete: "cascade" })
+      .references(() => users.id, { onDelete: "cascade" }),
   },
   (table) => [
     check("title_not_empty_check", sql`char_length(${table.title}) > 0`),

@@ -14,19 +14,20 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
   const show = await findShowById(parsedId);
   if (!show) notFound();
 
-  const {title, price, duration, thumbnailUrl, description} = show;
+  const {title, price, duration, thumbnailUrl, description, difficulty} = show;
 
   return (
     <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
       <header className="flex w-full flex-col justify-between space-x-4 text-4xl sm:text-6xl md:flex-row md:items-start md:gap-6 xl:text-7xl">
-        <div className="w-1/2">
+        <div className="md:w-1/2">
           <h1 className="mb-8 md:my-0 block border-b-2 pb-4 font-semibold wrap-break-word md:w-full">
             {title}
           </h1>
           <BasicInfo
             price={price}
             duration={duration}
-            className="hidden md:inline-flex md:mt-0 md:border-t-0"
+            difficulty={difficulty}
+            className="hidden md:flex md:mt-0 md:border-t-0"
           />
         </div>
         {thumbnailUrl && (
@@ -44,6 +45,7 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
         <BasicInfo
           price={price}
           duration={duration}
+          difficulty={difficulty}
           className="md:hidden"
         />
       </header>
@@ -57,32 +59,38 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
 }
 
 
-function BasicInfo({price, duration, className}: {price: number | null, duration: number, className?: string}) {
+function BasicInfo({price, duration, difficulty, className}: {price: number | null, duration: number, difficulty: "beginning" | "intermediate" | "advanced", className?: string}) {
   return (
     <dl
       className={cn(
-        "my-8 inline-flex w-full justify-between space-x-2 border-y-2 px-4 py-4 text-xl sm:text-2xl",
-        className
+        "my-8 flex w-full flex-col space-x-2 border-t-2 text-xl sm:text-2xl",
+        className,
       )}
     >
-      <div className="inline-flex max-w-1/2 space-x-1 truncate">
-        <dt>Price:</dt>
-        <dd>
-          {price ? (
-            <data value={price}>{formatPrice(price)}</data>
-          ) : (
-            <span>N/A</span>
-          )}
-        </dd>
-      </div>
+      <div className="inline-flex justify-between border-b-2 w-full p-4">
+        <div className="inline-flex max-w-1/2 space-x-1 truncate">
+          <dt>Price:</dt>
+          <dd>
+            {price ? (
+              <data value={price}>{formatPrice(price)}</data>
+            ) : (
+              <span>N/A</span>
+            )}
+          </dd>
+        </div>
 
-      <div className="inline-flex max-w-1/2 space-x-1 truncate">
-        <dt>Duration:</dt>
-        <dd>
-          <time dateTime={secondsToISO(duration)}>
-            {formatDuration(duration)}
-          </time>
-        </dd>
+        <div className="inline-flex max-w-1/2 space-x-1 truncate">
+          <dt>Duration:</dt>
+          <dd>
+            <time dateTime={secondsToISO(duration)}>
+              {formatDuration(duration)}
+            </time>
+          </dd>
+        </div>
+      </div>
+      <div className="inline-flex w-full space-x-1 truncate border-b-2 p-4">
+        <dt>Difficulty:</dt>
+        <dd className="capitalize">{difficulty}</dd>
       </div>
     </dl>
   );

@@ -8,6 +8,7 @@ type Show = {
   price: number | null;
   duration: number;
   thumbnailUrl: string | null;
+  difficulty: "beginner" | "intermediate" | "advanced";
   owner?: {
     name: string;
     username: string | null;
@@ -16,7 +17,7 @@ type Show = {
 }
 
 export default function ShowCard({ show }: { show: Show }) {
-  const {id, title, price, duration, thumbnailUrl, owner} = show;
+  const {id, title, price, duration, thumbnailUrl, difficulty, owner} = show;
   const {name, username, image} = owner ?? {};
   const avatarUrl = image ?? "/default_avatar.png";
   return (
@@ -41,25 +42,31 @@ export default function ShowCard({ show }: { show: Show }) {
         </Link>
       </h3>
 
-      <dl className="inline-flex w-full justify-between space-x-2 xl:text-lg">
-        <div className="inline-flex max-w-1/2 space-x-1 truncate">
-          <dt>Price:</dt>
-          <dd>
-            {price ? (
-              <data value={price}>{formatPrice(price)}</data>
-            ) : (
-              <span>N/A</span>
-            )}
-          </dd>
-        </div>
+      <dl className="flex w-full flex-col xl:text-lg space-y-1">
+        <div className="inline-flex justify-between space-x-2">
+          <div className="inline-flex max-w-1/2 space-x-1 truncate">
+            <dt>Price:</dt>
+            <dd>
+              {price ? (
+                <data value={price}>{formatPrice(price)}</data>
+              ) : (
+                <span>N/A</span>
+              )}
+            </dd>
+          </div>
 
-        <div className="inline-flex max-w-1/2 space-x-1 truncate">
-          <dt>Duration:</dt>
-          <dd>
-            <time dateTime={secondsToISO(duration)}>
-              {formatDuration(duration)}
-            </time>
-          </dd>
+          <div className="inline-flex max-w-1/2 space-x-1 truncate">
+            <dt>Duration:</dt>
+            <dd>
+              <time dateTime={secondsToISO(duration)}>
+                {formatDuration(duration)}
+              </time>
+            </dd>
+          </div>
+        </div>
+        <div className="inline-flex w-full space-x-1 truncate">
+          <dt>Difficulty:</dt>
+          <dd className="capitalize">{difficulty}</dd>
         </div>
       </dl>
 
