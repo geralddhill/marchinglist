@@ -7,7 +7,7 @@ type Show = {
   price: number | null;
   duration: number;
   thumbnailUrl: string | null;
-  owner: {
+  owner?: {
     name: string;
     username: string | null;
     image: string | null;
