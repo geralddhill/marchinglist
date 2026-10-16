@@ -1,6 +1,6 @@
 "use client";
 import { Menu } from "lucide-react";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/dist/client/link";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/dist/client/components/navigation";
@@ -23,7 +23,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const Wrapper = pathname === "/" ? "h1" : "span";
 
-  const {data: session} = authClient.useSession();
+  const {data: session, isPending} = authClient.useSession();
 
   async function handleSignOut() {
     await authClient.signOut();
@@ -45,21 +45,24 @@ export default function Navbar() {
           </Link>
         </header>
 
-        <div className="flex h-full items-center justify-end space-x-4 sm:space-x-8 py-6 lg:hidden">
+        <div className="flex h-full items-center justify-end space-x-4 py-6 sm:space-x-8 lg:hidden">
           {/* Sign Up Button (Mobile) */}
-          {session ? (
-            <UserButton avatarUrl={session.user?.image ?? undefined} handleSignOut={handleSignOut} />
-          ) : (
-            <Link
-              href="/signup"
-              className="btn-primary px-4 text-base sm:text-xl"
-              onClick={() => {
-                setShowMenu(false);
-              }}
-            >
-              Sign Up
-            </Link>
-          )}
+          {!isPending &&
+            (session ? (
+              <Suspense fallback={null}>
+                <UserButton user={session.user} handleSignOut={handleSignOut} />
+              </Suspense>
+            ) : (
+              <Link
+                href="/signup"
+                className="btn-primary px-4 text-base sm:text-xl"
+                onClick={() => {
+                  setShowMenu(false);
+                }}
+              >
+                Sign Up
+              </Link>
+            ))}
 
           {/* Mobile Menu Button */}
           <button
@@ -122,32 +125,35 @@ export default function Navbar() {
 
       {/* Sign In/Up Buttons */}
       <div className="hidden p-4 lg:flex lg:w-lg xl:p-6 2xl:w-4xl">
-        {session ? (
-          <div className="flex h-full w-full items-center justify-end">
-            <UserButton avatarUrl={session.user?.image ?? undefined} handleSignOut={handleSignOut} />
-          </div>
-        ) : (
-          <div className="flex h-full w-full flex-auto items-center space-x-4">
-            <Link
-              href="/signin"
-              className="btn-secondary hidden w-full py-4 2xl:flex"
-              onClick={() => {
-                setShowMenu(false);
-              }}
-            >
-              Sign In
-            </Link>
-            <Link
-              href="/signup"
-              className="btn-primary w-full py-4"
-              onClick={() => {
-                setShowMenu(false);
-              }}
-            >
-              Sign Up
-            </Link>
-          </div>
-        )}
+        {!isPending &&
+          (session ? (
+            <div className="flex h-full w-full items-center justify-end">
+              <Suspense fallback={null}>
+                <UserButton user={session.user} handleSignOut={handleSignOut} />
+              </Suspense>
+            </div>
+          ) : (
+            <div className="flex h-full w-full flex-auto items-center space-x-4">
+              <Link
+                href="/signin"
+                className="btn-secondary hidden w-full py-4 2xl:flex"
+                onClick={() => {
+                  setShowMenu(false);
+                }}
+              >
+                Sign In
+              </Link>
+              <Link
+                href="/signup"
+                className="btn-primary w-full py-4"
+                onClick={() => {
+                  setShowMenu(false);
+                }}
+              >
+                Sign Up
+              </Link>
+            </div>
+          ))}
       </div>
     </div>
   );
