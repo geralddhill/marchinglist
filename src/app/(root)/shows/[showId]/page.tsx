@@ -20,14 +20,14 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
     <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
       <header className="flex w-full flex-col justify-between space-x-4 text-4xl sm:text-6xl md:flex-row md:items-start md:gap-6 xl:text-7xl">
         <div className="md:w-1/2">
-          <h1 className="mb-8 md:my-0 block border-b-2 pb-4 font-semibold wrap-break-word md:w-full">
+          <h1 className="mb-8 block border-b-2 pb-4 font-semibold wrap-break-word md:my-0 md:w-full">
             {title}
           </h1>
           <BasicInfo
             price={price}
             duration={duration}
             difficulty={difficulty}
-            className="hidden md:flex md:mt-0 md:border-t-0"
+            className="hidden md:mt-0 md:flex md:border-t-0"
           />
         </div>
         {thumbnailUrl && (
@@ -37,7 +37,7 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
                 src={thumbnailUrl}
                 alt={title}
                 fill
-                className="object-contain"
+                style={{ objectFit: "cover" }}
               />
             </div>
           </div>

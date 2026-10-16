@@ -19,7 +19,7 @@ export default function UserButton({user, handleSignOut}: {user: User, handleSig
             src={avatarUrl}
             alt="Your profile photo"
             fill
-            className="h-full w-full object-contain"
+            style={{ objectFit: "cover" }}
           />
         </button>
       </DropdownMenu.Trigger>

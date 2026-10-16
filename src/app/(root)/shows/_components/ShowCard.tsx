@@ -22,12 +22,13 @@ export default function ShowCard({ show }: { show: Show }) {
   const avatarUrl = image ?? "/default_avatar.png";
   return (
     <article className="bg-background2 relative flex h-full w-full flex-col items-center justify-center space-y-2 rounded-2xl p-4">
-      <div className="bg-background3 relative aspect-5/4 w-full rounded-2xl">
+      <div className="bg-background3 relative aspect-5/4 w-full rounded-2xl overflow-hidden">
         {thumbnailUrl && (
           <Image
             src={thumbnailUrl}
             alt={`Thumbnail for ${title}`}
             fill={true}
+            style={{ objectFit: "cover" }}
           />
         )}
       </div>
@@ -42,7 +43,7 @@ export default function ShowCard({ show }: { show: Show }) {
         </Link>
       </h3>
 
-      <dl className="flex w-full flex-col xl:text-lg space-y-1">
+      <dl className="flex w-full flex-col space-y-1 xl:text-lg">
         <div className="inline-flex justify-between space-x-2">
           <div className="inline-flex max-w-1/2 space-x-1 truncate">
             <dt>Price:</dt>
@@ -81,7 +82,7 @@ export default function ShowCard({ show }: { show: Show }) {
               src={avatarUrl}
               alt={`${name}'s avatar`}
               fill
-              className="object-contain"
+              className="object-cover"
             />
           </div>
           <span>{name}</span>
