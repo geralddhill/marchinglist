@@ -26,3 +26,12 @@ export async function getShowsByUser(userId: string) {
     }
   })
 }
+
+export async function findShowById(showId: number) {
+  "use cache";
+  return db.query.shows.findFirst({
+    where: {
+      id: showId
+    }
+  })
+}

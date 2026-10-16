@@ -3,6 +3,7 @@ import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
 
 type Show = {
+  id: number;
   title: string;
   price: number | null;
   duration: number;
@@ -15,7 +16,7 @@ type Show = {
 }
 
 export default function ShowCard({ show }: { show: Show }) {
-  const {title, price, duration, thumbnailUrl, owner} = show;
+  const {id, title, price, duration, thumbnailUrl, owner} = show;
   const {name, username, image} = owner ?? {};
   const avatarUrl = image ?? "/default_avatar.png";
   return (
@@ -32,7 +33,10 @@ export default function ShowCard({ show }: { show: Show }) {
 
       {/*TODO: Reevaluate header level once page is fully developed*/}
       <h3 className="w-full truncate text-lg font-semibold xl:text-xl">
-        <Link href={`/shows/${id}`} className="focus-visible:outline-2 focus-visible:outline-blue-500 after:absolute after:inset-0">
+        <Link
+          href={`/shows/${encodeURIComponent(id)}`}
+          className="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-blue-500"
+        >
           {title}
         </Link>
       </h3>
