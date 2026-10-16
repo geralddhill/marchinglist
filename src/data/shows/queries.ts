@@ -1,6 +1,5 @@
 import 'server-only'
 import { db } from "@/db/drizzle";
-import { shows, users } from "@/db/schema";
 
 export async function getShows() {
   return db.query.shows.findMany({
