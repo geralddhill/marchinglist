@@ -2,11 +2,7 @@ import 'server-only'
 import { db } from "@/db/drizzle";
 import { shows, users } from "@/db/schema";
 
-export type Show = Omit<typeof shows.$inferSelect, "ownerId"> & {
-  owner: Pick<typeof users.$inferSelect, "id" | "name" | "username" | "image"> | null
-};
-
-export async function getShows(): Promise<Show[]> {
+export async function getShows() {
   return db.query.shows.findMany({
     columns: {
       ownerId: false

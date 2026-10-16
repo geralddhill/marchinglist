@@ -32,7 +32,8 @@ export const relations = defineRelations(schema, (r) => ({
   shows: {
     owner: r.one.users({
       from: r.shows.ownerId,
-      to: r.users.id
+      to: r.users.id,
+      optional: false
     })
   }
 }));

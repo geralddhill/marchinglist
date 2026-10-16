@@ -3,7 +3,17 @@ import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
 import { Show } from "@/data/shows/queries";
 
-
+type Show = {
+  title: string;
+  price: number | null;
+  duration: number;
+  thumbnailUrl: string | null;
+  owner: {
+    name: string;
+    username: string | null;
+    image: string | null;
+  }
+}
 
 export default function ShowCard({ show }: { show: Show }) {
   const {title, price, duration, thumbnailUrl} = show;
