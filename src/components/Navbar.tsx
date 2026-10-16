@@ -132,7 +132,7 @@ export default function Navbar() {
           <div className="flex h-full w-full flex-auto items-center space-x-4">
             <Link
               href="/signin"
-              className="btn-primary hidden w-full py-4 2xl:flex"
+              className="btn-secondary hidden w-full py-4 2xl:flex"
               onClick={() => {
                 setShowMenu(false);
               }}
