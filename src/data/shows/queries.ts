@@ -18,3 +18,11 @@ export async function getShows() {
     }
   });
 }
+
+export async function getShowsByUser(userId: string) {
+  return db.query.shows.findMany({
+    where: {
+      ownerId: userId
+    }
+  })
+}
