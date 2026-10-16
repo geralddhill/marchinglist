@@ -1,4 +1,4 @@
-import ShowCard from "@/app/(root)/_components/ShowCard";
+import ShowCard from "@/app/(root)/shows/_components/ShowCard";
 import { getShowsByUser } from "@/data/shows/queries";
 
 export default async function UserShowList({ userId }: { userId: string }) {

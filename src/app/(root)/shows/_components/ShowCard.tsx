@@ -32,7 +32,7 @@ export default function ShowCard({ show }: { show: Show }) {
 
       {/*TODO: Reevaluate header level once page is fully developed*/}
       <h3 className="w-full truncate text-lg font-semibold xl:text-xl">
-        <Link href="/" className="after:absolute after:inset-0">
+        <Link href="/public" className="after:absolute after:inset-0">
           {title}
         </Link>
       </h3>

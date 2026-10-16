@@ -7,7 +7,6 @@ export async function proxy(request: NextRequest) {
     headers: await headers(),
   });
 
-
   if (!session) {
     return NextResponse.redirect(new URL("/signin", request.url));
   }
