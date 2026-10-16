@@ -1,16 +1,16 @@
 import { Image } from "next/dist/client/image-component";
 import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
-import { showsTable } from "@/db/schema";
+import { Show } from "@/data/shows/queries";
 
-type Show = typeof showsTable.$inferSelect;
+
 
 export default function ShowCard({ show }: { show: Show }) {
-  const {title, price, duration, thumbnail_url} = show;
+  const {title, price, duration, thumbnailUrl} = show;
   return (
     <article className="relative flex w-full h-full flex-col items-center justify-center space-y-2 rounded-2xl bg-background2 p-4">
       <div className="relative aspect-5/4 w-full bg-background3 rounded-2xl">
-        {thumbnail_url && <Image src={thumbnail_url} alt={`Thumbnail for ${title}`} fill={true} />}
+        {thumbnailUrl && <Image src={thumbnailUrl} alt={`Thumbnail for ${title}`} fill={true} />}
       </div>
 
       {/*TODO: Reevaluate header level once page is fully developed*/}

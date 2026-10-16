@@ -9,7 +9,13 @@ describe("ShowCard", () => {
     title: "Test Title",
     price: 1200,
     duration: 300,
-    thumbnail_url: "./test_show.jpg"
+    thumbnailUrl: "./test_show.jpg",
+    owner: {
+      id: "1",
+      name: "Test Owner",
+      username: "testowner",
+      image: "./default_avatar.png"
+    }
   }
 
   it("Renders card as article", () => {

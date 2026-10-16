@@ -12,20 +12,25 @@ import {
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
-export const showsTable = pgTable(
+export const shows = pgTable(
   "shows",
   {
-    id: bigint({ mode: "number" }).primaryKey().generatedAlwaysAsIdentity(),
-    title: text().notNull(),
-    price: integer(),
+    id: bigint("id", { mode: "number" })
+      .primaryKey()
+      .generatedAlwaysAsIdentity(),
+    title: text("title").notNull(),
+    price: integer("price"),
     duration: smallint().notNull(),
-    thumbnail_url: text()
+    thumbnailUrl: text("thumbnail_url"),
+    ownerId: text("owner_id")
+      .notNull()
+      .references(() => users.id, { onDelete: "cascade" })
   },
   (table) => [
     check("title_not_empty_check", sql`char_length(${table.title}) > 0`),
     check("price_not_negative_check", sql`${table.price} >= 0`),
     check("duration_not_negative_check", sql`${table.duration} >= 0`),
-    check("duration_maximum_check", sql`${table.duration} < 3600`)
+    check("duration_maximum_check", sql`${table.duration} < 3600`),
   ],
 );
 
