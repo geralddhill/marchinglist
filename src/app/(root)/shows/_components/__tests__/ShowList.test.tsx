@@ -16,6 +16,8 @@ describe("ShowList", () => {
         price: 1200,
         duration: 300,
         thumbnailUrl: "",
+        description: "",
+        difficulty: "beginning",
         owner: {
           id: "1",
           name: "Test Owner",
@@ -29,6 +31,8 @@ describe("ShowList", () => {
         price: 1350,
         duration: 400,
         thumbnailUrl: "",
+        description: "",
+        difficulty: "intermediate",
         owner: {
           id: "2",
           name: "Test Owner 2",
@@ -42,6 +46,8 @@ describe("ShowList", () => {
         price: 1100,
         duration: 320,
         thumbnailUrl: "",
+        description: "",
+        difficulty: "advanced",
         owner: {
           id: "1",
           name: "Test Owner",

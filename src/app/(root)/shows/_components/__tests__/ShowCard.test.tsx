@@ -10,13 +10,15 @@ describe("ShowCard", () => {
     price: 1200,
     duration: 300,
     thumbnailUrl: "/test_show.jpg",
+    description: "Test Description",
+    difficulty: "beginning" as "beginning",
     owner: {
       id: "1",
       name: "Test Owner",
       username: "testowner",
-      image: "/default_avatar.png"
-    }
-  }
+      image: "/default_avatar.png",
+    },
+  };
 
   it("Renders card as article", () => {
     render(<ShowCard show={show}/>);

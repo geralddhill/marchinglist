@@ -8,13 +8,15 @@ type Show = {
   price: number | null;
   duration: number;
   thumbnailUrl: string | null;
-  difficulty: "beginner" | "intermediate" | "advanced";
-  owner?: {
-    name: string;
-    username: string | null;
-    image: string | null;
-  } | undefined
-}
+  difficulty: "beginning" | "intermediate" | "advanced";
+  owner?:
+    | {
+        name: string;
+        username: string | null;
+        image: string | null;
+      }
+    | undefined;
+};
 
 export default function ShowCard({ show }: { show: Show }) {
   const {id, title, price, duration, thumbnailUrl, difficulty, owner} = show;
