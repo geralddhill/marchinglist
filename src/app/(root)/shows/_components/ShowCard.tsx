@@ -24,7 +24,7 @@ export default function ShowCard({ show }: { show: Show }) {
   const avatarUrl = image ?? "/default_avatar.png";
   return (
     <article className="bg-background2 relative flex h-full w-full flex-col items-center justify-center space-y-2 rounded-2xl p-4">
-      <div className="bg-background3 relative aspect-5/4 w-full rounded-2xl overflow-hidden">
+      <div className="bg-background3 relative aspect-5/4 w-full overflow-hidden rounded-2xl">
         {thumbnailUrl && (
           <Image
             src={thumbnailUrl}
@@ -46,26 +46,24 @@ export default function ShowCard({ show }: { show: Show }) {
       </h3>
 
       <dl className="flex w-full flex-col space-y-1 xl:text-lg">
-        <div className="inline-flex justify-between space-x-2">
-          <div className="inline-flex max-w-1/2 space-x-1 truncate">
-            <dt>Price:</dt>
-            <dd>
-              {price ? (
-                <data value={price}>{formatPrice(price)}</data>
-              ) : (
-                <span>N/A</span>
-              )}
-            </dd>
-          </div>
+        <div className="inline-flex justify-between space-x-1 truncate">
+          <dt>Price:</dt>
+          <dd>
+            {price ? (
+              <data value={price}>{formatPrice(price)}</data>
+            ) : (
+              <span>N/A</span>
+            )}
+          </dd>
 
-          <div className="inline-flex max-w-1/2 space-x-1 truncate">
-            <dt>Duration:</dt>
-            <dd>
-              <time dateTime={secondsToISO(duration)}>
-                {formatDuration(duration)}
-              </time>
-            </dd>
-          </div>
+          <div className="flex-1"/>
+
+          <dt>Duration:</dt>
+          <dd>
+            <time dateTime={secondsToISO(duration)}>
+              {formatDuration(duration)}
+            </time>
+          </dd>
         </div>
         <div className="inline-flex w-full space-x-1 truncate">
           <dt>Difficulty:</dt>

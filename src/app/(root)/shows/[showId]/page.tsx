@@ -67,26 +67,24 @@ function BasicInfo({price, duration, difficulty, className}: {price: number | nu
         className,
       )}
     >
-      <div className="inline-flex justify-between border-b-2 w-full p-4">
-        <div className="inline-flex max-w-1/2 space-x-1 truncate">
-          <dt>Price:</dt>
-          <dd>
-            {price ? (
-              <data value={price}>{formatPrice(price)}</data>
-            ) : (
-              <span>N/A</span>
-            )}
-          </dd>
-        </div>
+      <div className="inline-flex w-full justify-between border-b-2 p-4 space-x-1">
+        <dt>Price:</dt>
+        <dd>
+          {price ? (
+            <data value={price}>{formatPrice(price)}</data>
+          ) : (
+            <span>N/A</span>
+          )}
+        </dd>
 
-        <div className="inline-flex max-w-1/2 space-x-1 truncate">
-          <dt>Duration:</dt>
-          <dd>
-            <time dateTime={secondsToISO(duration)}>
-              {formatDuration(duration)}
-            </time>
-          </dd>
-        </div>
+        <div className="flex-1" />
+
+        <dt>Duration:</dt>
+        <dd>
+          <time dateTime={secondsToISO(duration)}>
+            {formatDuration(duration)}
+          </time>
+        </dd>
       </div>
       <div className="inline-flex w-full space-x-1 truncate border-b-2 p-4">
         <dt>Difficulty:</dt>
