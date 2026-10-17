@@ -1,6 +1,6 @@
 "use client";
 import { Menu } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/dist/client/link";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
@@ -20,6 +20,49 @@ const navLinks: {
 
 export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const menuRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    // 1. Lock body scroll (compensate for the vanishing scrollbar to avoid layout shift)
+    const { overflow, paddingRight } = document.body.style;
+    const scrollbar = window.innerWidth - document.documentElement.clientWidth;
+    document.body.style.overflow = "hidden";
+    if (scrollbar) document.body.style.paddingRight = `${scrollbar}px`;
+
+    // 2. Make everything behind the menu inert
+    const behind = document.querySelectorAll<HTMLElement>(
+      ".data-inert-when-menu-open",
+    );
+    behind.forEach((el) => (el.inert = true));
+
+    // 3. Move focus into the menu
+    menuRef.current?.querySelector<HTMLElement>("nav > a, nav > button")?.focus();
+
+    // 4. Close on Escape
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setShowMenu(false);
+    };
+    document.addEventListener("keydown", onKeyDown);
+
+    // Close if the viewport grows past the mobile breakpoint
+    const mq = window.matchMedia("(min-width: 768px)");
+    const onMq = () => mq.matches && setShowMenu(false);
+    mq.addEventListener("change", onMq);
+
+    return () => {
+      document.removeEventListener("keydown", onKeyDown);
+      mq.removeEventListener("change", onMq);
+      behind.forEach((el) => (el.inert = false));
+      document.body.style.overflow = overflow;
+      document.body.style.paddingRight = paddingRight;
+
+      // 5. Return focus to the toggle (after inert is removed)
+      toggleRef.current?.focus();
+    };
+  }, [showMenu]);
 
   const {data: session, isPending} = authClient.useSession();
 
@@ -28,7 +71,7 @@ export default function Navbar() {
   }
 
   return (
-    <div className="bg-background2 relative h-24 w-full sm:px-12 lg:flex xl:h-32 xl:px-20">
+    <div className="bg-background2 relative h-24 w-full md:px-12 lg:flex xl:h-32 xl:px-20">
       <div className="flex h-full min-w-full items-center justify-between space-x-4 px-4 lg:min-w-0 lg:space-x-0 2xl:px-8">
         {/* Logo Header */}
         <NavHeader />
@@ -60,6 +103,7 @@ export default function Navbar() {
             onClick={() => {
               setShowMenu(!showMenu);
             }}
+            ref={toggleRef}
           >
             <Menu strokeWidth={3} className="h-10 w-10 sm:h-12 sm:w-12" />
           </button>
@@ -74,10 +118,12 @@ export default function Navbar() {
             "lg:py=0 py-5": showMenu,
           },
         )}
+        ref={menuRef}
+        aria-label="Main"
       >
         <ul
           id="menu"
-          className={cn("w-full flex-col lg:h-full lg:flex-row", {
+          className={cn("w-full flex-col lg:h-full lg:flex-row first:border-t first:border-t-background3", {
             flex: showMenu,
             "hidden lg:flex": !showMenu,
           })}

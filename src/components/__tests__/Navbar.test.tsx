@@ -26,6 +26,20 @@ beforeEach(() => {
   })
 });
 
+Object.defineProperty(window, "matchMedia", {
+  writable: true,
+  value: jest.fn().mockImplementation((query) => ({
+    matches: false,
+    media: query,
+    onchange: null,
+    addListener: jest.fn(), // deprecated
+    removeListener: jest.fn(), // deprecated
+    addEventListener: jest.fn(),
+    removeEventListener: jest.fn(),
+    dispatchEvent: jest.fn(),
+  })),
+});
+
 describe("Navbar", () => {
   describe("Logo header", () => {
     it("Renders logo as h1 if on home page", () => {
@@ -59,7 +73,7 @@ describe("Navbar", () => {
     it("Renders a labeled navigation bar with correct links", () => {
       render(<Navbar />);
 
-      const nav = screen.getByRole("navigation");
+      const nav = screen.getByRole("navigation", {name: /main/i});
 
       expect(nav).toBeInTheDocument();
 

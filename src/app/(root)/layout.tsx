@@ -5,7 +5,7 @@ export default function Layout({ children }: { children: ReactNode }) {
   return (
     <div>
       <Navbar />
-      {children}
+      <div className="data-inert-when-menu-open">{children}</div>
     </div>
   );
 }
