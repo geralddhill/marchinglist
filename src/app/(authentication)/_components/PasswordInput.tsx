@@ -1,7 +1,7 @@
 "use client"
 
 import { Eye, EyeOff } from "lucide-react";
-import Input, { type InputProps } from "./Input";
+import Input, { type InputProps } from "../../../components/Input";
 import { useState } from "react";
 
 type PasswordInputProps = Omit<InputProps, "type" | "endAdornment">;

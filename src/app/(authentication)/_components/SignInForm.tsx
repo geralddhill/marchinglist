@@ -3,7 +3,7 @@ import { SubmitEvent, useState } from "react";
 import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/dist/client/components/navigation";
-import Input from "@/app/(authentication)/_components/Input";
+import Input from "@/components/Input";
 import PasswordInput from "@/app/(authentication)/_components/PasswordInput";
 
 export default function SignInForm() {
@@ -50,6 +50,7 @@ export default function SignInForm() {
           type="text"
           required
           autoComplete="username"
+          forAuth
         />
         <PasswordInput
           label="Password"
@@ -57,6 +58,7 @@ export default function SignInForm() {
           name="password"
           required
           autoComplete="current-password"
+          forAuth
         />
 
         {error && (

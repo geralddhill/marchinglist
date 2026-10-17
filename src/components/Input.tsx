@@ -5,12 +5,14 @@ export type InputProps = ComponentProps<"input"> & {
   label?: string;
   error?: string;
   endAdornment?: ReactNode;
+  forAuth?: boolean;
 };
 
 export default function Input({
   label,
   error,
   endAdornment,
+  forAuth = false,
   id,
   className,
   ...props
@@ -23,11 +25,15 @@ export default function Input({
       {error && (
         <p className="text-sm text-red-500 dark:text-red-600">{error}</p>
       )}
-      <div className="relative peer">
+      <div className="peer relative">
         <input
           id={inputId}
           className={cn(
-            "md:border-dark focus-visible:border-primary md:dark:focus-visible:border-primary dark:focus-visible:border-primary-light w-full rounded-2xl border-2 p-4 focus-visible:outline-none",
+            "focus-visible:border-primary dark:focus-visible:border-primary-light w-full rounded-2xl border-2 p-4 focus-visible:outline-none",
+            {
+              "md:dark:focus-visible:border-primary": forAuth,
+              "": !forAuth,
+            },
             className ?? "",
           )}
           aria-invalid={!!error}
@@ -42,7 +48,12 @@ export default function Input({
       {label && (
         <label
           htmlFor={inputId}
-          className="peer-focus-within:text-primary dark:peer-focus-within:text-primary-light md:dark:peer-focus-within:text-primary ml-4"
+          className={cn(
+            "peer-focus-within:text-primary dark:peer-focus-within:text-primary-light ml-4",
+            {
+              "md:dark:peer-focus-within:text-primary": forAuth,
+            },
+          )}
         >
           {label}
         </label>

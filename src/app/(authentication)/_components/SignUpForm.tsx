@@ -3,7 +3,7 @@ import { SubmitEvent, useState } from "react";
 import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter } from "next/dist/client/components/navigation";
-import Input from "@/app/(authentication)/_components/Input";
+import Input from "@/components/Input";
 import PasswordInput from "@/app/(authentication)/_components/PasswordInput";
 import * as z from "zod";
 import { useDebouncedCallback } from "use-debounce";
@@ -109,6 +109,7 @@ export default function SignUpForm() {
               ? error.fieldErrors.name[0]
               : undefined
           }
+          forAuth
         />
         <Input
           label="Username"
@@ -134,6 +135,7 @@ export default function SignUpForm() {
               )
             ) : undefined
           }
+          forAuth
         />
         <Input
           label="Email"
@@ -148,6 +150,7 @@ export default function SignUpForm() {
               ? error.fieldErrors.email[0]
               : undefined
           }
+          forAuth
         />
         <PasswordInput
           label="Password"
@@ -162,6 +165,7 @@ export default function SignUpForm() {
               ? error.fieldErrors.password[0]
               : undefined
           }
+          forAuth
         />
 
         {error && error.formErrors.length > 0 && (
