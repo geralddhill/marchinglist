@@ -36,7 +36,7 @@ export default function UserButton({user, handleSignOut}: {user: User, handleSig
           </DropdownMenu.Item>
           <DropdownMenu.Item asChild className="hover:outline-0">
             <Link
-              href="/"
+              href="/settings"
               className="bg-background3 hover:bg-background2 block p-2"
             >
               Settings
