@@ -4,7 +4,11 @@ import { cacheTag } from "next/cache";
 
 export async function findUserByUsername(username: string) {
   "use cache"
-  // TODO: updateTag when writing profile update function
-  cacheTag(`${username}-profile`)
-  return db.query.users.findFirst({ where: { username } });
+  const user = await db.query.users.findFirst({ where: { username } });
+
+  if (user) {
+    cacheTag(`${user.id}-profile`);
+  }
+
+  return user;
 }
