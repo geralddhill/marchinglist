@@ -40,7 +40,7 @@ export default function EmailSettings() {
     setPending(false);
     if (error)
       return setError({
-        formErrors: [error.message ?? "Sign up failed due to unknown error."],
+        formErrors: [error.message ?? "Email change failed due to unknown error."],
         fieldErrors: "",
       });
 
@@ -69,7 +69,7 @@ export default function EmailSettings() {
       handleSubmit={handleSubmit}
       pending={pending}
     >
-      <div className="sm:px-12 w-full">
+      <div className="w-full sm:px-12">
         <Input
           label="New Email"
           id="email"
@@ -81,6 +81,12 @@ export default function EmailSettings() {
           error={error?.fieldErrors ? error.fieldErrors : undefined}
           defaultValue={email}
         />
+
+        {error && error.formErrors.length > 0 && (
+          <p role="alert" className="text-red-500 dark:text-red-600">
+            {error.formErrors[0]}
+          </p>
+        )}
       </div>
     </SettingsSkeleton>
   );

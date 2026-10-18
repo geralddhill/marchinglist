@@ -7,7 +7,6 @@ import { SubmitEvent, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import Input from "@/components/Input";
 import { notFound } from "next/dist/client/components/not-found";
-import { refreshUserCache } from "@/data/users/mutations";
 import * as z from "zod";
 import { passwordSchema } from "@/lib/zod-schemas";
 
@@ -53,7 +52,7 @@ export default function PasswordSettings() {
     setPending(false);
     if (error)
       return setError({
-        formErrors: [error.message ?? "Sign up failed due to unknown error."],
+        formErrors: [error.message ?? "Password change failed due to unknown error."],
         fieldErrors: {},
       });
 
@@ -111,6 +110,12 @@ export default function PasswordSettings() {
               : undefined
           }
         />
+
+        {error && error.formErrors.length > 0 && (
+          <p role="alert" className="text-red-500 dark:text-red-600">
+            {error.formErrors[0]}
+          </p>
+        )}
       </div>
     </SettingsSkeleton>
   );

@@ -70,7 +70,7 @@ export default function ProfileSettings() {
     setPending(false);
     if (error)
       return setError({
-        formErrors: [error.message ?? "Sign up failed due to unknown error."],
+        formErrors: [error.message ?? "Profile update failed due to unknown error."],
         fieldErrors: {},
       });
 
@@ -96,7 +96,11 @@ export default function ProfileSettings() {
   const { name, username } = session.user;
 
   return (
-    <SettingsSkeleton title={"Profile Settings"} handleSubmit={handleSubmit} pending={pending}>
+    <SettingsSkeleton
+      title={"Profile Settings"}
+      handleSubmit={handleSubmit}
+      pending={pending}
+    >
       <div className="flex w-full flex-col gap-8 sm:px-12">
         <Input
           label="Name"
@@ -140,6 +144,12 @@ export default function ProfileSettings() {
             ) : undefined
           }
         />
+
+        {error && error.formErrors.length > 0 && (
+          <p role="alert" className="text-red-500 dark:text-red-600">
+            {error.formErrors[0]}
+          </p>
+        )}
       </div>
     </SettingsSkeleton>
   );
