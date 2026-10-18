@@ -65,6 +65,10 @@ export default function SignInForm() {
           forAuth
         />
 
+        <Link href={`/forgot-password`} className="text-sm">
+          Forgot Password?
+        </Link>
+
         {error && (
           <p role="alert" className="text-red-500 dark:text-red-600">
             {error}

@@ -14,6 +14,15 @@ export const auth = betterAuth({
   }),
   emailAndPassword: {
     enabled: true,
+    revokeSessionsOnPasswordReset: true,
+    sendResetPassword: async ({ user, url, token }, request) => {
+      void resend.emails.send({
+        from: "MarchingList <no-reply@account.geralddhill.com>",
+        to: user.email,
+        subject: "Reset your password",
+        html: `Click <a href="${url}">here</a> to reset your password.`,
+      });
+    },
   },
   plugins: [username()],
   user: {
