@@ -8,7 +8,7 @@ export default async function ShowList() {
     <ul className="flex w-full flex-col items-center justify-center sm:grid sm:grid-cols-2 md:grid-cols-3 gap-12 2xl:grid-cols-4">
       {shows.length > 0 ? (
         shows.map((show) => (
-          <li key={show.id}>
+          <li key={show.slug}>
             <ShowCard show={show} />
           </li>
         ))

@@ -4,12 +4,12 @@ import { db } from "@/db/drizzle";
 export async function getShows() {
   return db.query.shows.findMany({
     columns: {
+      id: false,
       ownerId: false
     },
     with: {
       owner: {
         columns: {
-          id: true,
           name: true,
           username: true,
           image: true,
@@ -21,6 +21,10 @@ export async function getShows() {
 
 export async function getShowsByUser(userId: string) {
   return db.query.shows.findMany({
+    columns: {
+      id: false,
+      ownerId: false
+    },
     where: {
       ownerId: userId
     }
@@ -31,12 +35,12 @@ export async function findShowBySlug(slug: string) {
   "use cache";
   return db.query.shows.findFirst({
     columns: {
+      id: false,
       ownerId: false
     },
     with: {
       owner: {
         columns: {
-          id: true,
           name: true,
           username: true,
           image: true,
