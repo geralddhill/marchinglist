@@ -11,45 +11,42 @@ describe("ShowList", () => {
   it("Renders shows as lists", async () => {
     mockedGetShows.mockResolvedValue([
       {
-        id: 1,
         title: "Show 1",
         price: 1200,
         duration: 300,
         thumbnailUrl: "",
         description: "",
         difficulty: "beginning",
+        slug: "show-1",
         owner: {
-          id: "1",
           name: "Test Owner",
           username: "testowner",
           image: "./default_avatar.png",
         },
       },
       {
-        id: 2,
         title: "Show 2",
         price: 1350,
         duration: 400,
         thumbnailUrl: "",
         description: "",
         difficulty: "intermediate",
+        slug: "show-2",
         owner: {
-          id: "2",
           name: "Test Owner 2",
           username: "testowner2",
           image: "./default_avatar.png",
         },
       },
       {
-        id: 3,
         title: "Show 3",
         price: 1100,
         duration: 320,
         thumbnailUrl: "",
         description: "",
         difficulty: "advanced",
+        slug: "show-3",
         owner: {
-          id: "1",
           name: "Test Owner",
           username: "testowner",
           image: "./default_avatar.png",
