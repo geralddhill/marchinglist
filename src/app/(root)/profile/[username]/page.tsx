@@ -12,7 +12,7 @@ export default async function Page({params}: {params: Promise<{username: string}
   const user = await findUserByUsername(username);
   if (!user) notFound();
 
-  const {name, image} = user;
+  const {id, name, image} = user;
   const avatarUrl = image ?? "/default_avatar.png";
 
   return (
@@ -34,7 +34,7 @@ export default async function Page({params}: {params: Promise<{username: string}
         Shows
       </h2>
       <Suspense fallback={null}>
-        <UserShowList userId={user.id} />
+        <UserShowList userId={id} />
       </Suspense>
     </main>
   );
