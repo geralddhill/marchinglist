@@ -4,15 +4,17 @@ import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import UserButton from "@/components/UserButton";
 import slugify from "slugify";
+import { slugSchema } from "@/lib/slug";
 
 
 export const instant = false;
 
 export default async function Page({ params }: { params: Promise<{ showSlug: string }> }) {
   const {showSlug} = await params;
-  const parsedSlug = slugify(showSlug, {lower: true});
+  const parsedSlug = slugSchema.safeParse(showSlug);
+  if (!parsedSlug.success) return notFound()
 
-  const show = await findShowBySlug(parsedSlug);
+  const show = await findShowBySlug(parsedSlug.data);
   if (!show) notFound();
 
   const {title, price, duration, thumbnailUrl, description, difficulty, owner} = show;

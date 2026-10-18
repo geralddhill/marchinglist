@@ -52,3 +52,16 @@ export async function findShowBySlug(slug: string) {
     }
   })
 }
+
+export async function existsSlug(slug: string) {
+  const show = db.query.shows.findFirst({
+    columns: {
+      id: true
+    },
+    where: {
+      slug
+    }
+  })
+
+  return !!show;
+}
