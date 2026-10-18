@@ -2,7 +2,7 @@ import * as z from "zod";
 
 export const nameSchema = z.string().trim().nonempty("Required")
 
-export const usernameSeletSchema = z
+export const usernameSelectSchema = z
   .string()
   .min(3)
   .max(30)
