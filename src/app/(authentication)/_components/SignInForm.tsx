@@ -2,12 +2,14 @@
 import { SubmitEvent, useState } from "react";
 import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/dist/client/components/navigation";
+import { useRouter, useSearchParams } from "next/dist/client/components/navigation";
 import Input from "@/components/Input";
 import PasswordInput from "@/app/(authentication)/_components/PasswordInput";
+import { safeRedirectPath } from "@/lib/utils";
 
 export default function SignInForm() {
   const router = useRouter();
+  const searchParams = useSearchParams()
   const [error, setError] = useState<string | null>(null);
   const [pending, setPending] = useState(false);
 
@@ -26,7 +28,9 @@ export default function SignInForm() {
 
     setPending(false);
     if (error) return setError(error.message ?? "Sign in failed due to unknown error.");
-    router.push("/");
+
+    const from = searchParams.get("from");
+    router.push(safeRedirectPath(from ?? ""));
     router.refresh();
   }
 
@@ -71,7 +75,7 @@ export default function SignInForm() {
           Sign In
         </button>
       </form>
-      <Link href="/signup" className="text-sm">
+      <Link href={`/signup?${searchParams.toString()}`} className="text-sm">
         Don't have an account? Sign up!
       </Link>
     </div>

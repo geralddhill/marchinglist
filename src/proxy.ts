@@ -8,7 +8,12 @@ export async function proxy(request: NextRequest) {
   });
 
   if (!session) {
-    return NextResponse.redirect(new URL("/signin", request.url));
+    const signInUrl = new URL("/signin", request.url);
+    signInUrl.searchParams.set(
+      "from",
+      request.nextUrl.pathname + request.nextUrl.search,
+    );
+    return NextResponse.redirect(signInUrl);
   }
 
   return NextResponse.next();

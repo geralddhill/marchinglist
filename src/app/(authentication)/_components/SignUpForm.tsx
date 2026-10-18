@@ -2,12 +2,16 @@
 import { SubmitEvent, useState } from "react";
 import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
-import { useRouter } from "next/dist/client/components/navigation";
+import {
+  useRouter,
+  useSearchParams,
+} from "next/dist/client/components/navigation";
 import Input from "@/components/Input";
 import PasswordInput from "@/app/(authentication)/_components/PasswordInput";
 import * as z from "zod";
 import { useDebouncedCallback } from "use-debounce";
 import { Check, X } from "lucide-react";
+import { safeRedirectPath } from "@/lib/utils";
 
 const signUpSchema = z.object({
   name: z.string().trim().nonempty("Required"),
@@ -33,6 +37,7 @@ type signUpErrors = {
 
 export default function SignUpForm() {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [error, setError] = useState<signUpErrors | null>(null);
   const [pending, setPending] = useState(false);
   const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(null);
@@ -64,7 +69,9 @@ export default function SignUpForm() {
         formErrors: [error.message ?? "Sign up failed due to unknown error."],
         fieldErrors: {},
       });
-    router.push("/");
+
+    const from = searchParams.get("from");
+    router.push(safeRedirectPath(from ?? ""));
     router.refresh();
   }
 
@@ -178,7 +185,7 @@ export default function SignUpForm() {
           Sign Up
         </button>
       </form>
-      <Link href="/signin" className="text-sm">
+      <Link href={`/signin?${searchParams.toString()}`} className="text-sm">
         Already have an account? Sign in!
       </Link>
     </div>

@@ -37,12 +37,12 @@ export function secondsToISO(totalSeconds: number): string {
     throw new RangeError("totalSeconds must be greater than 0");
   }
   if (totalSeconds >= 3600) {
-    throw new RangeError("Shows cannot be longer than one hour.")
+    throw new RangeError("Shows cannot be longer than one hour.");
   }
 
   const minutes = Math.floor(totalSeconds / 60);
   const seconds = Math.floor(totalSeconds % 60);
-  return `PT0H${minutes}M${seconds}S`
+  return `PT0H${minutes}M${seconds}S`;
 }
 
 const priceFormatter = new Intl.NumberFormat("en-US", {
@@ -50,7 +50,7 @@ const priceFormatter = new Intl.NumberFormat("en-US", {
   currency: "USD",
   minimumFractionDigits: 0,
   maximumFractionDigits: 0,
-})
+});
 
 /**
  * Formats price into local currency without cents
@@ -63,4 +63,25 @@ export function formatPrice(price: number): string {
     throw new RangeError("Amount must be greater than 0");
   }
   return priceFormatter.format(price);
+}
+
+export function safeRedirectPath(
+  from: string | undefined,
+  fallback = "/",
+) {
+  if (!from) return fallback;
+
+  try {
+    // Resolving against a dummy origin catches "//evil.com", "/\evil.com", "https://evil.com", etc.
+    const base = "http://localhost";
+    const url = new URL(from, base);
+    if (url.origin !== base) return fallback;
+
+    const path = url.pathname + url.search + url.hash;
+    if (path.startsWith("/login")) return fallback; // avoid redirect loops
+
+    return path;
+  } catch {
+    return fallback;
+  }
 }
