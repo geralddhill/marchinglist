@@ -7,7 +7,7 @@ import { useDebouncedCallback } from "use-debounce";
 import { Check, X } from "lucide-react";
 import { useRouter } from "next/dist/client/components/navigation";
 import * as z from "zod";
-import { refreshUserCache } from "@/data/users/mutations";
+import { refreshUserCache } from "@/lib/cache";
 import { nameSchema, usernameUpsertSchema } from "@/lib/zod-schemas";
 import SettingsSkeleton from "@/app/(root)/settings/_components/SettingsSkeleton";
 
