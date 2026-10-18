@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/dist/client/link";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
-import UserButton from "@/components/UserButton";
+import UserNavButton from "@/components/UserNavButton";
 import NavLink from "@/components/NavLink";
 import NavHeader from "@/components/NavHeader";
 
@@ -80,7 +80,7 @@ export default function Navbar() {
           {/* Sign Up Button (Mobile) */}
           {!isPending &&
             (session ? (
-              <UserButton user={session.user} handleSignOut={handleSignOut} />
+              <UserNavButton user={session.user} handleSignOut={handleSignOut} />
             ) : (
               <Link
                 href="/signup"
@@ -145,7 +145,7 @@ export default function Navbar() {
         {!isPending &&
           (session ? (
             <div className="flex h-full w-full items-center justify-end">
-              <UserButton user={session.user} handleSignOut={handleSignOut} />
+              <UserNavButton user={session.user} handleSignOut={handleSignOut} />
             </div>
           ) : (
             <div className="flex h-full w-full flex-auto items-center gap-4">

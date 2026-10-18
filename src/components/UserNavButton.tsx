@@ -7,7 +7,7 @@ type User = {
   image?: string | null | undefined;
 }
 
-export default function UserButton({user, handleSignOut}: {user: User, handleSignOut: () => void}) {
+export default function UserNavButton({user, handleSignOut}: {user: User, handleSignOut: () => void}) {
   const {username, image} = user;
   const avatarUrl = image ?? "/default_avatar.png"
 
