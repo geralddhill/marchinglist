@@ -31,6 +31,8 @@ export default function ShowCard({ show }: { show: Show }) {
             src={thumbnailUrl}
             alt={`Thumbnail for ${title}`}
             fill={true}
+            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, (max-width: 1536px) 33vw, 25vw"
+            loading="eager"
             style={{ objectFit: "cover" }}
           />
         )}

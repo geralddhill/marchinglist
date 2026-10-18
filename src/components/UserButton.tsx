@@ -16,7 +16,7 @@ export default function UserButton({user, className}: {user: User, className?: s
       href={`/profile/${encodeURIComponent(username ?? "")}`}
       className={cn(
         "z-10 flex items-center gap-2 self-start rounded-full p-1 pr-1 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none",
-        className
+        className,
       )}
     >
       <div className="relative aspect-square size-[calc(1lh+0.5rem)] overflow-hidden rounded-full">
@@ -24,6 +24,7 @@ export default function UserButton({user, className}: {user: User, className?: s
           src={avatarUrl}
           alt={`${name}'s avatar`}
           fill
+          sizes="33vw"
           className="object-cover"
         />
       </div>

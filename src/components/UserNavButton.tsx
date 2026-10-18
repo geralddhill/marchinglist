@@ -19,6 +19,7 @@ export default function UserNavButton({user, handleSignOut}: {user: User, handle
             src={avatarUrl}
             alt="Your profile photo"
             fill
+            sizes="33vw"
             style={{ objectFit: "cover" }}
           />
         </button>

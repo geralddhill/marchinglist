@@ -41,6 +41,8 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
                 src={thumbnailUrl}
                 alt={title}
                 fill
+                sizes="50vw"
+                loading="eager"
                 style={{ objectFit: "cover" }}
               />
             </div>

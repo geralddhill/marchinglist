@@ -23,6 +23,7 @@ export default async function Page({params}: {params: Promise<{username: string}
             src={avatarUrl}
             alt={`${name}'s avatar`}
             fill
+            sizes="33vw"
             style={{ objectFit: "cover" }}
           />
         </div>
