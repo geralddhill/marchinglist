@@ -2,6 +2,7 @@ import { notFound } from "next/dist/client/components/not-found";
 import { findShowById } from "@/data/shows/queries";
 import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
+import UserButton from "@/components/UserButton";
 
 export const instant = false;
 
@@ -14,7 +15,9 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
   const show = await findShowById(parsedId);
   if (!show) notFound();
 
-  const {title, price, duration, thumbnailUrl, description, difficulty} = show;
+  const {title, price, duration, thumbnailUrl, description, difficulty, owner} = show;
+  const { name, username, image } = owner;
+  const avatarUrl = image ?? "/default_avatar.png";
 
   return (
     <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
@@ -28,6 +31,7 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
             duration={duration}
             difficulty={difficulty}
             className="hidden md:mt-0 md:flex md:border-t-0"
+            user={{ name, username, avatarUrl }}
           />
         </div>
         {thumbnailUrl && (
@@ -47,6 +51,7 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
           duration={duration}
           difficulty={difficulty}
           className="md:hidden"
+          user={{ name, username, avatarUrl }}
         />
       </header>
 
@@ -58,8 +63,19 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
   );
 }
 
+type BasicInfoProps = {
+  price: number | null;
+  duration: number;
+  difficulty: "beginning" | "intermediate" | "advanced";
+  user: {
+    name: string;
+    username: string | null;
+    avatarUrl: string;
+  }
+  className?: string;
+};
 
-function BasicInfo({price, duration, difficulty, className}: {price: number | null, duration: number, difficulty: "beginning" | "intermediate" | "advanced", className?: string}) {
+function BasicInfo({price, duration, difficulty, user, className}: BasicInfoProps) {
   return (
     <div
       className={cn(
@@ -92,6 +108,7 @@ function BasicInfo({price, duration, difficulty, className}: {price: number | nu
         <dt>Difficulty:</dt>
         <dd className="capitalize">{difficulty}</dd>
       </dl>
+      <UserButton user={user} className="text-xl sm:text-2xl bg-background2 m-2" />
     </div>
   );
 }

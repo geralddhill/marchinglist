@@ -30,6 +30,19 @@ export async function getShowsByUser(userId: string) {
 export async function findShowById(showId: number) {
   "use cache";
   return db.query.shows.findFirst({
+    columns: {
+      ownerId: false
+    },
+    with: {
+      owner: {
+        columns: {
+          id: true,
+          name: true,
+          username: true,
+          image: true,
+        }
+      }
+    },
     where: {
       id: showId
     }

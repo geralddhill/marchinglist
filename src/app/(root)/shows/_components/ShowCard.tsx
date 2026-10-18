@@ -1,6 +1,7 @@
 import { Image } from "next/dist/client/image-component";
 import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
+import UserButton from "@/components/UserButton";
 
 type Show = {
   id: number;
@@ -20,7 +21,7 @@ type Show = {
 
 export default function ShowCard({ show }: { show: Show }) {
   const {id, title, price, duration, thumbnailUrl, difficulty, owner} = show;
-  const {name, username, image} = owner ?? {};
+  const {name, username, image} = owner ?? {name: "", username: null};
   const avatarUrl = image ?? "/default_avatar.png";
   return (
     <article className="bg-background2 relative flex h-full w-full flex-col items-center justify-center gap-2 rounded-2xl p-4">
@@ -66,27 +67,17 @@ export default function ShowCard({ show }: { show: Show }) {
           </dd>
         </div>
       </dl>
-      <dl className="truncate xl:text-lg inline-flex w-full gap-1">
+      <dl className="inline-flex w-full gap-1 truncate xl:text-lg">
         <dt>Difficulty:</dt>
         <dd className="capitalize">{difficulty}</dd>
       </dl>
 
       {/* Show Owner */}
       {owner && (
-        <Link
-          href={`/profile/${encodeURIComponent(username ?? "")}`}
-          className="z-10 flex items-center gap-2 self-start pr-1 xl:text-lg"
-        >
-          <div className="relative aspect-square size-[calc(1lh+0.5rem)] overflow-hidden rounded-full bg-black">
-            <Image
-              src={avatarUrl}
-              alt={`${name}'s avatar`}
-              fill
-              className="object-cover"
-            />
-          </div>
-          <span>{name}</span>
-        </Link>
+        <UserButton
+          user={{ name, username, avatarUrl }}
+          className="bg-background3 xl:text-lg"
+        />
       )}
     </article>
   );
