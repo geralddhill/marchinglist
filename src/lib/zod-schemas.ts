@@ -16,4 +16,4 @@ export const usernameUpsertSchema = z
 
 export const emailSchema = z.email("Invalid email address");
 
-export const passwordSchema = z.string().trim().min(8, "Minimum 8 characters long");
+export const passwordSchema = z.string().trim().min(8, "Minimum 8 characters long").max(128, "Maximum 128 characters long");
