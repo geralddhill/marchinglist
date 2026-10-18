@@ -4,8 +4,8 @@ import Link from "next/dist/client/link";
 import UserButton from "@/components/UserButton";
 
 type Show = {
-  id: number;
   title: string;
+  slug: string;
   price: number | null;
   duration: number;
   thumbnailUrl: string | null;
@@ -20,7 +20,7 @@ type Show = {
 };
 
 export default function ShowCard({ show }: { show: Show }) {
-  const {id, title, price, duration, thumbnailUrl, difficulty, owner} = show;
+  const {title, slug, price, duration, thumbnailUrl, difficulty, owner} = show;
   const {name, username, image} = owner ?? {name: "", username: null};
   const avatarUrl = image ?? "/default_avatar.png";
   return (
@@ -41,7 +41,7 @@ export default function ShowCard({ show }: { show: Show }) {
       {/*TODO: Reevaluate header level once page is fully developed*/}
       <h3 className="w-full truncate text-lg font-semibold xl:text-xl">
         <Link
-          href={`/shows/${encodeURIComponent(id)}`}
+          href={`/shows/${encodeURIComponent(slug)}`}
           className="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-blue-500"
         >
           {title}

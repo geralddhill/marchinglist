@@ -27,7 +27,7 @@ export async function getShowsByUser(userId: string) {
   })
 }
 
-export async function findShowById(showId: number) {
+export async function findShowBySlug(slug: string) {
   "use cache";
   return db.query.shows.findFirst({
     columns: {
@@ -44,7 +44,7 @@ export async function findShowById(showId: number) {
       }
     },
     where: {
-      id: showId
+      slug
     }
   })
 }

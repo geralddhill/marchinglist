@@ -22,6 +22,7 @@ export const shows = pgTable(
       .primaryKey()
       .generatedAlwaysAsIdentity(),
     title: text("title").notNull(),
+    slug: text("slug").notNull().unique(),
     price: integer("price"),
     duration: smallint().notNull(),
     thumbnailUrl: text("thumbnail_url"),

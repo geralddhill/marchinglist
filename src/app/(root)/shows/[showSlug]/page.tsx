@@ -1,18 +1,18 @@
 import { notFound } from "next/dist/client/components/not-found";
-import { findShowById } from "@/data/shows/queries";
+import { findShowBySlug } from "@/data/shows/queries";
 import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import UserButton from "@/components/UserButton";
+import slugify from "slugify";
+
 
 export const instant = false;
 
-export default async function Page({ params }: { params: Promise<{ showId: string }> }) {
-  const {showId} = await params;
+export default async function Page({ params }: { params: Promise<{ showSlug: string }> }) {
+  const {showSlug} = await params;
+  const parsedSlug = slugify(showSlug, {lower: true});
 
-  const parsedId = parseInt(showId);
-  if (Number.isNaN(parsedId)) notFound();
-
-  const show = await findShowById(parsedId);
+  const show = await findShowBySlug(parsedSlug);
   if (!show) notFound();
 
   const {title, price, duration, thumbnailUrl, description, difficulty, owner} = show;
