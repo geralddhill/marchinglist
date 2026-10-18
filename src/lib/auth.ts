@@ -15,7 +15,7 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
     revokeSessionsOnPasswordReset: true,
-    sendResetPassword: async ({ user, url, token }, request) => {
+    sendResetPassword: async ({ user, url }) => {
       void resend.emails.send({
         from: "MarchingList <no-reply@account.geralddhill.com>",
         to: user.email,
@@ -26,6 +26,17 @@ export const auth = betterAuth({
   },
   plugins: [username()],
   user: {
+    deleteUser: {
+      enabled: true,
+      sendDeleteAccountVerification: async ({ user, url }) => {
+        void resend.emails.send({
+          from: "MarchingList <no-reply@account.geralddhill.com>",
+          to: user.email,
+          subject: "Confirm account deletion",
+          html: `Click <a href="${url}">here</a> to delete your account.`,
+        });
+      }
+    },
     changeEmail: {
       enabled: true,
     },

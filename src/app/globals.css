@@ -4,12 +4,18 @@
   --background: var(--color-light);
   --background2: var(--color-light2);
   --background3: var(--color-light3);
+
   --foreground: var(--color-dark);
   --foreground2: var(--color-dark2);
   --foreground3: var(--color-dark3);
+
   --primary: var(--color-indigo-600);
   --primary2: var(--color-indigo-700);
   --primary3: var(--color-indigo-800);
+
+  --error: var(--color-red-500);
+  --error2: var(--color-red-600);
+  --error3: var(--color-red-700);
 }
 
 @theme {
@@ -29,7 +35,11 @@
   --color-primary: var(--primary);
   --color-primary2: var(--primary2);
   --color-primary3: var(--primary3);
-  --color-primary-light: var(--color-indigo-300)
+  --color-primary-light: var(--color-indigo-300);
+
+  --color-error: var(--error);
+  --color-error2: var(--error2);
+  --color-error3: var(--error3);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -37,12 +47,18 @@
     --background: var(--color-dark);
     --background2: var(--color-dark2);
     --background3: var(--color-dark3);
+
     --foreground: var(--color-light);
     --foreground2: var(--color-light2);
     --foreground3: var(--color-light3);
+
     --primary: var(--color-indigo-700);
     --primary2: var(--color-indigo-600);
     --primary3: var(--color-indigo-500);
+
+    --error: var(--color-red-600);
+    --error2: var(--color-red-500);
+    --error3: var(--color-red-400);
   }
 }
 
@@ -60,7 +76,10 @@
   @apply btn text-primary border-6 border-primary hover:border-primary2 active:border-primary3 hover:text-primary2 active:text-primary3
   dark:text-foreground dark:border-foreground dark:hover:border-foreground2 dark:active:border-foreground3
   dark:hover:text-foreground2 dark:active:text-foreground3;
+}
 
+@utility btn-error {
+  @apply btn text-light border-6 border-error hover:border-error2 active:border-error3 bg-error hover:bg-error2 active:bg-error3;
 }
 
 body {
