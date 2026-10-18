@@ -24,7 +24,7 @@ export default function ShowCard({ show }: { show: Show }) {
   const {name, username, image} = owner ?? {name: "", username: null};
   const avatarUrl = image ?? "/default_avatar.png";
   return (
-    <article className="bg-background2 relative flex h-full w-full flex-col items-center justify-center gap-2 rounded-2xl p-4">
+    <article className="bg-background2 relative flex h-full w-full flex-col items-center justify-center gap-2 rounded-2xl p-4 card">
       <div className="bg-background3 relative aspect-5/4 w-full overflow-hidden rounded-2xl">
         {thumbnailUrl && (
           <Image

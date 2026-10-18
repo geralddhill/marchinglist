@@ -82,6 +82,11 @@
   @apply btn text-light border-6 border-error hover:border-error2 active:border-error3 bg-error hover:bg-error2 active:bg-error3;
 }
 
+@utility card {
+  @apply transition active:scale-[0.98]
+  motion-reduce:transition-none motion-reduce:transform-none shadow-sm hover:shadow-md hover:-translate-y-0.5 active:translate-y-0;
+}
+
 body {
   background: var(--background);
   color: var(--foreground);
