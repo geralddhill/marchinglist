@@ -61,35 +61,37 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
 
 function BasicInfo({price, duration, difficulty, className}: {price: number | null, duration: number, difficulty: "beginning" | "intermediate" | "advanced", className?: string}) {
   return (
-    <dl
+    <div
       className={cn(
         "my-8 flex w-full flex-col gap-2 border-t-2 text-xl sm:text-2xl",
         className,
       )}
     >
-      <div className="inline-flex w-full justify-between border-b-2 p-4 gap-1">
-        <dt>Price:</dt>
-        <dd>
-          {price ? (
-            <data value={price}>{formatPrice(price)}</data>
-          ) : (
-            <span>N/A</span>
-          )}
-        </dd>
+      <dl className="inline-flex w-full justify-between gap-2 border-b-2 p-4">
+        <div className="inline-flex max-w-1/2 gap-1 truncate">
+          <dt>Price:</dt>
+          <dd>
+            {price ? (
+              <data value={price}>{formatPrice(price)}</data>
+            ) : (
+              <span>N/A</span>
+            )}
+          </dd>
+        </div>
 
-        <div className="flex-1" />
-
-        <dt>Duration:</dt>
-        <dd>
-          <time dateTime={secondsToISO(duration)}>
-            {formatDuration(duration)}
-          </time>
-        </dd>
-      </div>
-      <div className="inline-flex w-full gap-1 truncate border-b-2 p-4">
+        <div className="inline-flex max-w-1/2 gap-1 truncate">
+          <dt>Duration:</dt>
+          <dd>
+            <time dateTime={secondsToISO(duration)}>
+              {formatDuration(duration)}
+            </time>
+          </dd>
+        </div>
+      </dl>
+      <dl className="inline-flex w-full gap-1 truncate border-b-2 p-4">
         <dt>Difficulty:</dt>
         <dd className="capitalize">{difficulty}</dd>
-      </div>
-    </dl>
+      </dl>
+    </div>
   );
 }

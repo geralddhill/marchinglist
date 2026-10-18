@@ -45,8 +45,8 @@ export default function ShowCard({ show }: { show: Show }) {
         </Link>
       </h3>
 
-      <dl className="flex w-full flex-col gap-1 xl:text-lg">
-        <div className="inline-flex justify-between gap-1 truncate">
+      <dl className="inline-flex w-full justify-between gap-2 xl:text-lg">
+        <div className="inline-flex max-w-1/2 gap-1 truncate">
           <dt>Price:</dt>
           <dd>
             {price ? (
@@ -55,9 +55,9 @@ export default function ShowCard({ show }: { show: Show }) {
               <span>N/A</span>
             )}
           </dd>
+        </div>
 
-          <div className="flex-1"/>
-
+        <div className="inline-flex max-w-1/2 gap-1 truncate">
           <dt>Duration:</dt>
           <dd>
             <time dateTime={secondsToISO(duration)}>
@@ -65,10 +65,10 @@ export default function ShowCard({ show }: { show: Show }) {
             </time>
           </dd>
         </div>
-        <div className="inline-flex w-full gapp1 truncate">
-          <dt>Difficulty:</dt>
-          <dd className="capitalize">{difficulty}</dd>
-        </div>
+      </dl>
+      <dl className="truncate xl:text-lg inline-flex w-full gap-1">
+        <dt>Difficulty:</dt>
+        <dd className="capitalize">{difficulty}</dd>
       </dl>
 
       {/* Show Owner */}
