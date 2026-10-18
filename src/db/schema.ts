@@ -44,20 +44,26 @@ export const shows = pgTable(
   ],
 );
 
-export const users = pgTable("users", {
-  id: text("id").primaryKey(),
-  name: text("name").notNull(),
-  email: text("email").notNull().unique(),
-  emailVerified: boolean("email_verified").default(false).notNull(),
-  image: text("image"),
-  createdAt: timestamp("created_at").defaultNow().notNull(),
-  updatedAt: timestamp("updated_at")
-    .defaultNow()
-    .$onUpdate(() => /* @__PURE__ */ new Date())
-    .notNull(),
-  username: varchar("username", { length: 255 }).unique(),
-  displayUsername: text("display_username"),
-});
+export const users = pgTable(
+  "users",
+  {
+    id: text("id").primaryKey(),
+    name: text("name").notNull(),
+    email: text("email").notNull().unique(),
+    emailVerified: boolean("email_verified").default(false).notNull(),
+    image: text("image"),
+    createdAt: timestamp("created_at").defaultNow().notNull(),
+    updatedAt: timestamp("updated_at")
+      .defaultNow()
+      .$onUpdate(() => /* @__PURE__ */ new Date())
+      .notNull(),
+    username: varchar("username", { length: 255 }).unique(),
+    displayUsername: text("display_username"),
+  },
+  (table) => [
+    check("valid_username_check", sql`${table.username} ~ '^[a-z0-9_.]+$'`),
+  ],
+);
 
 export const sessions = pgTable(
   "sessions",
