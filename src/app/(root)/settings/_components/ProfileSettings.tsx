@@ -2,13 +2,14 @@
 import Input from "@/components/Input";
 import { authClient } from "@/lib/auth-client";
 import { notFound } from "next/dist/client/components/not-found";
-import { ReactNode, SubmitEvent, useState } from "react";
+import { SubmitEvent, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { Check, X } from "lucide-react";
 import { useRouter } from "next/dist/client/components/navigation";
 import * as z from "zod";
 import { refreshUserCache } from "@/data/users/mutations";
 import { nameSchema, usernameUpsertSchema } from "@/lib/zod-schemas";
+import SettingsSkeleton from "@/app/(root)/settings/_components/SettingsSkeleton";
 
 const profileSchema = z.object({
   name: nameSchema,
@@ -75,22 +76,27 @@ export default function ProfileSettings() {
 
     await refreshUserCache();
 
-    router.push(`/profile/${encodeURIComponent(session?.user.username ?? "")}`);
     router.refresh();
   }
 
-  if (isPending) return <FormSkeleton handleSubmit={() => {}} pending={false}>
-    <div className="flex w-full flex-col gap-8 sm:px-12">
-      <Input label="Name"/>
-      <Input label="Username"/>
-    </div>
-  </FormSkeleton>;
+  if (isPending) return (
+    <SettingsSkeleton
+      title={"Profile Settings"}
+      handleSubmit={() => {}}
+      pending={false}
+    >
+      <div className="flex w-full flex-col gap-8 sm:px-12">
+        <Input label="Name" />
+        <Input label="Username" />
+      </div>
+    </SettingsSkeleton>
+  );
   if (!session) notFound();
 
   const { name, username } = session.user;
 
   return (
-    <FormSkeleton handleSubmit={handleSubmit} pending={pending}>
+    <SettingsSkeleton title={"Profile Settings"} handleSubmit={handleSubmit} pending={pending}>
       <div className="flex w-full flex-col gap-8 sm:px-12">
         <Input
           label="Name"
@@ -135,18 +141,7 @@ export default function ProfileSettings() {
           }
         />
       </div>
-    </FormSkeleton>
+    </SettingsSkeleton>
   );
 }
 
-function FormSkeleton({handleSubmit, pending, children}: {handleSubmit: (e: SubmitEvent<HTMLFormElement>) => void, pending: boolean, children?: ReactNode}) {
-  return (
-    <form className="flex flex-col items-center gap-12" onSubmit={handleSubmit}>
-      <h2 className="mb-8 block w-full border-b-2 pb-4 text-3xl font-semibold wrap-break-word sm:text-4xl xl:text-5xl">
-        Profile Settings
-      </h2>
-      {children}
-      <button type="submit" className="btn-primary" disabled={pending}>Submit</button>
-    </form>
-  )
-}

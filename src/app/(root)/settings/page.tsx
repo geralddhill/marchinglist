@@ -1,4 +1,5 @@
 import ProfileSettings from "@/app/(root)/settings/_components/ProfileSettings";
+import EmailSettings from "@/app/(root)/settings/_components/EmailSettings";
 
 export default function Page() {
   return (
@@ -8,6 +9,7 @@ export default function Page() {
       </h1>
 
       <ProfileSettings />
+      <EmailSettings />
     </main>
   );
 }
