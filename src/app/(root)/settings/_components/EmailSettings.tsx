@@ -10,7 +10,7 @@ import { notFound } from "next/dist/client/components/not-found";
 
 type emailErrors = {
   formErrors: string[];
-  fieldErrors: string;
+  fieldErrors: string | undefined;
 };
 
 export default function EmailSettings() {
