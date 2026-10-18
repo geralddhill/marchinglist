@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: Promise<{ showId: strin
 
   return (
     <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
-      <header className="flex w-full flex-col justify-between space-x-4 text-4xl sm:text-6xl md:flex-row md:items-start md:gap-6 xl:text-7xl">
+      <header className="flex w-full flex-col justify-between gap-4 text-4xl sm:text-6xl md:flex-row md:items-start md:gap-6 xl:text-7xl">
         <div className="md:w-1/2">
           <h1 className="mb-8 block border-b-2 pb-4 font-semibold wrap-break-word md:my-0 md:w-full">
             {title}
@@ -63,11 +63,11 @@ function BasicInfo({price, duration, difficulty, className}: {price: number | nu
   return (
     <dl
       className={cn(
-        "my-8 flex w-full flex-col space-x-2 border-t-2 text-xl sm:text-2xl",
+        "my-8 flex w-full flex-col gap-2 border-t-2 text-xl sm:text-2xl",
         className,
       )}
     >
-      <div className="inline-flex w-full justify-between border-b-2 p-4 space-x-1">
+      <div className="inline-flex w-full justify-between border-b-2 p-4 gap-1">
         <dt>Price:</dt>
         <dd>
           {price ? (
@@ -86,7 +86,7 @@ function BasicInfo({price, duration, difficulty, className}: {price: number | nu
           </time>
         </dd>
       </div>
-      <div className="inline-flex w-full space-x-1 truncate border-b-2 p-4">
+      <div className="inline-flex w-full gap-1 truncate border-b-2 p-4">
         <dt>Difficulty:</dt>
         <dd className="capitalize">{difficulty}</dd>
       </div>

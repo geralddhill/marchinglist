@@ -72,11 +72,11 @@ export default function Navbar() {
 
   return (
     <div className="bg-background2 relative h-24 w-full md:px-12 lg:flex xl:h-32 xl:px-20">
-      <div className="flex h-full min-w-full items-center justify-between space-x-4 px-4 lg:min-w-0 lg:space-x-0 2xl:px-8">
+      <div className="flex h-full min-w-full items-center justify-between gap-4 px-4 lg:min-w-0 lg:gap-0 2xl:px-8">
         {/* Logo Header */}
         <NavHeader />
 
-        <div className="flex h-full items-center justify-end space-x-4 py-6 sm:space-x-8 lg:hidden">
+        <div className="flex h-full items-center justify-end gap-4 py-6 sm:gap-8 lg:hidden">
           {/* Sign Up Button (Mobile) */}
           {!isPending &&
             (session ? (
@@ -148,7 +148,7 @@ export default function Navbar() {
               <UserButton user={session.user} handleSignOut={handleSignOut} />
             </div>
           ) : (
-            <div className="flex h-full w-full flex-auto items-center space-x-4">
+            <div className="flex h-full w-full flex-auto items-center gap-4">
               <Link
                 href="/signin"
                 className="btn-secondary hidden w-full py-4 2xl:flex"

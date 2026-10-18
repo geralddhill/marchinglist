@@ -84,7 +84,7 @@ export default function ProfileSettings() {
   }
 
   if (isPending) return <FormSkeleton handleSubmit={() => {}} pending={false}>
-    <div className="flex w-full flex-col space-y-8 sm:px-12">
+    <div className="flex w-full flex-col gap-8 sm:px-12">
       <Input label="Name"/>
       <Input label="Username"/>
     </div>
@@ -95,7 +95,7 @@ export default function ProfileSettings() {
 
   return (
     <FormSkeleton handleSubmit={handleSubmit} pending={pending}>
-      <div className="flex w-full flex-col space-y-8 sm:px-12">
+      <div className="flex w-full flex-col gap-8 sm:px-12">
         <Input
           label="Name"
           id="name"
@@ -145,7 +145,7 @@ export default function ProfileSettings() {
 
 function FormSkeleton({handleSubmit, pending, children}: {handleSubmit: (e: SubmitEvent<HTMLFormElement>) => void, pending: boolean, children?: ReactNode}) {
   return (
-    <form className="flex flex-col items-center space-y-12" onSubmit={handleSubmit}>
+    <form className="flex flex-col items-center gap-12" onSubmit={handleSubmit}>
       <h2 className="mb-8 block w-full border-b-2 pb-4 text-3xl font-semibold wrap-break-word sm:text-4xl xl:text-5xl">
         Profile Settings
       </h2>

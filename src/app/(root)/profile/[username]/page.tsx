@@ -17,7 +17,7 @@ export default async function Page({params}: {params: Promise<{username: string}
 
   return (
     <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
-      <header className="mb-8 flex w-full items-center space-x-4 border-b-2 pb-4 text-4xl sm:text-6xl xl:text-7xl">
+      <header className="mb-8 flex w-full items-center gap-4 border-b-2 pb-4 text-4xl sm:text-6xl xl:text-7xl">
         <div className="relative aspect-square size-[calc(1lh+1rem)] overflow-hidden rounded-full bg-black">
           <Image
             src={avatarUrl}

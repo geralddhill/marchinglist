@@ -84,8 +84,8 @@ export default function SignUpForm() {
   }, 300)
 
   return (
-    <div className="md:bg-light2 md:dark:bg-light md:text-dark flex flex-col items-center space-y-16 p-4 text-xl md:rounded-4xl md:p-0 md:p-24">
-      <div className="flex flex-col items-center space-y-2">
+    <div className="md:bg-light2 md:dark:bg-light md:text-dark flex flex-col items-center gap-16 p-4 text-xl md:rounded-4xl md:p-0 md:p-24">
+      <div className="flex flex-col items-center gap-2">
         <h1 className="text-center text-4xl font-bold">
           Welcome to MarchingList!
         </h1>
@@ -94,7 +94,7 @@ export default function SignUpForm() {
 
       <form
         onSubmit={handleSubmit}
-        className="flex w-full flex-col items-center space-y-12"
+        className="flex w-full flex-col items-center gap-12"
       >
         <Input
           label="Name"
