@@ -15,7 +15,7 @@ export default function UserButton({user, className}: {user: User, className?: s
     <Link
       href={`/profile/${encodeURIComponent(username ?? "")}`}
       className={cn(
-        "z-10 flex items-center gap-2 self-start rounded-full p-1 pr-1 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none",
+        "max-w-full z-10 flex items-center gap-2 self-start rounded-full p-1 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none",
         className,
       )}
     >
@@ -28,7 +28,7 @@ export default function UserButton({user, className}: {user: User, className?: s
           className="object-cover"
         />
       </div>
-      <span className="pr-2">{name}</span>
+      <span className="pr-2 truncate">{name}</span>
     </Link>
   );
 }

@@ -78,7 +78,7 @@ export default function ShowCard({ show }: { show: Show }) {
       {owner && (
         <UserButton
           user={{ name, username, avatarUrl }}
-          className="bg-background3 xl:text-lg"
+          className="bg-background3 xl:text-lg w-full"
         />
       )}
     </article>
