@@ -3,7 +3,6 @@ import { findShowBySlug } from "@/data/shows/queries";
 import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import UserButton from "@/components/UserButton";
-import slugify from "slugify";
 import { slugSchema } from "@/lib/slug";
 
 

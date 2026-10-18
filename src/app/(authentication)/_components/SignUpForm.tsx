@@ -12,17 +12,18 @@ import * as z from "zod";
 import { useDebouncedCallback } from "use-debounce";
 import { Check, X } from "lucide-react";
 import { safeRedirectPath } from "@/lib/utils";
+import {
+  emailSchema,
+  nameSchema,
+  passwordSchema,
+  usernameSchema,
+} from "@/lib/zod-schemas";
 
 const signUpSchema = z.object({
-  name: z.string().trim().nonempty("Required"),
-  username: z
-    .string()
-    .trim()
-    .min(3, "Minimum 3 characters long")
-    .max(30, "Maximum 30 characters long")
-    .regex(/^[a-zA-Z0-9_.]+$/, "Letters, numbers, underscores, dots only"),
-  email: z.email("Invalid email address"),
-  password: z.string().trim().min(8, "Minimum 8 characters long"),
+  name: nameSchema,
+  username: usernameSchema,
+  email: emailSchema,
+  password: passwordSchema,
 });
 
 type signUpErrors = {

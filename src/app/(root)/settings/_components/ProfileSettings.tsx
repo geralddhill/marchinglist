@@ -8,15 +8,11 @@ import { Check, X } from "lucide-react";
 import { useRouter } from "next/dist/client/components/navigation";
 import * as z from "zod";
 import { refreshUserCache } from "@/data/users/mutations";
+import { nameSchema, usernameSchema } from "@/lib/zod-schemas";
 
 const profileSchema = z.object({
-  name: z.string().trim().nonempty("Required"),
-  username: z
-    .string()
-    .trim()
-    .min(3, "Minimum 3 characters long")
-    .max(30, "Maximum 30 characters long")
-    .regex(/^[a-zA-Z0-9_.]+$/, "Letters, numbers, underscores, dots only"),
+  name: nameSchema,
+  username: usernameSchema
 });
 
 type profileErrors = {
