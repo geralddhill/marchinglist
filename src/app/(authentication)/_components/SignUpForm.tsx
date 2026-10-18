@@ -7,7 +7,7 @@ import {
   useSearchParams,
 } from "next/dist/client/components/navigation";
 import Input from "@/components/Input";
-import PasswordInput from "@/app/(authentication)/_components/PasswordInput";
+import PasswordInput from "@/components/PasswordInput";
 import * as z from "zod";
 import { useDebouncedCallback } from "use-debounce";
 import { Check, X } from "lucide-react";

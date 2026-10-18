@@ -4,7 +4,7 @@ import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter, useSearchParams } from "next/dist/client/components/navigation";
 import Input from "@/components/Input";
-import PasswordInput from "@/app/(authentication)/_components/PasswordInput";
+import PasswordInput from "@/components/PasswordInput";
 import { safeRedirectPath } from "@/lib/utils";
 
 export default function SignInForm() {
