@@ -37,6 +37,10 @@ export const shows = pgTable(
     check("price_not_negative_check", sql`${table.price} >= 0`),
     check("duration_not_negative_check", sql`${table.duration} >= 0`),
     check("duration_maximum_check", sql`${table.duration} < 3600`),
+    check(
+      "valid_slug_check",
+      sql`${table.slug} ~ '^[a-z0-9]+(-[a-z0-9]+)*$' AND char_length(${table.slug}) >= 1 AND char_length(${table.slug}) <= 100`,
+    ),
   ],
 );
 
