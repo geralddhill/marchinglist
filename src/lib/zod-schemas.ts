@@ -2,7 +2,12 @@ import * as z from "zod";
 
 export const nameSchema = z.string().trim().nonempty("Required")
 
-export const usernameSchema = z
+export const usernameSeletSchema = z
+  .string()
+  .min(3)
+  .max(30)
+  .regex(/^[a-z0-9_.]+$/);
+export const usernameUpsertSchema = z
   .string()
   .trim()
   .min(3, "Minimum 3 characters long")

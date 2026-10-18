@@ -16,12 +16,12 @@ import {
   emailSchema,
   nameSchema,
   passwordSchema,
-  usernameSchema,
+  usernameUpsertSchema,
 } from "@/lib/zod-schemas";
 
 const signUpSchema = z.object({
   name: nameSchema,
-  username: usernameSchema,
+  username: usernameUpsertSchema,
   email: emailSchema,
   password: passwordSchema,
 });

@@ -3,13 +3,17 @@ import { notFound } from "next/dist/client/components/not-found";
 import UserShowList from "@/app/(root)/profile/[username]/_components/UserShowList";
 import { Suspense } from "react";
 import { Image } from "next/dist/client/image-component";
+import { usernameSeletSchema } from "@/lib/zod-schemas";
 
 export const instant = false;
 
 export default async function Page({params}: {params: Promise<{username: string}>}) {
   const {username} = await params;
+  const parsedUsername = usernameSeletSchema.safeParse(username);
 
-  const user = await findUserByUsername(username);
+  if (!parsedUsername.success) return notFound();
+
+  const user = await findUserByUsername(parsedUsername.data);
   if (!user) notFound();
 
   const {id, name, image} = user;

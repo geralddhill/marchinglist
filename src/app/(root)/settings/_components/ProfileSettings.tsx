@@ -8,11 +8,11 @@ import { Check, X } from "lucide-react";
 import { useRouter } from "next/dist/client/components/navigation";
 import * as z from "zod";
 import { refreshUserCache } from "@/data/users/mutations";
-import { nameSchema, usernameSchema } from "@/lib/zod-schemas";
+import { nameSchema, usernameUpsertSchema } from "@/lib/zod-schemas";
 
 const profileSchema = z.object({
   name: nameSchema,
-  username: usernameSchema
+  username: usernameUpsertSchema
 });
 
 type profileErrors = {
