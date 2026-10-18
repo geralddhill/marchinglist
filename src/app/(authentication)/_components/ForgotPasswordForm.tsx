@@ -44,6 +44,7 @@ export default function ForgotPasswordForm() {
         fieldErrors: "",
       });
 
+    router.push("/");
     router.refresh();
   }
 

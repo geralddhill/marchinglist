@@ -49,6 +49,7 @@ export default function ResetPasswordForm() {
         fieldErrors: "",
       });
 
+    router.push("/");
     router.refresh();
   }
 

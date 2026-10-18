@@ -17,6 +17,7 @@ export default function EmailSettings() {
   const router = useRouter();
   const [error, setError] = useState<emailErrors | null>(null);
   const [pending, setPending] = useState(false);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const { data: session, isPending } = authClient.useSession();
 
@@ -24,6 +25,7 @@ export default function EmailSettings() {
     e.preventDefault();
     setPending(true);
     setError(null);
+    setSuccess(null);
     const form = new FormData(e.currentTarget);
 
     const parsed = emailSchema.safeParse(form.get("email"));
@@ -44,6 +46,8 @@ export default function EmailSettings() {
         fieldErrors: "",
       });
 
+    setSuccess("Please check new email for validation link.");
+
     router.refresh();
   }
 
@@ -53,6 +57,7 @@ export default function EmailSettings() {
         title={"Change Email"}
         handleSubmit={() => {}}
         pending={false}
+        success={success}
       >
         <div className="w-full sm:px-12">
           <Input label="New Email" />
@@ -68,6 +73,7 @@ export default function EmailSettings() {
       title="Change Email"
       handleSubmit={handleSubmit}
       pending={pending}
+      success={success}
     >
       <div className="w-full sm:px-12">
         <Input

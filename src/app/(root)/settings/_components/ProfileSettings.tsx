@@ -28,6 +28,7 @@ export default function ProfileSettings() {
   const router = useRouter();
   const [error, setError] = useState<profileErrors | null>(null);
   const [pending, setPending] = useState(false);
+  const [success, setSuccess] = useState<string | null>(null);
   const [usernameAvailable, setUsernameAvailable] = useState<boolean | null>(
     null,
   );
@@ -53,6 +54,7 @@ export default function ProfileSettings() {
     e.preventDefault();
     setPending(true);
     setError(null);
+    setSuccess(null);
     const form = new FormData(e.currentTarget);
 
     const parsed = profileSchema.safeParse(Object.fromEntries(form));
@@ -74,6 +76,8 @@ export default function ProfileSettings() {
         fieldErrors: {},
       });
 
+    setSuccess("Profile successfully updated!");
+
     await refreshUserCache();
 
     router.refresh();
@@ -84,6 +88,7 @@ export default function ProfileSettings() {
       title={"Profile Settings"}
       handleSubmit={() => {}}
       pending={false}
+      success={success}
     >
       <div className="flex w-full flex-col gap-8 sm:px-12">
         <Input label="Name" />
@@ -100,6 +105,7 @@ export default function ProfileSettings() {
       title={"Profile Settings"}
       handleSubmit={handleSubmit}
       pending={pending}
+      success={success}
     >
       <div className="flex w-full flex-col gap-8 sm:px-12">
         <Input

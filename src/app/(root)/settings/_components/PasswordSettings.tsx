@@ -27,6 +27,7 @@ export default function PasswordSettings() {
   const router = useRouter();
   const [error, setError] = useState<passwordErrors | null>(null);
   const [pending, setPending] = useState(false);
+  const [success, setSuccess] = useState<string | null>(null);
 
   const { data: session, isPending } = authClient.useSession();
 
@@ -34,6 +35,7 @@ export default function PasswordSettings() {
     e.preventDefault();
     setPending(true);
     setError(null);
+    setSuccess(null);
     const form = new FormData(e.currentTarget);
 
     const parsed = passwordChangeSchema.safeParse(Object.fromEntries(form));
@@ -56,6 +58,8 @@ export default function PasswordSettings() {
         fieldErrors: {},
       });
 
+    setSuccess("Password updated successfully!");
+
     router.refresh();
   }
 
@@ -65,6 +69,7 @@ export default function PasswordSettings() {
         title={"Change Password"}
         handleSubmit={() => {}}
         pending={false}
+        success={success}
       >
         <div className="flex w-full flex-col gap-8 sm:px-12">
           <Input label="Current Password" />
@@ -79,6 +84,7 @@ export default function PasswordSettings() {
       title="Change Password"
       handleSubmit={handleSubmit}
       pending={pending}
+      success={success}
     >
       <div className="flex w-full flex-col gap-8 sm:px-12">
         <PasswordInput

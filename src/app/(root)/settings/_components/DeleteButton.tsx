@@ -6,8 +6,10 @@ import { X } from "lucide-react";
 import { useState } from "react";
 import { notFound } from "next/dist/client/components/not-found";
 import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/dist/client/components/navigation";
 
 export default function DeleteButton() {
+  const router = useRouter();
   const [input, setInput] = useState<string>("");
   const { data: session, isPending } = authClient.useSession();
 
@@ -16,6 +18,9 @@ export default function DeleteButton() {
     await authClient.deleteUser({
       callbackURL: "/"
     })
+
+    router.push("/");
+    router.refresh();
   }
 
   if (isPending)
