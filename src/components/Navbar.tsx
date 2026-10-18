@@ -151,7 +151,7 @@ export default function Navbar() {
             <div className="flex h-full w-full flex-auto items-center gap-4">
               <Link
                 href="/signin"
-                className="btn-secondary hidden w-full py-4 2xl:flex"
+                className="btn-secondary hidden w-full 2xl:flex"
                 onClick={() => {
                   setShowMenu(false);
                 }}
@@ -160,7 +160,7 @@ export default function Navbar() {
               </Link>
               <Link
                 href="/signup"
-                className="btn-primary w-full py-4"
+                className="btn-primary w-full"
                 onClick={() => {
                   setShowMenu(false);
                 }}

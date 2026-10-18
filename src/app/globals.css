@@ -53,11 +53,11 @@
 }
 
 @utility btn-primary {
-  @apply btn bg-primary hover:bg-primary2 active:bg-primary3 text-light border-8 border-primary hover:border-primary2 active:border-primary3;
+  @apply btn bg-primary hover:bg-primary2 active:bg-primary3 text-light border-6 border-primary hover:border-primary2 active:border-primary3;
 }
 
 @utility btn-secondary {
-  @apply btn text-primary border-8 border-primary hover:border-primary2 active:border-primary3 hover:text-primary2 active:text-primary3
+  @apply btn text-primary border-6 border-primary hover:border-primary2 active:border-primary3 hover:text-primary2 active:text-primary3
   dark:text-foreground dark:border-foreground dark:hover:border-foreground2 dark:active:border-foreground3
   dark:hover:text-foreground2 dark:active:text-foreground3;
 
