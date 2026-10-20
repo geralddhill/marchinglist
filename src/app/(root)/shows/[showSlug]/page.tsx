@@ -1,5 +1,5 @@
 import { notFound } from "next/dist/client/components/not-found";
-import { findShowBySlug } from "@/data/shows/queries";
+import { findPublishedShowBySlug } from "@/data/shows/queries";
 import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import UserButton from "@/components/UserButton";
@@ -13,7 +13,7 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
   const parsedSlug = slugSchema.safeParse(showSlug);
   if (!parsedSlug.success) return notFound()
 
-  const show = await findShowBySlug(parsedSlug.data);
+  const show = await findPublishedShowBySlug(parsedSlug.data);
   if (!show) notFound();
 
   const {title, price, duration, thumbnailUrl, description, difficulty, owner} = show;

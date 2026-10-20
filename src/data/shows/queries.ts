@@ -1,7 +1,7 @@
 import 'server-only'
 import { db } from "@/db/drizzle";
 
-export async function getShows() {
+export async function listPublishedShows() {
   return db.query.shows.findMany({
     columns: {
       id: false,
@@ -22,7 +22,7 @@ export async function getShows() {
   });
 }
 
-export async function getShowsByUser(userId: string) {
+export async function listPublishedShowsByUserId(userId: string) {
   return db.query.shows.findMany({
     columns: {
       id: false,
@@ -35,7 +35,7 @@ export async function getShowsByUser(userId: string) {
   })
 }
 
-export async function findShowBySlug(slug: string) {
+export async function findPublishedShowBySlug(slug: string) {
   "use cache";
   return db.query.shows.findFirst({
     columns: {

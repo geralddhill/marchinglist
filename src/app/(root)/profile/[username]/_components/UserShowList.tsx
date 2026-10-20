@@ -1,8 +1,8 @@
 import ShowCard from "@/app/(root)/shows/_components/ShowCard";
-import { getShowsByUser } from "@/data/shows/queries";
+import { listPublishedShowsByUserId } from "@/data/shows/queries";
 
 export default async function UserShowList({ userId }: { userId: string }) {
-  const shows = await getShowsByUser(userId);
+  const shows = await listPublishedShowsByUserId(userId);
 
   return (
     <ul className="flex w-full flex-col items-center justify-center gap-12 sm:grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4">

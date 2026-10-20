@@ -1,11 +1,11 @@
-import { getShows } from "@/data/shows/queries";
+import { listPublishedShows } from "@/data/shows/queries";
 import ShowList from "@/app/(root)/shows/_components/ShowList";
 import { render, screen } from "@testing-library/react";
 
 jest.mock("@/data/shows/queries", () => ({
   getShows: jest.fn(),
 }));
-const mockedGetShows = jest.mocked(getShows);
+const mockedGetShows = jest.mocked(listPublishedShows);
 
 describe("ShowList", () => {
   it("Renders shows as lists", async () => {

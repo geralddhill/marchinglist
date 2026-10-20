@@ -1,8 +1,8 @@
 import ShowCard from "@/app/(root)/shows/_components/ShowCard";
-import { getShows } from "@/data/shows/queries";
+import { listPublishedShows } from "@/data/shows/queries";
 
 export default async function ShowList() {
-  const shows = await getShows();
+  const shows = await listPublishedShows();
 
   if (shows.length === 0) {
     return (
