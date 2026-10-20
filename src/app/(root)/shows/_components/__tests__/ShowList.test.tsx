@@ -3,13 +3,13 @@ import ShowList from "@/app/(root)/shows/_components/ShowList";
 import { render, screen } from "@testing-library/react";
 
 jest.mock("@/data/shows/queries", () => ({
-  getShows: jest.fn(),
+  listPublishedShows: jest.fn(),
 }));
-const mockedGetShows = jest.mocked(listPublishedShows);
+const mockedListPublishedShows = jest.mocked(listPublishedShows);
 
 describe("ShowList", () => {
   it("Renders shows as lists", async () => {
-    mockedGetShows.mockResolvedValue([
+    mockedListPublishedShows.mockResolvedValue([
       {
         title: "Show 1",
         price: 1200,
@@ -60,7 +60,7 @@ describe("ShowList", () => {
   })
 
   it("Renders paragraph when shows list is empty", async () => {
-    mockedGetShows.mockResolvedValue([])
+    mockedListPublishedShows.mockResolvedValue([])
 
     render(await ShowList());
 
