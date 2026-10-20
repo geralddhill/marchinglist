@@ -29,6 +29,14 @@ export default function UserNavButton({user, handleSignOut}: {user: User, handle
         <DropdownMenu.Content className="border text-xl">
           <DropdownMenu.Item asChild className="hover:outline-0">
             <Link
+              href={"/myshows"}
+              className="bg-background3 hover:bg-background2 block p-2"
+            >
+              My Shows
+            </Link>
+          </DropdownMenu.Item>
+          <DropdownMenu.Item asChild className="hover:outline-0">
+            <Link
               href={`/profile/${encodeURIComponent(username ?? "")}`}
               className="bg-background3 hover:bg-background2 block p-2"
             >
@@ -45,7 +53,7 @@ export default function UserNavButton({user, handleSignOut}: {user: User, handle
           </DropdownMenu.Item>
           <DropdownMenu.Item asChild className="hover:outline-0">
             <button
-              className="bg-background3 hover:bg-background2 p-2"
+              className="bg-background3 hover:bg-background2 p-2 w-full text-left"
               onClick={handleSignOut}
             >
               Sign Out

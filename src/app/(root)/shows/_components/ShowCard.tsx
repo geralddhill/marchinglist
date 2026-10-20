@@ -1,5 +1,5 @@
 import { Image } from "next/dist/client/image-component";
-import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
+import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
 import UserButton from "@/components/UserButton";
 
@@ -10,6 +10,7 @@ type Show = {
   duration: number;
   thumbnailUrl: string | null;
   difficulty: "beginning" | "intermediate" | "advanced";
+  published?: boolean | undefined;
   owner?:
     | {
         name: string;
@@ -19,12 +20,12 @@ type Show = {
     | undefined;
 };
 
-export default function ShowCard({ show }: { show: Show }) {
-  const {title, slug, price, duration, thumbnailUrl, difficulty, owner} = show;
+export default function ShowCard({ show, toEdit = false }: { show: Show, toEdit?: boolean }) {
+  const {title, slug, price, duration, thumbnailUrl, difficulty, owner, published} = show;
   const {name, username, image} = owner ?? {name: "", username: null};
   const avatarUrl = image ?? "/default_avatar.png";
   return (
-    <article className="bg-background2 relative flex h-full w-full flex-col items-center justify-center gap-2 rounded-2xl p-4 card">
+    <article className="bg-background2 card relative flex h-full w-full flex-col items-center justify-center gap-2 rounded-2xl p-4">
       <div className="bg-background3 relative aspect-5/4 w-full overflow-hidden rounded-2xl">
         {thumbnailUrl && (
           <Image
@@ -41,7 +42,7 @@ export default function ShowCard({ show }: { show: Show }) {
       {/*TODO: Reevaluate header level once page is fully developed*/}
       <h3 className="w-full truncate text-lg font-semibold xl:text-xl">
         <Link
-          href={`/shows/${encodeURIComponent(slug)}`}
+          href={`/${toEdit ? "myshows" : "shows"}/${encodeURIComponent(slug)}`}
           className="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-blue-500"
         >
           {title}
@@ -78,8 +79,18 @@ export default function ShowCard({ show }: { show: Show }) {
       {owner && (
         <UserButton
           user={{ name, username, avatarUrl }}
-          className="bg-background3 xl:text-lg w-full"
+          className="bg-background3 w-full xl:text-lg"
         />
+      )}
+
+      {published !== undefined && (
+        <p className={cn("w-full truncate xl:text-lg",
+          {
+            "text-green-500": published,
+            "text-red-500": !published
+          })}>
+          {published ? "Published" : "Unpublished"}
+        </p>
       )}
     </article>
   );
