@@ -24,7 +24,7 @@ export const shows = pgTable(
     title: text("title").notNull(),
     slug: text("slug").notNull().unique(),
     published: boolean("published").notNull().default(false),
-    price: integer("price"),
+    price: integer("price").notNull(),
     duration: smallint().notNull(),
     thumbnailUrl: text("thumbnail_url"),
     description: text("description").notNull().default(""),

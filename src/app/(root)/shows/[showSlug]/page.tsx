@@ -67,7 +67,7 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
 }
 
 type BasicInfoProps = {
-  price: number | null;
+  price: number;
   duration: number;
   difficulty: "beginning" | "intermediate" | "advanced";
   user: {
@@ -90,11 +90,7 @@ function BasicInfo({price, duration, difficulty, user, className}: BasicInfoProp
         <div className="inline-flex max-w-1/2 gap-1 truncate">
           <dt>Price:</dt>
           <dd>
-            {price ? (
-              <data value={price}>{formatPrice(price)}</data>
-            ) : (
-              <span>N/A</span>
-            )}
+            <data value={price}>{formatPrice(price)}</data>
           </dd>
         </div>
 
@@ -111,7 +107,10 @@ function BasicInfo({price, duration, difficulty, user, className}: BasicInfoProp
         <dt>Difficulty:</dt>
         <dd className="capitalize">{difficulty}</dd>
       </dl>
-      <UserButton user={user} className="text-xl sm:text-2xl bg-background2 m-2" />
+      <UserButton
+        user={user}
+        className="bg-background2 m-2 text-xl sm:text-2xl"
+      />
     </div>
   );
 }

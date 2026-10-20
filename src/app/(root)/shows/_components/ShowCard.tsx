@@ -6,7 +6,7 @@ import UserButton from "@/components/UserButton";
 type Show = {
   title: string;
   slug: string;
-  price: number | null;
+  price: number;
   duration: number;
   thumbnailUrl: string | null;
   difficulty: "beginning" | "intermediate" | "advanced";
@@ -53,11 +53,7 @@ export default function ShowCard({ show, toEdit = false }: { show: Show, toEdit?
         <div className="inline-flex max-w-1/2 gap-1 truncate">
           <dt>Price:</dt>
           <dd>
-            {price ? (
-              <data value={price}>{formatPrice(price)}</data>
-            ) : (
-              <span>N/A</span>
-            )}
+            <data value={price}>{formatPrice(price)}</data>
           </dd>
         </div>
 
@@ -84,11 +80,12 @@ export default function ShowCard({ show, toEdit = false }: { show: Show, toEdit?
       )}
 
       {published !== undefined && (
-        <p className={cn("w-full truncate xl:text-lg",
-          {
+        <p
+          className={cn("w-full truncate xl:text-lg", {
             "text-green-500": published,
-            "text-red-500": !published
-          })}>
+            "text-red-500": !published,
+          })}
+        >
           {published ? "Published" : "Unpublished"}
         </p>
       )}
