@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import MyShowsList from "@/app/(root)/myshows/_components/MyShowsList";
+import MyShowsList from "@/app/(root)/my-shows/_components/MyShowsList";
 
 export default async function Page() {
   return (

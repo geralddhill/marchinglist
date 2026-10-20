@@ -186,7 +186,7 @@ export default function SignUpForm() {
           Sign Up
         </button>
       </form>
-      <Link href={`/signin?${searchParams.toString()}`} className="text-sm">
+      <Link href={`/sign-in?${searchParams.toString()}`} className="text-sm">
         Already have an account? Sign in!
       </Link>
     </div>

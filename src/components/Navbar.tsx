@@ -83,7 +83,7 @@ export default function Navbar() {
               <UserNavButton user={session.user} handleSignOut={handleSignOut} />
             ) : (
               <Link
-                href="/signup"
+                href="/sign-up"
                 className="btn-primary px-4 text-base sm:text-xl"
                 onClick={() => {
                   setShowMenu(false);
@@ -150,7 +150,7 @@ export default function Navbar() {
           ) : (
             <div className="flex h-full w-full flex-auto items-center gap-4">
               <Link
-                href="/signin"
+                href="/sign-in"
                 className="btn-secondary hidden w-full 2xl:flex"
                 onClick={() => {
                   setShowMenu(false);
@@ -159,7 +159,7 @@ export default function Navbar() {
                 Sign In
               </Link>
               <Link
-                href="/signup"
+                href="/sign-up"
                 className="btn-primary w-full"
                 onClick={() => {
                   setShowMenu(false);

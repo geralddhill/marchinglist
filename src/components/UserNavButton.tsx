@@ -29,7 +29,7 @@ export default function UserNavButton({user, handleSignOut}: {user: User, handle
         <DropdownMenu.Content className="border text-xl">
           <DropdownMenu.Item asChild className="hover:outline-0">
             <Link
-              href={"/myshows"}
+              href={"/my-shows"}
               className="bg-background3 hover:bg-background2 block p-2"
             >
               My Shows

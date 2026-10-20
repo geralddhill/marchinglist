@@ -84,7 +84,7 @@ describe("Navbar", () => {
       );
       expect(screen.getByRole("link", { name: "Sign In" })).toHaveAttribute(
         "href",
-        "/signin",
+        "/sign-in",
       );
     });
 

@@ -42,7 +42,7 @@ export default function ShowCard({ show, toEdit = false }: { show: Show, toEdit?
       {/*TODO: Reevaluate header level once page is fully developed*/}
       <h3 className="w-full truncate text-lg font-semibold xl:text-xl">
         <Link
-          href={`/${toEdit ? "myshows" : "shows"}/${encodeURIComponent(slug)}`}
+          href={`/${toEdit ? "my-shows" : "shows"}/${encodeURIComponent(slug)}`}
           className="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-blue-500"
         >
           {title}

@@ -10,8 +10,8 @@ export async function proxy(request: NextRequest) {
   if (
     request.nextUrl.pathname === "/forgot-password" ||
     request.nextUrl.pathname === "/reset-password" ||
-    request.nextUrl.pathname === "/signin" ||
-    request.nextUrl.pathname === "/signup"
+    request.nextUrl.pathname === "/sign-in" ||
+    request.nextUrl.pathname === "/sign-up"
   ) {
     if (!session) {
       return NextResponse.next()
@@ -20,7 +20,7 @@ export async function proxy(request: NextRequest) {
     return NextResponse.redirect(new URL("/", request.url));
   }
   if (!session) {
-    const signInUrl = new URL("/signin", request.url);
+    const signInUrl = new URL("/sign-in", request.url);
     signInUrl.searchParams.set(
       "from",
       request.nextUrl.pathname + request.nextUrl.search,
@@ -32,5 +32,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile", "/settings", "/forgot-password", "/reset-password", "/signin", "/signup", "/myshows"], // Specify the routes the middleware applies to
+  matcher: ["/profile", "/settings", "/forgot-password", "/reset-password", "/sign-in", "/sign-up", "/my-shows"], // Specify the routes the middleware applies to
 };
