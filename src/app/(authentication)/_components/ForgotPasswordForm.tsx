@@ -2,7 +2,7 @@
 
 import { useRouter } from "next/dist/client/components/navigation";
 import { SubmitEvent, useState } from "react";
-import Input from "@/components/Input";
+import Input from "@/components/Input/Input";
 import { emailSchema } from "@/lib/zod-schemas";
 import { authClient } from "@/lib/auth-client";
 import { z } from "zod";

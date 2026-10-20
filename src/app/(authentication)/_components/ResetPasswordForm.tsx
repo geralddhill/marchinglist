@@ -5,7 +5,7 @@ import { passwordSchema } from "@/lib/zod-schemas";
 import { authClient } from "@/lib/auth-client";
 import { z } from "zod";
 import { notFound } from "next/dist/client/components/not-found";
-import PasswordInput from "@/components/PasswordInput";
+import PasswordInput from "@/components/Input/PasswordInput";
 
 type passwordErrors = {
   formErrors: string[];

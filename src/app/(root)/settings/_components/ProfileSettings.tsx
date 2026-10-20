@@ -1,5 +1,5 @@
 "use client"
-import Input from "@/components/Input";
+import Input from "@/components/Input/Input";
 import { authClient } from "@/lib/auth-client";
 import { notFound } from "next/dist/client/components/not-found";
 import { SubmitEvent, useState } from "react";

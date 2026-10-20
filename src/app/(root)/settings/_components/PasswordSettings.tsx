@@ -1,11 +1,11 @@
 "use client"
 
 import SettingsSkeleton from "@/app/(root)/settings/_components/SettingsSkeleton";
-import PasswordInput from "@/components/PasswordInput";
+import PasswordInput from "@/components/Input/PasswordInput";
 import { useRouter } from "next/dist/client/components/navigation";
 import { SubmitEvent, useState } from "react";
 import { authClient } from "@/lib/auth-client";
-import Input from "@/components/Input";
+import Input from "@/components/Input/Input";
 import { notFound } from "next/dist/client/components/not-found";
 import * as z from "zod";
 import { passwordSchema } from "@/lib/zod-schemas";

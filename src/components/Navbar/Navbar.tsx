@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from "react";
 import Link from "next/dist/client/link";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
-import UserNavButton from "@/components/UserNavButton";
-import NavLink from "@/components/NavLink";
-import NavHeader from "@/components/NavHeader";
+import UserNavButton from "@/components/Navbar/UserNavButton";
+import NavLink from "@/components/Navbar/NavLink";
+import NavHeader from "@/components/Navbar/NavHeader";
 
 const navLinks: {
   href: string;

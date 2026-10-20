@@ -5,7 +5,7 @@ import { SubmitEvent, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { z } from "zod";
 import { emailSchema } from "@/lib/zod-schemas";
-import Input from "@/components/Input";
+import Input from "@/components/Input/Input";
 import { notFound } from "next/dist/client/components/not-found";
 
 type emailErrors = {

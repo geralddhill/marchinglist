@@ -29,7 +29,7 @@ export default function NavHeader() {
         <header className="w-38 sm:w-3xs lg:w-lg 2xl:w-4xl">
           <Link
             aria-label="MarchingList home"
-            href="/"
+            href="/public"
             className="block w-full p-1"
           >
             <Logo className="w-full" />
