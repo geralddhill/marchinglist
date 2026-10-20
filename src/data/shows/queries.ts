@@ -15,6 +15,9 @@ export async function getShows() {
           image: true,
         }
       }
+    },
+    where: {
+      published: true
     }
   });
 }
@@ -26,7 +29,8 @@ export async function getShowsByUser(userId: string) {
       ownerId: false
     },
     where: {
-      ownerId: userId
+      ownerId: userId,
+      published: true
     }
   })
 }
@@ -48,7 +52,8 @@ export async function findShowBySlug(slug: string) {
       }
     },
     where: {
-      slug
+      slug,
+      published: true
     }
   })
 }
