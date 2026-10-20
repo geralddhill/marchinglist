@@ -12,6 +12,7 @@ describe("ShowCard", () => {
     thumbnailUrl: "/test_show.jpg",
     description: "Test Description",
     difficulty: "beginning" as "beginning",
+    slug: "test-show",
     owner: {
       id: "1",
       name: "Test Owner",
