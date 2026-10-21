@@ -1,12 +1,12 @@
 "use client";
 import { Menu } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
-import Link from "next/dist/client/link";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
 import UserNavButton from "@/components/Navbar/UserNavButton";
 import NavLink from "@/components/Navbar/NavLink";
 import NavHeader from "@/components/Navbar/NavHeader";
+import { SignInButton, SignUpButton } from "@/components/Navbar/buttons";
 
 const navLinks: {
   href: string;
@@ -86,15 +86,7 @@ export default function Navbar() {
             (session ? (
               <UserNavButton user={session.user} handleSignOut={handleSignOut} />
             ) : (
-              <Link
-                href="/sign-up"
-                className="btn-primary px-4 text-base sm:text-xl"
-                onClick={() => {
-                  setShowMenu(false);
-                }}
-              >
-                Sign Up
-              </Link>
+              <SignUpButton setShowMenu={setShowMenu} />
             ))}
 
           {/* Mobile Menu Button */}
@@ -153,24 +145,8 @@ export default function Navbar() {
             </div>
           ) : (
             <div className="flex h-full w-full flex-auto items-center gap-4">
-              <Link
-                href="/sign-in"
-                className="btn-secondary hidden w-full 2xl:flex"
-                onClick={() => {
-                  setShowMenu(false);
-                }}
-              >
-                Sign In
-              </Link>
-              <Link
-                href="/sign-up"
-                className="btn-primary w-full"
-                onClick={() => {
-                  setShowMenu(false);
-                }}
-              >
-                Sign Up
-              </Link>
+              <SignInButton setShowMenu={setShowMenu}/>
+              <SignUpButton setShowMenu={setShowMenu}/>
             </div>
           ))}
       </div>
