@@ -1,6 +1,7 @@
 import { DropdownMenu } from "radix-ui";
 import { Image } from "next/dist/client/image-component";
 import Link from "next/dist/client/link";
+import { useRouter } from "next/dist/client/components/navigation";
 
 type User = {
   username?: string | null | undefined;
@@ -11,6 +12,7 @@ type User = {
  * User Button that appears on the navbar. Links to different user-specific pages
  */
 export default function UserNavButton({user, handleSignOut}: {user: User, handleSignOut: () => void}) {
+  const router = useRouter();
   const {username, image} = user;
   const avatarUrl = image ?? "/default_avatar.png"
 
@@ -61,7 +63,10 @@ export default function UserNavButton({user, handleSignOut}: {user: User, handle
           <DropdownMenu.Item asChild className="hover:outline-0">
             <button
               className="bg-background3 hover:bg-background2 p-2 w-full text-left"
-              onClick={handleSignOut}
+              onClick={() => {
+                handleSignOut();
+                router.refresh();
+              }}
             >
               Sign Out
             </button>
