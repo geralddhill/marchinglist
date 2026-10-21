@@ -32,5 +32,5 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/profile", "/settings", "/forgot-password", "/reset-password", "/sign-in", "/sign-up", "/my-shows"], // Specify the routes the middleware applies to
+  matcher: ["/profile", "/settings", "/forgot-password", "/reset-password", "/sign-in", "/sign-up", "/my-shows/:path*"], // Specify the routes the middleware applies to
 };
