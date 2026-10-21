@@ -30,12 +30,10 @@ describe("ShowCard", () => {
   it("Renders correct heading with link inside", () => {
     render(<ShowCard show={show} />);
 
-    // TODO: Adjust level when heading level is decided
     const heading = screen.getByRole("heading", { level: 3 });
     expect(heading).toHaveAccessibleName("Test Title");
-    // TODO: Fill out with correct href once page structure is decided
     expect(heading).toBeInTheDocument();
-    // expect(within(heading).getByRole("link")).toHaveAttribute("href", "/");
+    expect(within(heading).getByRole("link")).toHaveAttribute("href", `/shows/${show.slug}`);
   });
 
   it("Renders price with a machine-readable value", ()=> {
