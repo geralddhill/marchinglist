@@ -101,8 +101,8 @@ export default function Navbar() {
           <button
             type="button"
             aria-expanded={showMenu}
-            aria-label="mobile menu"
-            aria-controls="menu"
+            aria-label="mobile navigation menu"
+            aria-controls="nav-menu"
             className="cursor-pointer p-1"
             onClick={() => {
               setShowMenu(!showMenu);
@@ -126,7 +126,7 @@ export default function Navbar() {
         aria-label="Main"
       >
         <ul
-          id="menu"
+          id="nav-menu"
           className={cn("w-full flex-col lg:h-full lg:flex-row first:border-t first:border-t-background3", {
             flex: showMenu,
             "hidden lg:flex": !showMenu,

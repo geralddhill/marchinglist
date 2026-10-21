@@ -17,7 +17,11 @@ export default function UserNavButton({user, handleSignOut}: {user: User, handle
   return (
     <DropdownMenu.Root>
       <DropdownMenu.Trigger asChild>
-        <button className="relative aspect-square h-full cursor-pointer overflow-hidden rounded-full bg-black shadow-sm transition hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none">
+        <button
+          className="relative aspect-square h-full cursor-pointer overflow-hidden rounded-full bg-black shadow-sm transition hover:-translate-y-0.5 hover:shadow-md active:translate-y-0 active:scale-[0.98] motion-reduce:transform-none motion-reduce:transition-none"
+          aria-label="user menu"
+          aria-controls="user-menu"
+        >
           <Image
             src={avatarUrl}
             alt="Your profile photo"
@@ -29,7 +33,7 @@ export default function UserNavButton({user, handleSignOut}: {user: User, handle
       </DropdownMenu.Trigger>
 
       <DropdownMenu.Portal>
-        <DropdownMenu.Content className="border text-xl">
+        <DropdownMenu.Content className="border text-xl" id="user-menu">
           <DropdownMenu.Item asChild className="hover:outline-0">
             <Link
               href={"/my-shows"}

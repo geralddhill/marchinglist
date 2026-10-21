@@ -123,7 +123,7 @@ describe("Navbar", () => {
       const user = userEvent.setup();
       render(<Navbar />);
 
-      const button = screen.getByRole("button", { name: /menu/i });
+      const button = screen.getByRole("button", { name: /navigation menu/i });
       expect(button).toHaveAttribute("aria-expanded", "false");
 
       await user.click(button);
@@ -137,7 +137,7 @@ describe("Navbar", () => {
       render(<Navbar />);
 
       const controlledId = screen
-        .getByRole("button", { name: /menu/i })
+        .getByRole("button", { name: /navigation menu/i })
         .getAttribute("aria-controls");
       if (controlledId === null) {
         throw new Error("Button is missing attribute aria-controls.");
@@ -149,7 +149,7 @@ describe("Navbar", () => {
       const user = userEvent.setup();
       render(<Navbar />);
 
-      const button = screen.getByRole("button", { name: /menu/i });
+      const button = screen.getByRole("button", { name: /navigation menu/i });
       await user.click(button);
 
       const link = screen.getByRole("link", { name: "Sign In" });
@@ -166,7 +166,7 @@ describe("Navbar", () => {
       const user = userEvent.setup();
       render(<Navbar />);
 
-      const button = screen.getByRole("button", { name: /menu/i });
+      const button = screen.getByRole("button", { name: /navigation menu/i });
       button.focus();
       await user.keyboard("{Enter}");
 
