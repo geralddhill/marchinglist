@@ -25,7 +25,7 @@ export default function ShowCard({ show, toEdit = false }: { show: ShowData, toE
   const {name, username, image} = owner ?? {name: "", username: null};
   const avatarUrl = image ?? "/default_avatar.png";
   return (
-    <article className="bg-background2 card relative flex h-full w-full flex-col items-center justify-center gap-2 rounded-2xl p-4">
+    <article className="bg-background2 relative flex h-full w-64 flex-col items-center justify-center gap-2 rounded-2xl p-4">
       <div className="bg-background3 relative aspect-5/4 w-full overflow-hidden rounded-2xl">
         {thumbnailUrl && (
           <Image
@@ -39,7 +39,6 @@ export default function ShowCard({ show, toEdit = false }: { show: ShowData, toE
         )}
       </div>
 
-      {/*TODO: Reevaluate header level once page is fully developed*/}
       <h3 className="w-full truncate text-lg font-semibold xl:text-xl">
         <Link
           href={`/${toEdit ? "my-shows" : "shows"}/${encodeURIComponent(slug)}`}
