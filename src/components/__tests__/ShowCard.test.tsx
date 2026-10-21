@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen, within } from "@testing-library/react";
 import { axe } from "jest-axe";
-import ShowCard from "@/app/(root)/shows/_components/ShowCard";
+import ShowCard from "@/components/ShowCard";
 
 describe("ShowCard", () => {
   const show = {

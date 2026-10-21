@@ -1,22 +1,17 @@
-import { listPublishedShows } from "@/data/shows/queries";
-import ShowList from "@/app/(root)/shows/_components/ShowList";
 import { render, screen } from "@testing-library/react";
+import ShowList from "@/components/ShowList";
 
-jest.mock("@/data/shows/queries", () => ({
-  listPublishedShows: jest.fn(),
-}));
-const mockedListPublishedShows = jest.mocked(listPublishedShows);
 
-describe("ShowList", () => {
+describe("ShowsSection", () => {
   it("Renders shows as lists", async () => {
-    mockedListPublishedShows.mockResolvedValue([
+    const shows = [
       {
         title: "Show 1",
         price: 1200,
         duration: 300,
         thumbnailUrl: "",
         description: "",
-        difficulty: "beginning",
+        difficulty: "beginning" as "beginning",
         slug: "show-1",
         owner: {
           name: "Test Owner",
@@ -30,7 +25,7 @@ describe("ShowList", () => {
         duration: 400,
         thumbnailUrl: "",
         description: "",
-        difficulty: "intermediate",
+        difficulty: "intermediate" as "intermediate",
         slug: "show-2",
         owner: {
           name: "Test Owner 2",
@@ -44,7 +39,7 @@ describe("ShowList", () => {
         duration: 320,
         thumbnailUrl: "",
         description: "",
-        difficulty: "advanced",
+        difficulty: "advanced" as "advanced",
         slug: "show-3",
         owner: {
           name: "Test Owner",
@@ -52,17 +47,15 @@ describe("ShowList", () => {
           image: "./default_avatar.png",
         },
       },
-    ]);
+    ];
 
-    render(await ShowList());
+    render(<ShowList shows={shows} />);
 
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
   })
 
   it("Renders paragraph when shows list is empty", async () => {
-    mockedListPublishedShows.mockResolvedValue([])
-
-    render(await ShowList());
+    render(<ShowList shows={[]} />);
 
     expect(screen.queryAllByRole("listitem")).toHaveLength(0);
     expect(screen.getByRole("paragraph")).toBeInTheDocument();

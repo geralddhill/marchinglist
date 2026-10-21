@@ -3,7 +3,7 @@ import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
 import UserButton from "@/components/UserButton";
 
-type Show = {
+export type ShowData = {
   title: string;
   slug: string;
   price: number;
@@ -20,7 +20,7 @@ type Show = {
     | undefined;
 };
 
-export default function ShowCard({ show, toEdit = false }: { show: Show, toEdit?: boolean }) {
+export default function ShowCard({ show, toEdit = false }: { show: ShowData, toEdit?: boolean }) {
   const {title, slug, price, duration, thumbnailUrl, difficulty, owner, published} = show;
   const {name, username, image} = owner ?? {name: "", username: null};
   const avatarUrl = image ?? "/default_avatar.png";

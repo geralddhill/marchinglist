@@ -1,6 +1,6 @@
 import { findUserByUsername } from "@/data/users/queries";
 import { notFound } from "next/dist/client/components/not-found";
-import UserShowList from "@/app/(root)/profile/[username]/_components/UserShowList";
+import ProfileShowsSection from "@/app/(root)/profile/[username]/_components/ProfileShowsSection";
 import { Suspense } from "react";
 import { Image } from "next/dist/client/image-component";
 import { usernameSelectSchema } from "@/lib/zod-schemas";
@@ -38,7 +38,7 @@ export default async function Page({params}: {params: Promise<{username: string}
         Shows
       </h2>
       <Suspense fallback={null}>
-        <UserShowList userId={id} />
+        <ProfileShowsSection userId={id} className="flex-row flex-nowrap overflow-x-auto" />
       </Suspense>
     </main>
   );

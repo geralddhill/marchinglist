@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import MyShowsList from "@/app/(root)/my-shows/_components/MyShowsList";
+import MyShowsSection from "@/app/(root)/my-shows/_components/MyShowsSection";
 
 export default async function Page() {
   return (
@@ -8,7 +8,7 @@ export default async function Page() {
         My Shows
       </h1>
       <Suspense fallback={null}>
-        <MyShowsList />
+        <MyShowsSection className="sm:grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4" />
       </Suspense>
     </main>
   );
