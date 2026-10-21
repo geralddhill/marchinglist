@@ -7,6 +7,12 @@ import { cn } from "@/lib/utils";
 
 type PasswordInputProps = Omit<InputProps, "type" | "endAdornment">;
 
+/**
+ * Special input component for password input. Takes same props as `<input>` except `type`
+ *
+ * @remarks
+ * Hides and shows passwords with a button
+ */
 export default function PasswordInput(props: PasswordInputProps) {
   const [visible, setVisible] = useState(false);
 

@@ -23,6 +23,7 @@ export default function Navbar() {
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
+  // Mobile menu scroll lock
   useEffect(() => {
     if (!showMenu) return;
 
@@ -66,6 +67,8 @@ export default function Navbar() {
 
   const {data: session, isPending} = authClient.useSession();
 
+
+  // Passed to UserNavButton
   async function handleSignOut() {
     await authClient.signOut();
   }
@@ -73,11 +76,12 @@ export default function Navbar() {
   return (
     <div className="bg-background2 relative h-24 w-full md:px-12 lg:flex xl:h-32 xl:px-20">
       <div className="flex h-full min-w-full items-center justify-between gap-4 px-4 lg:min-w-0 lg:gap-0 2xl:px-8">
+
         {/* Logo Header */}
         <NavHeader />
 
+        {/* Sign Up Button or User Nav Button (MOBILE ONLY) */}
         <div className="flex h-full items-center justify-end gap-4 py-6 sm:gap-8 lg:hidden">
-          {/* Sign Up Button (Mobile) */}
           {!isPending &&
             (session ? (
               <UserNavButton user={session.user} handleSignOut={handleSignOut} />
@@ -140,7 +144,7 @@ export default function Navbar() {
         </ul>
       </nav>
 
-      {/* Sign In/Up Buttons */}
+      {/* Sign In/Up Buttons (NON-MOBILE) */}
       <div className="hidden p-4 lg:flex lg:w-lg xl:p-6 2xl:w-4xl">
         {!isPending &&
           (session ? (

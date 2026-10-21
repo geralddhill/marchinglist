@@ -1,5 +1,11 @@
 import React from "react";
 
+/**
+ * Website logo
+ *
+ * @remarks
+ * Change text color to change logo color.
+ */
 export default function Logo({ className = "", ...props }) {
   return (
     <svg

@@ -7,6 +7,9 @@ type User = {
   image?: string | null | undefined;
 }
 
+/**
+ * User Button that appears on the navbar. Links to different user-specific pages
+ */
 export default function UserNavButton({user, handleSignOut}: {user: User, handleSignOut: () => void}) {
   const {username, image} = user;
   const avatarUrl = image ?? "/default_avatar.png"

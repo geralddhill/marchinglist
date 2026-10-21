@@ -2,13 +2,20 @@ import Link from "next/dist/client/link";
 import { Image } from "next/dist/client/image-component";
 import { cn } from "@/lib/utils";
 
-type User = {
-  name: string;
-  username: string | null;
-  avatarUrl: string;
-}
 
-export default function UserButton({user, className}: {user: User, className?: string}) {
+type UserButtonProps = {
+  user: {
+    name: string;
+    username: string | null;
+    avatarUrl: string;
+  };
+  className?: string;
+};
+
+/**
+ * Display user's name and avatar and links to their profile page
+ */
+export default function UserButton({user, className}: UserButtonProps) {
   const {name, username, avatarUrl} = user;
 
   return (
