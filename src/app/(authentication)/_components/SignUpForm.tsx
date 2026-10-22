@@ -61,7 +61,6 @@ export default function SignUpForm() {
       username: parsed.data.username,
       email: parsed.data.email,
       password: parsed.data.password,
-      image: "/default_avatar.png"
     });
 
     setPending(false);
