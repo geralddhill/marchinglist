@@ -21,13 +21,13 @@ export default function Navbar() {
         {
           label: "My Shows",
           href: "/my-shows",
-          icon: <ListMusic className="text-muted"/>,
+          icon: <ListMusic className="text-muted-foreground"/>,
           visibility: "authenticated"
         },
         {
           label: "Profile",
           href: "/profile",
-          icon: <User className="text-muted"/>,
+          icon: <User className="text-muted-foreground"/>,
           visibility: "authenticated"
         }
       ]}/>
