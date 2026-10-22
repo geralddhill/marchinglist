@@ -1,25 +1,41 @@
 "use client";
-import { Menu } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
-import { cn } from "@/lib/utils";
-import { authClient } from "@/lib/auth-client";
-import UserNavButton from "@/components/Navbar/user-nav-button";
-import NavLink from "@/components/Navbar/nav-link";
-import NavHeader from "@/components/Navbar/nav-header";
-import { SignInButton, SignUpButton } from "@/components/Navbar/buttons";
-import AddButton from "@/components/Navbar/add-button";
 
-const navLinks: {
+import NavHeader from "@/components/Navbar/nav-header";
+import { UserButton } from "@/components/auth/user/user-button";
+import { ListMusic, User } from "lucide-react";
+
+/*const navLinks: {
   href: string;
   label: string;
 }[] = [
-  { href: "/", label: "Home" },
-  { href: "/page1", label: "Option 1" },
-  { href: "/page2", label: "Option 2" },
+  { href: "/shows", label: "Shows" },
+  { href: "/my-shows", label: "My Shows" },
   { href: "/page3", label: "Option 3" },
-];
+];*/
 
 export default function Navbar() {
+  return (
+    <header className="z-50 flex h-14 w-full items-center justify-between border-b px-4">
+      <NavHeader className="max-w-1/2 h-full"/>
+      <UserButton size="icon" links={[
+        {
+          label: "My Shows",
+          href: "/my-shows",
+          icon: <ListMusic className="text-muted"/>,
+          visibility: "authenticated"
+        },
+        {
+          label: "Profile",
+          href: "/profile",
+          icon: <User className="text-muted"/>,
+          visibility: "authenticated"
+        }
+      ]}/>
+    </header>
+  );
+}
+
+/*export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -78,10 +94,10 @@ export default function Navbar() {
     <div className="bg-background2 relative h-24 w-full md:px-12 lg:flex xl:h-32 xl:px-20">
       <div className="flex h-full min-w-full items-center justify-between gap-4 px-4 lg:min-w-0 lg:gap-0 2xl:px-8">
 
-        {/* Logo Header */}
+        {/!* Logo Header *!/}
         <NavHeader />
 
-        {/* Sign Up Button or User Nav Button (MOBILE ONLY) */}
+        {/!* Sign Up Button or User Nav Button (MOBILE ONLY) *!/}
         <div className="flex h-full items-center justify-end gap-4 py-6 sm:gap-8 lg:hidden">
           {!isPending &&
             (session ? (
@@ -90,7 +106,7 @@ export default function Navbar() {
               <SignUpButton setShowMenu={setShowMenu} />
             ))}
 
-          {/* Mobile Menu Button */}
+          {/!* Mobile Menu Button *!/}
           <button
             type="button"
             aria-expanded={showMenu}
@@ -107,7 +123,7 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Nav Button List */}
+      {/!* Nav Button List *!/}
       <nav
         className={cn(
           "bg-background2 absolute top-full z-50 w-full lg:static lg:h-full",
@@ -137,7 +153,7 @@ export default function Navbar() {
         </ul>
       </nav>
 
-      {/* Sign In/Up Buttons (NON-MOBILE) */}
+      {/!* Sign In/Up Buttons (NON-MOBILE) *!/}
       <div className="hidden p-4 lg:flex lg:w-lg xl:p-6 2xl:w-4xl">
         {!isPending &&
           (session ? (
@@ -154,4 +170,4 @@ export default function Navbar() {
       </div>
     </div>
   );
-}
+}*/

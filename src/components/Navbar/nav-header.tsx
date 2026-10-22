@@ -2,43 +2,44 @@ import Link from "next/dist/client/link";
 import Logo from "@/components/logo";
 import { usePathname } from "next/dist/client/components/navigation";
 import { Suspense } from "react";
+import { cn } from "@/lib/utils";
 
-function Header() {
+function Header({className}: {className?: string}) {
   const pathname = usePathname();
   const Wrapper = pathname === "/" ? "h1" : "span";
 
   return (
-    <header className="w-38 sm:w-3xs lg:w-lg 2xl:w-4xl">
+    <div className={cn("flex items-center", className)}>
       <Link
         aria-current={pathname === "/" ? "page" : undefined}
         aria-label="MarchingList home"
         href="/"
-        className="block w-full p-1"
+        className="block w-full p-1 shrink"
       >
         <Logo className="w-full" />
         <Wrapper className="sr-only">MarchingList home</Wrapper>
       </Link>
-    </header>
+    </div>
   );
 }
 
-export default function NavHeader() {
+export default function NavHeader({className}: {className?: string}) {
   return (
     <Suspense
       fallback={
-        <header className="w-38 sm:w-3xs lg:w-lg 2xl:w-4xl">
+        <div className={cn("flex items-center", className)}>
           <Link
             aria-label="MarchingList home"
             href="/public"
-            className="block w-full p-1"
+            className="block w-full p-1 shrink"
           >
             <Logo className="w-full" />
             <span className="sr-only">MarchingList home</span>
           </Link>
-        </header>
+        </div>
       }
     >
-      <Header />
+      <Header className={className} />
     </Suspense>
   );
 }
