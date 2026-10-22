@@ -33,7 +33,7 @@ export default function UserImageSettings() {
           await refetch()
           router.refresh()
         }}
-        onUploadError={(error: Error) => {
+        onUploadError={() => {
           // Do something with the error.
           alert("Error uploading image. Please try again later.");
         }}

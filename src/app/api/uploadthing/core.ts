@@ -12,7 +12,7 @@ export const uploadRouter = {
       maxFileSize: "2MB",
     },
   })
-    .middleware(async ({ req }) => {
+    .middleware(async () => {
       const session = await auth.api.getSession({
         headers: await headers(),
       });
