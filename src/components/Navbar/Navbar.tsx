@@ -7,6 +7,7 @@ import UserNavButton from "@/components/Navbar/UserNavButton";
 import NavLink from "@/components/Navbar/NavLink";
 import NavHeader from "@/components/Navbar/NavHeader";
 import { SignInButton, SignUpButton } from "@/components/Navbar/buttons";
+import AddButton from "@/components/Navbar/AddButton";
 
 const navLinks: {
   href: string;
@@ -140,7 +141,8 @@ export default function Navbar() {
       <div className="hidden p-4 lg:flex lg:w-lg xl:p-6 2xl:w-4xl">
         {!isPending &&
           (session ? (
-            <div className="flex h-full w-full items-center justify-end">
+            <div className="flex h-full w-full items-center justify-end gap-8">
+              <AddButton/>
               <UserNavButton user={session.user} handleSignOut={handleSignOut} />
             </div>
           ) : (
