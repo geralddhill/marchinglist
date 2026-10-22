@@ -1,25 +1,30 @@
 import { createUploadthing, type FileRouter } from "uploadthing/next";
 import { UploadThingError } from "uploadthing/server";
 import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { updateUserAvatar } from "@/data/users/mutations";
 
 const f = createUploadthing();
 
 export const uploadRouter = {
-  userImage: f({
+  userAvatar: f({
     image: {
       maxFileSize: "2MB",
     },
   })
-    .middleware(({ req }) => {
-      const session = auth.api.getSession({
-        headers: req.headers,
+    .middleware(async ({ req }) => {
+      const session = await auth.api.getSession({
+        headers: await headers(),
       });
-
       if (!session) throw new UploadThingError("Unauthorized");
 
-      return {};
+      return {
+        userId: session.user.id
+      };
     })
-    .onUploadComplete(() => {}),
+    .onUploadComplete(async ({metadata, file}) => {
+      await updateUserAvatar(metadata.userId, file.key);
+    }),
 } satisfies FileRouter;
 
 export type UploadRouter = typeof uploadRouter;

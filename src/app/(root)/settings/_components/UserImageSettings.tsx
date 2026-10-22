@@ -7,7 +7,7 @@ import { useRouter } from "next/dist/client/components/navigation";
 
 export default function UserImageSettings() {
   const router = useRouter();
-  const { data: session, isPending } = authClient.useSession();
+  const { data: session, isPending, refetch } = authClient.useSession();
 
   if (isPending) return (<div></div>);
   if (!session) notFound();
@@ -28,17 +28,14 @@ export default function UserImageSettings() {
       </div>
       <UploadButton
         className="btn-primary text-base"
-        endpoint="userImage"
-        onClientUploadComplete={(res) => {
-          authClient.updateUser({
-            image: res[0].ufsUrl
-          })
-          alert("Upload Completed");
+        endpoint="userAvatar"
+        onClientUploadComplete={async () => {
+          await refetch()
           router.refresh()
         }}
         onUploadError={(error: Error) => {
           // Do something with the error.
-          alert(`ERROR! ${error.message}`);
+          alert("Error uploading image. Please try again later.");
         }}
       />
     </div>
