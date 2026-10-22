@@ -1,9 +1,11 @@
-import { twMerge } from "tailwind-merge";
-import clsx, { ClassValue } from "clsx";
+export { cn } from "cn";
 
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs));
-}
+// import { twMerge } from "tailwind-merge";
+// import clsx, { ClassValue } from "clsx";
+//
+// export function cn(...inputs: ClassValue[]) {
+//   return twMerge(clsx(inputs));
+// }
 
 /**
  * Formats show duration into mm:ss format
