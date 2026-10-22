@@ -12,6 +12,8 @@ import { getQueryClient } from "@/lib/query-client";
 import { AuthProvider } from "./auth/auth-provider";
 import { Toaster } from "./ui/sonner";
 import { themePlugin } from "@/lib/auth/theme-plugin";
+import { uploadFiles } from "@/lib/uploadthing-client";
+import { publicFileUrl } from "@/lib/utils";
 
 export function Providers({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -21,9 +23,8 @@ export function Providers({ children }: { children: ReactNode }) {
     <QueryClientProvider client={queryClient}>
       <AuthProvider
         authClient={authClient}
-        redirectTo="/settings/account"
-        socialProviders={["google", "github"]}
-        emailAndPassword={{ requireEmailVerification: false }}
+        redirectTo="/"
+        emailAndPassword={{ requireEmailVerification: true }}
         navigate={({ to, replace }) =>
           replace ? router.replace(to) : router.push(to)
         }
@@ -35,6 +36,14 @@ export function Providers({ children }: { children: ReactNode }) {
           themePlugin({useTheme})
         ]}
         Link={Link}
+        avatar={{
+          upload: async (file) => {
+            const [response] = await uploadFiles("userAvatar", {
+              files: [file],
+            });
+            return publicFileUrl(response.key);
+          }
+        }}
       >
         {children}
 
