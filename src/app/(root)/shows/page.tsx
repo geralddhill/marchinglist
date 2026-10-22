@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import ShowsSection from "@/app/(root)/shows/_components/ShowsSection";
+import ShowsSection from "@/app/(root)/shows/_components/shows-section";
 
 export default function Page() {
 

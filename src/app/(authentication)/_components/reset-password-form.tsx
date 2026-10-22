@@ -1,46 +1,51 @@
 "use client"
-
-import { useRouter } from "next/dist/client/components/navigation";
+import { useRouter, useSearchParams } from "next/dist/client/components/navigation";
 import { SubmitEvent, useState } from "react";
-import Input from "@/components/Input/Input";
-import { emailSchema } from "@/lib/zod-schemas";
+import { passwordSchema } from "@/lib/zod-schemas";
 import { authClient } from "@/lib/auth-client";
 import { z } from "zod";
+import { notFound } from "next/dist/client/components/not-found";
+import PasswordInput from "@/components/Input/password-input";
 
-type emailErrors = {
+type passwordErrors = {
   formErrors: string[];
   fieldErrors: string | undefined;
 };
 
-export default function ForgotPasswordForm() {
+export default function ResetPasswordForm() {
   const router = useRouter();
-  const [error, setError] = useState<emailErrors | null>(null);
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
+  const [error, setError] = useState<passwordErrors | null>(null);
   const [pending, setPending] = useState(false);
+
+  if (!token) notFound();
 
   async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
     e.preventDefault();
+
+    if (!token) return;
+
     setPending(true);
     setError(null);
     const form = new FormData(e.currentTarget);
 
-    const parsed = emailSchema.safeParse(form.get("email"));
+    const parsed = passwordSchema.safeParse(form.get("password"));
     if (!parsed.success) {
       setError(z.flattenError(parsed.error));
       setPending(false);
       return;
     }
 
-    const { error } = await authClient.requestPasswordReset({
-      email: parsed.data,
-      redirectTo: `${process.env.NEXT_PUBLIC_ORIGIN!}/reset-password`
-    });
+    const { error } = await authClient.resetPassword({
+      token,
+      newPassword: parsed.data
+    })
 
     setPending(false);
     if (error)
       return setError({
-        formErrors: [
-          error.message ?? "Failed due to unknown error.",
-        ],
+        formErrors: [error.message ?? "Failed due to unknown error."],
         fieldErrors: "",
       });
 
@@ -49,20 +54,26 @@ export default function ForgotPasswordForm() {
   }
 
   return (
-    <form className="flex flex-col items-center gap-12 p-12" onSubmit={handleSubmit}>
+    <form
+      className="flex flex-col items-center gap-12 p-12"
+      onSubmit={handleSubmit}
+    >
       <h1 className="mb-8 block w-full border-b-2 pb-4 text-3xl font-semibold wrap-break-word sm:text-4xl xl:text-5xl">
-        Forgot Password
+        Reset Password
       </h1>
 
-      <Input
-        label="Email"
-        id="email"
-        name="email"
-        type="email"
-        autoComplete="email"
+      <PasswordInput
+        label="New Password"
+        id="password"
+        name="password"
+        autoComplete="new-password"
         aria-required="true"
         formNoValidate={true}
-        error={error?.fieldErrors ? error.fieldErrors : undefined}
+        error={
+          error?.fieldErrors
+            ? error.fieldErrors
+            : undefined
+        }
       />
 
       {error && error.formErrors.length > 0 && (

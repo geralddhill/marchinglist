@@ -1,5 +1,5 @@
 "use client"
-import Input from "@/components/Input/Input";
+import Input from "@/components/Input/input";
 import { authClient } from "@/lib/auth-client";
 import { notFound } from "next/dist/client/components/not-found";
 import { SubmitEvent, useState } from "react";
@@ -9,7 +9,7 @@ import { useRouter } from "next/dist/client/components/navigation";
 import * as z from "zod";
 import { refreshUserCache } from "@/lib/cache";
 import { nameSchema, usernameUpsertSchema } from "@/lib/zod-schemas";
-import SettingsSkeleton from "@/app/(root)/settings/_components/SettingsSkeleton";
+import SettingsSkeleton from "@/app/(root)/settings/_components/settings-skeleton";
 
 const profileSchema = z.object({
   name: nameSchema,

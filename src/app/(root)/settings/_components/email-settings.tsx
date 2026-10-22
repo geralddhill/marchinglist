@@ -1,11 +1,11 @@
 "use client"
-import SettingsSkeleton from "@/app/(root)/settings/_components/SettingsSkeleton";
+import SettingsSkeleton from "@/app/(root)/settings/_components/settings-skeleton";
 import { useRouter } from "next/dist/client/components/navigation";
 import { SubmitEvent, useState } from "react";
 import { authClient } from "@/lib/auth-client";
 import { z } from "zod";
 import { emailSchema } from "@/lib/zod-schemas";
-import Input from "@/components/Input/Input";
+import Input from "@/components/Input/input";
 import { notFound } from "next/dist/client/components/not-found";
 
 type emailErrors = {

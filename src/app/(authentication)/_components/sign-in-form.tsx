@@ -3,8 +3,8 @@ import { SubmitEvent, useState } from "react";
 import Link from "next/dist/client/link";
 import { authClient } from "@/lib/auth-client";
 import { useRouter, useSearchParams } from "next/dist/client/components/navigation";
-import Input from "@/components/Input/Input";
-import PasswordInput from "@/components/Input/PasswordInput";
+import Input from "@/components/Input/input";
+import PasswordInput from "@/components/Input/password-input";
 import { safeRedirectPath } from "@/lib/utils";
 
 export default function SignInForm() {

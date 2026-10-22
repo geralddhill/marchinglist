@@ -1,8 +1,8 @@
-import ProfileSettings from "@/app/(root)/settings/_components/ProfileSettings";
-import EmailSettings from "@/app/(root)/settings/_components/EmailSettings";
-import PasswordSettings from "@/app/(root)/settings/_components/PasswordSettings";
-import DeleteButton from "@/app/(root)/settings/_components/DeleteButton";
-import UserImageSettings from "@/app/(root)/settings/_components/UserImageSettings";
+import ProfileSettings from "@/app/(root)/settings/_components/profile-settings";
+import EmailSettings from "@/app/(root)/settings/_components/email-settings";
+import PasswordSettings from "@/app/(root)/settings/_components/password-settings";
+import DeleteButton from "@/app/(root)/settings/_components/delete-button";
+import UserAvatarSettings from "@/app/(root)/settings/_components/user-avatar-settings";
 
 export default function Page() {
   return (
@@ -12,7 +12,7 @@ export default function Page() {
       </h1>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 w-full h-full">
-        <UserImageSettings />
+        <UserAvatarSettings />
         <ProfileSettings />
         <EmailSettings />
         <PasswordSettings />

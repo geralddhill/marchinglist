@@ -1,5 +1,5 @@
 import Link from "next/dist/client/link";
-import Logo from "@/components/Logo";
+import Logo from "@/components/logo";
 import { usePathname } from "next/dist/client/components/navigation";
 import { Suspense } from "react";
 

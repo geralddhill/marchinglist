@@ -1,4 +1,4 @@
-import SignInForm from "@/app/(authentication)/_components/SignInForm";
+import SignInForm from "@/app/(authentication)/_components/sign-in-form";
 import { Suspense } from "react";
 
 export default function Page() {

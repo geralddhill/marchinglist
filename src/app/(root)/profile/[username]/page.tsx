@@ -1,6 +1,6 @@
 import { findUserByUsername } from "@/data/users/queries";
 import { notFound } from "next/dist/client/components/not-found";
-import ProfileShowsSection from "@/app/(root)/profile/[username]/_components/ProfileShowsSection";
+import ProfileShowsSection from "@/app/(root)/profile/[username]/_components/profile-shows-section";
 import { Suspense } from "react";
 import { Image } from "next/dist/client/image-component";
 import { usernameSelectSchema } from "@/lib/zod-schemas";

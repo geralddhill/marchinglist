@@ -5,7 +5,7 @@ import { authClient } from "@/lib/auth-client";
 import { notFound } from "next/dist/client/components/not-found";
 import { useRouter } from "next/dist/client/components/navigation";
 
-export default function UserImageSettings() {
+export default function UserAvatarSettings() {
   const router = useRouter();
   const { data: session, isPending, refetch } = authClient.useSession();
 

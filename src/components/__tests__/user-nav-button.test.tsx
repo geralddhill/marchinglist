@@ -1,6 +1,6 @@
 import userEvent from "@testing-library/user-event/dist/cjs/index.js";
 import { render, screen } from "@testing-library/react";
-import UserNavButton from "@/components/Navbar/UserNavButton";
+import UserNavButton from "@/components/Navbar/user-nav-button";
 import { axe } from "jest-axe";
 
 const props = {

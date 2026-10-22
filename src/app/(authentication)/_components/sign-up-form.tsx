@@ -6,8 +6,8 @@ import {
   useRouter,
   useSearchParams,
 } from "next/dist/client/components/navigation";
-import Input from "@/components/Input/Input";
-import PasswordInput from "@/components/Input/PasswordInput";
+import Input from "@/components/Input/input";
+import PasswordInput from "@/components/Input/password-input";
 import * as z from "zod";
 import { useDebouncedCallback } from "use-debounce";
 import { Check, X } from "lucide-react";

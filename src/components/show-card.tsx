@@ -1,7 +1,7 @@
 import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
-import UserButton from "@/components/UserButton";
+import UserButton from "@/components/user-button";
 
 export type ShowData = {
   title: string;

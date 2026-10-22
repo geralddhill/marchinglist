@@ -1,5 +1,5 @@
 import { listPublishedShows } from "@/data/shows/queries";
-import ShowList from "@/components/ShowList";
+import ShowList from "@/components/show-list";
 
 export default async function ShowsSection({className}: {className?: string}) {
   const shows = await listPublishedShows();

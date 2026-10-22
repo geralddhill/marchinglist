@@ -1,4 +1,4 @@
-import ShowCard, { ShowData } from "@/components/ShowCard";
+import ShowCard, { ShowData } from "@/components/show-card";
 import { cn } from "@/lib/utils";
 
 export default function ShowList({ shows, className }: { shows: ShowData[], className?: string }) {

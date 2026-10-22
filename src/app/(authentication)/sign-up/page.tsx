@@ -1,4 +1,4 @@
-import SignUpForm from "@/app/(authentication)/_components/SignUpForm";
+import SignUpForm from "@/app/(authentication)/_components/sign-up-form";
 import { Suspense } from "react";
 
 export default function Page() {

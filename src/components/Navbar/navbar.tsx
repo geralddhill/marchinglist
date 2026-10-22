@@ -3,11 +3,11 @@ import { Menu } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { authClient } from "@/lib/auth-client";
-import UserNavButton from "@/components/Navbar/UserNavButton";
-import NavLink from "@/components/Navbar/NavLink";
-import NavHeader from "@/components/Navbar/NavHeader";
+import UserNavButton from "@/components/Navbar/user-nav-button";
+import NavLink from "@/components/Navbar/nav-link";
+import NavHeader from "@/components/Navbar/nav-header";
 import { SignInButton, SignUpButton } from "@/components/Navbar/buttons";
-import AddButton from "@/components/Navbar/AddButton";
+import AddButton from "@/components/Navbar/add-button";
 
 const navLinks: {
   href: string;
