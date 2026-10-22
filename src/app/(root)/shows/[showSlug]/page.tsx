@@ -2,7 +2,7 @@ import { notFound } from "next/dist/client/components/not-found";
 import { findPublishedShowBySlug } from "@/data/shows/queries";
 import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
-import UserButton from "@/components/user-button";
+import UserProfileLink from "@/components/user-profile-link";
 import { slugSchema } from "@/lib/slug";
 
 
@@ -107,9 +107,9 @@ function BasicInfo({price, duration, difficulty, user, className}: BasicInfoProp
         <dt>Difficulty:</dt>
         <dd className="capitalize">{difficulty}</dd>
       </dl>
-      <UserButton
+      <UserProfileLink
         user={user}
-        className="bg-background2 m-2 text-xl sm:text-2xl"
+        className="m-2 self-start"
       />
     </div>
   );

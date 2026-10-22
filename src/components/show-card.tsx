@@ -1,7 +1,7 @@
 import { Image } from "next/dist/client/image-component";
 import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
 import Link from "next/dist/client/link";
-import UserButton from "@/components/user-button";
+import UserProfileLink from "@/components/user-profile-link";
 
 export type ShowData = {
   title: string;
@@ -72,9 +72,9 @@ export default function ShowCard({ show, toEdit = false }: { show: ShowData, toE
 
       {/* Show Owner */}
       {owner && (
-        <UserButton
+        <UserProfileLink
           user={{ name, username, avatarUrl }}
-          className="bg-background3 w-full xl:text-lg"
+          className="self-start"
         />
       )}
 
