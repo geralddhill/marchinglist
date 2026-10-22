@@ -60,6 +60,7 @@ export const users = pgTable(
       .notNull(),
     username: varchar("username", { length: 255 }).unique(),
     displayUsername: text("display_username"),
+    avatarKey: text("avatar_key"),
   },
   (table) => [
     check("valid_username_check", sql`${table.username} ~ '^[a-z0-9_.]+$'`),

@@ -26,6 +26,14 @@ export const auth = betterAuth({
   },
   plugins: [username()],
   user: {
+    additionalFields: {
+      avatarKey: {
+        type: "string",
+        required: false,
+        default: null,
+        input: false
+      }
+    },
     deleteUser: {
       enabled: true,
       sendDeleteAccountVerification: async ({ user, url }) => {
