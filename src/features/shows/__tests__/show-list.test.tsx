@@ -49,13 +49,13 @@ describe("ShowsSection", () => {
       },
     ];
 
-    render(<ShowList shows={shows} />);
+    render(<ShowList shows={shows} noShowsDesc={""} />);
 
     expect(screen.getAllByRole("listitem")).toHaveLength(3);
   })
 
   it("Renders paragraph when shows list is empty", async () => {
-    render(<ShowList shows={[]} />);
+    render(<ShowList shows={[]} noShowsDesc={""} />);
 
     expect(screen.queryAllByRole("listitem")).toHaveLength(0);
     expect(screen.getByRole("paragraph")).toBeInTheDocument();
