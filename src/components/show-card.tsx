@@ -54,7 +54,7 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
           <CardTitle className="truncate">
             <h3>
               <Link
-                href={`${toEdit ? "/my-shows" : ""}/${encodeURIComponent(slug)}`}
+                href={`/${toEdit ? "my-shows" : "shows"}/${encodeURIComponent(slug)}`}
                 className="after:absolute after:inset-0 focus-visible:outline-2 focus-visible:outline-blue-500"
               >
                 {title}
