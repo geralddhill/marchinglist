@@ -8,7 +8,7 @@ type UserButtonProps = {
   user: {
     name: string;
     username: string | null;
-    avatarUrl: string;
+    image: string | null;
   };
   className?: string;
 };
