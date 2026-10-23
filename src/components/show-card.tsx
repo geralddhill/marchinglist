@@ -36,7 +36,7 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
 
   return (
     <article>
-      <Card className="relative w-full max-w-sm pt-0">
+      <Card className="relative w-full min-w-64 max-w-sm pt-0">
         <div className="relative aspect-video w-full bg-muted">
           {thumbnailUrl && (
             <Image

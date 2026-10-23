@@ -38,7 +38,7 @@ export default async function Page({params}: {params: Promise<{username: string}
         Shows
       </h2>
       <Suspense fallback={null}>
-        <ProfileShowsSection userId={id} className="flex-row flex-nowrap overflow-x-auto" />
+        <ProfileShowsSection userId={id}/>
       </Suspense>
     </main>
   );

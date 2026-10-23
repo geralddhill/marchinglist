@@ -10,7 +10,7 @@ export default function Page() {
         Shows
       </h1>
       <Suspense fallback={<p>Loading shows...</p>}>
-        <ShowsSection className="sm:grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4" />
+        <ShowsSection className="sm:grid sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4" />
       </Suspense>
     </main>
   );

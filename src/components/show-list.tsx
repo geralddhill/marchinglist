@@ -13,7 +13,7 @@ export default function ShowList({ shows, className }: { shows: ShowData[], clas
   return (
     <ul
       className={cn(
-        "flex w-full flex-col items-center justify-center gap-12",
+        "flex w-full flex-col px-8 justify-center gap-12 ",
         className,
       )}
     >
