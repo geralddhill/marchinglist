@@ -57,7 +57,7 @@ describe("ShowCard", () => {
     expect(img).toBeInTheDocument();
   })
 
-  it("Thumbnail mage has correct source", () => {
+  it("Thumbnail image has correct source", () => {
     render(<ShowCard show={show} />);
 
     const img = screen.getByRole("img", {name: /thumbnail/i});

@@ -2,7 +2,7 @@ import { render, screen } from "@testing-library/react";
 import ShowList from "@/features/shows/components/show-list";
 
 
-describe("ShowsSection", () => {
+describe("ShowList", () => {
   it("Renders shows as lists", async () => {
     const shows = [
       {
@@ -58,6 +58,6 @@ describe("ShowsSection", () => {
     render(<ShowList shows={[]} noShowsDesc={""} />);
 
     expect(screen.queryAllByRole("listitem")).toHaveLength(0);
-    expect(screen.getByRole("paragraph")).toBeInTheDocument();
+    expect(screen.getByRole("heading", {name: /no shows/i})).toBeInTheDocument();
   })
 })

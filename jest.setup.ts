@@ -21,16 +21,6 @@ class IntersectionObserverStub {
 
 global.IntersectionObserver = IntersectionObserverStub;
 
-global.ResizeObserver = class {
-  observe() {}
-  unobserve() {}
-  disconnect() {}
-};
-
-window.HTMLElement.prototype.scrollIntoView = jest.fn();
-window.HTMLElement.prototype.hasPointerCapture = jest.fn();
-window.HTMLElement.prototype.releasePointerCapture = jest.fn();
-
 jest.mock(
   "@better-auth-ui/react",
   () => ({
@@ -56,7 +46,7 @@ beforeEach(() => {
   mockedUseAuth.mockReturnValue({
     localization: {
       auth: {
-        account: ""
+        account: "test label"
       }
     },
     plugins: [] as AuthPlugin[]
