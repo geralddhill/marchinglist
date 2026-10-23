@@ -1,0 +1,1 @@
+export const DIFFICULTY_VALUES = ["beginning", "intermediate", "advanced"] as const;

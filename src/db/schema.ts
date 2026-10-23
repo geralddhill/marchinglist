@@ -12,8 +12,9 @@ import {
   numeric,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
+import { DIFFICULTY_VALUES } from "@/lib/constants";
 
-export const difficultyEnum = pgEnum("difficulty", ["beginning", "intermediate", "advanced"]);
+export const difficultyEnum = pgEnum("difficulty", DIFFICULTY_VALUES);
 
 export const shows = pgTable(
   "shows",
