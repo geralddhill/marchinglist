@@ -1,7 +1,7 @@
 import { Image } from "next/dist/client/image-component";
 import { formatDuration, formatPrice, secondsToISO } from "@/features/shows/utils";
 import Link from "next/dist/client/link";
-import UserProfileLink from "@/features/users/user-profile-link";
+import UserProfileLink from "@/features/users/components/user-profile-link";
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 
