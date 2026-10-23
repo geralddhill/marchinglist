@@ -7,7 +7,7 @@ export default async function ProfileShowsSection({ userId, className }: { userI
 
   return (
     <ScrollArea className="">
-      <ShowList shows={shows} className="flex-row mb-4"/>
+      <ShowList shows={shows} className="flex-row mb-4" noShowsDesc={"This user has not created any shows yet.\nPlease come back later."}/>
       <ScrollBar orientation="horizontal"/>
     </ScrollArea>
   );

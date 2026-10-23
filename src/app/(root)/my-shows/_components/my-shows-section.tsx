@@ -11,6 +11,6 @@ export default async function MyShowsSection({className}: {className?: string}) 
   }
 
   return (
-    <ShowList shows={shows} className={className} />
+    <ShowList shows={shows} className={className} noShowsDesc={"You have not created any shows yet.\nGet started by creating your first show."} noShowsWithButton/>
   );
 }

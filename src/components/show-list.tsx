@@ -1,12 +1,11 @@
 import ShowCard, { ShowData } from "@/components/show-card";
 import { cn } from "@/lib/utils";
+import NoShows from "@/components/no-shows";
 
-export default function ShowList({ shows, className }: { shows: ShowData[], className?: string }) {
+export default function ShowList({ shows, className, noShowsDesc, noShowsWithButton = false }: { shows: ShowData[], className?: string, noShowsDesc: string, noShowsWithButton?: boolean }) {
   if (shows.length === 0) {
     return (
-      <p className="w-full text-center">
-        There are no shows available at this time. Please try again later.
-      </p>
+      <NoShows description={noShowsDesc} withButton={noShowsWithButton} />
     );
   }
 
