@@ -8,7 +8,6 @@ export async function findUserByUsername(username: string) {
     columns: {
       id: true,
       name: true,
-      username: true,
       image: true,
       createdAt: true,
     },

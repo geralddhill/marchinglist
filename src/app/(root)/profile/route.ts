@@ -8,7 +8,7 @@ export async function GET() {
   })
 
     // This case is already covered by proxy
-  if (!session) redirect('/sign-in?from=profile');
+  if (!session) redirect('/sign-in?redirectTo=profile');
 
   redirect(`/profile/${encodeURIComponent(session.user.username ?? "")}`);
 }
