@@ -1,6 +1,6 @@
 import { z } from "zod";
 import slugify from "slugify";
-import { existsSlug } from "@/data/shows/queries";
+import { existsSlug } from "@/features/shows/queries";
 
 const MAX_SLUG_LENGTH = 100;
 

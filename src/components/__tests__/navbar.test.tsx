@@ -1,7 +1,7 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import Navbar from "@/components/Navbar/navbar";
+import Navbar from "@/components/navbar/navbar";
 import {axe} from "jest-axe";
 import { mockUsePathname } from "@/test-utils/navigation";
 import { authClient } from "@/lib/auth-client";

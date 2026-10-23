@@ -1,9 +1,10 @@
 import { notFound } from "next/dist/client/components/not-found";
-import { findPublishedShowBySlug } from "@/data/shows/queries";
+import { findPublishedShowBySlug } from "@/features/shows/queries";
 import { Image } from "next/dist/client/image-component";
-import { cn, formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
-import UserProfileLink from "@/components/user-profile-link";
-import { slugSchema } from "@/lib/slug";
+import { formatDuration, formatPrice, secondsToISO } from "@/features/shows/utils";
+import UserProfileLink from "@/features/users/user-profile-link";
+import { slugSchema } from "@/features/shows/slug";
+import { cn } from "@/lib/utils";
 
 
 export const instant = false;

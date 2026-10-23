@@ -1,6 +1,6 @@
-import ShowCard, { ShowData } from "@/components/show-card";
+import ShowCard, { ShowData } from "@/features/shows/components/show-card";
 import { cn } from "@/lib/utils";
-import NoShows from "@/components/no-shows";
+import NoShows from "@/features/shows/components/no-shows";
 
 export default function ShowList({
   shows,

@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import ShowList from "@/components/show-list";
+import ShowList from "@/features/shows/components/show-list";
 
 
 describe("ShowsSection", () => {

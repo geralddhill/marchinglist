@@ -1,6 +1,6 @@
-import { listPublishedShowsByUserId } from "@/data/shows/queries";
-import ShowList from "@/components/show-list";
 import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import ShowList from "@/features/shows/components/show-list";
+import { listPublishedShowsByUserId } from "@/features/shows/queries";
 
 export default async function ProfileShowsSection({ userId, className }: { userId: string, className?: string }) {
   const shows = await listPublishedShowsByUserId(userId);

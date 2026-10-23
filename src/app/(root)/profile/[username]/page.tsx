@@ -1,16 +1,16 @@
-import { findUserByUsername } from "@/data/users/queries";
 import { notFound } from "next/dist/client/components/not-found";
-import ProfileShowsSection from "@/app/(root)/profile/[username]/_components/profile-shows-section";
+import ProfileShowsSection from "@/features/shows/components/profile-shows-section";
 import { Suspense } from "react";
-import { usernameSelectSchema } from "@/lib/zod-schemas";
+import { usernameSchema } from "@/features/users/schemas";
 import { UserAvatar } from "@/components/auth/user/user-avatar";
 import type { User } from "better-auth";
+import { findUserByUsername } from "@/features/users/queries";
 
 export const instant = false;
 
 export default async function Page({params}: {params: Promise<{username: string}>}) {
   const {username} = await params;
-  const parsedUsername = usernameSelectSchema.safeParse(username);
+  const parsedUsername = usernameSchema.safeParse(username);
 
   if (!parsedUsername.success) return notFound();
 

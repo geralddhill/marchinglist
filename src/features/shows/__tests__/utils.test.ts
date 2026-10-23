@@ -1,4 +1,8 @@
-import { formatDuration, formatPrice, secondsToISO } from "@/lib/utils";
+import {
+  formatDuration,
+  formatPrice,
+  secondsToISO,
+} from "@/features/shows/utils";
 
 describe("Utils", () => {
   describe("formatDuration", () => {

@@ -1,9 +1,9 @@
 "use client";
 
-import NavHeader from "@/components/Navbar/nav-header";
+import NavHeader from "@/components/navbar/nav-header";
 import { UserButton } from "@/components/auth/user/user-button";
 import { ListMusic, User } from "lucide-react";
-import AddButton from "@/components/Navbar/add-button";
+import AddButton from "@/components/navbar/add-button";
 
 
 export default function Navbar() {
