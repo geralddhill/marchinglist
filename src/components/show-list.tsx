@@ -2,23 +2,33 @@ import ShowCard, { ShowData } from "@/components/show-card";
 import { cn } from "@/lib/utils";
 import NoShows from "@/components/no-shows";
 
-export default function ShowList({ shows, className, noShowsDesc, noShowsWithButton = false }: { shows: ShowData[], className?: string, noShowsDesc: string, noShowsWithButton?: boolean }) {
+export default function ShowList({
+  shows,
+  className,
+  noShowsDesc,
+  noShowsWithButton = false,
+  toEdit = false,
+}: {
+  shows: ShowData[];
+  className?: string;
+  noShowsDesc: string;
+  noShowsWithButton?: boolean;
+  toEdit?: boolean;
+}) {
   if (shows.length === 0) {
-    return (
-      <NoShows description={noShowsDesc} withButton={noShowsWithButton} />
-    );
+    return <NoShows description={noShowsDesc} withButton={noShowsWithButton} />;
   }
 
   return (
     <ul
       className={cn(
-        "flex w-full flex-col px-8 justify-center gap-12 ",
+        "flex w-full flex-col justify-center gap-12 px-8",
         className,
       )}
     >
       {shows.map((show) => (
         <li key={show.slug}>
-          <ShowCard show={show} />
+          <ShowCard show={show} toEdit={toEdit} />
         </li>
       ))}
     </ul>
