@@ -36,7 +36,7 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
 
   return (
     <article>
-      <Card className="[&:hover:not(:has(.user-profile-button:hover))]:bg-muted relative w-full max-w-sm min-w-64 pt-0 transition-all active:not-aria-[haspopup]:translate-y-px">
+      <Card className="[&:hover:not(:has(.user-profile-button:hover))]:bg-muted relative w-full max-w-sm min-w-68 pt-0 transition-all active:not-aria-[haspopup]:translate-y-px">
         <div className="bg-muted relative aspect-5/4 w-full">
           {thumbnailUrl && (
             <Image

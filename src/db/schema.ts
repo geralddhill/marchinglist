@@ -1,7 +1,6 @@
 import {
   bigint,
   check,
-  integer,
   pgTable,
   smallint,
   text,
@@ -10,6 +9,7 @@ import {
   index,
   varchar,
   pgEnum,
+  numeric,
 } from "drizzle-orm/pg-core";
 import { sql } from "drizzle-orm";
 
@@ -24,7 +24,7 @@ export const shows = pgTable(
     title: text("title").notNull(),
     slug: text("slug").notNull().unique(),
     published: boolean("published").notNull().default(false),
-    price: integer("price").notNull(),
+    price: numeric("price", {precision: 10, scale: 2, mode: "number"}).notNull(),
     duration: smallint().notNull(),
     thumbnailUrl: text("thumbnail_url"),
     description: text("description").notNull().default(""),

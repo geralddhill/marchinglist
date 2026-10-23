@@ -22,7 +22,7 @@ export default function ShowList({
   return (
     <ul
       className={cn(
-        "flex w-full flex-col justify-center gap-12 px-8",
+        "flex w-full flex-col justify-center gap-12 px-4",
         className,
       )}
     >
