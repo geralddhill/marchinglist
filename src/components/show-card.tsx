@@ -36,8 +36,8 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
 
   return (
     <article>
-      <Card className="relative w-full min-w-64 max-w-sm pt-0">
-        <div className="relative aspect-5/4 w-full bg-muted">
+      <Card className="[&:hover:not(:has(.user-profile-button:hover))]:bg-muted relative w-full max-w-sm min-w-64 pt-0 transition-all active:not-aria-[haspopup]:translate-y-px">
+        <div className="bg-muted relative aspect-5/4 w-full">
           {thumbnailUrl && (
             <Image
               src={thumbnailUrl}
@@ -63,7 +63,9 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
           </CardTitle>
           {published !== undefined && (
             <CardAction>
-              <Badge variant={published ? "green" : "destructive"}>{published ? "Published" : "Unpublished"}</Badge>
+              <Badge variant={published ? "green" : "destructive"}>
+                {published ? "Published" : "Unpublished"}
+              </Badge>
             </CardAction>
           )}
         </CardHeader>
@@ -87,9 +89,7 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
               </dd>
             </div>
           </dl>
-          {owner && (
-            <UserProfileLink user={owner} className="self-start" />
-          )}
+          {owner && <UserProfileLink user={owner} className="self-start user-profile-button" />}
         </CardContent>
       </Card>
     </article>
