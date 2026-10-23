@@ -37,7 +37,7 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
   return (
     <article>
       <Card className="relative w-full min-w-64 max-w-sm pt-0">
-        <div className="relative aspect-video w-full bg-muted">
+        <div className="relative aspect-5/4 w-full bg-muted">
           {thumbnailUrl && (
             <Image
               src={thumbnailUrl}
@@ -69,8 +69,8 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
         </CardHeader>
 
         <CardContent className="flex flex-col gap-1">
-          <Badge className="capitalize mb-2">{difficulty}</Badge>
-          <dl className="inline-flex w-full justify-between divide-x px-1">
+          <Badge className="capitalize">{difficulty}</Badge>
+          <dl className="inline-flex w-full justify-between divide-x px-1 py-2">
             <div className="inline-flex max-w-1/2 flex-1 gap-1 truncate">
               <dt>Price:</dt>
               <dd>
@@ -88,7 +88,7 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
             </div>
           </dl>
           {owner && (
-            <UserProfileLink user={owner} className="-ml-2 self-start" />
+            <UserProfileLink user={owner} className="self-start" />
           )}
         </CardContent>
       </Card>

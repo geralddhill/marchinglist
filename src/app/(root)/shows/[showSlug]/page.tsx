@@ -17,8 +17,6 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
   if (!show) notFound();
 
   const {title, price, duration, thumbnailUrl, description, difficulty, owner} = show;
-  const { name, username, image } = owner;
-  const avatarUrl = image ?? "/default_avatar.png";
 
   return (
     <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
@@ -32,7 +30,7 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
             duration={duration}
             difficulty={difficulty}
             className="hidden md:mt-0 md:flex md:border-t-0"
-            user={{ name, username, avatarUrl }}
+            user={owner}
           />
         </div>
         {thumbnailUrl && (
@@ -54,7 +52,7 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
           duration={duration}
           difficulty={difficulty}
           className="md:hidden"
-          user={{ name, username, avatarUrl }}
+          user={owner}
         />
       </header>
 
@@ -73,7 +71,7 @@ type BasicInfoProps = {
   user: {
     name: string;
     username: string | null;
-    avatarUrl: string;
+    image: string | null;
   }
   className?: string;
 };
