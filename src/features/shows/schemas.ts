@@ -1,0 +1,14 @@
+import {z} from 'zod';
+import {DIFFICULTY_VALUES} from "@/lib/constants";
+
+
+export const createShowSchema = z.object({
+  title: z.string().trim().nonempty("Show title cannot be empty"),
+  difficulty: z.enum(DIFFICULTY_VALUES),
+  price: z.number().nonnegative("Price cannot be negative"),
+  duration: z.object({
+    minutes: z.number().int().min(0, "Minutes cannot be negative").max(59, "Your show is too long"),
+    seconds: z.number().int().min(0, "Minutes cannot be negative").max(59, "Seconds cannot be more than 59"),
+  }),
+  description: z.string()
+})

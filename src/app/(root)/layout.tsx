@@ -3,9 +3,9 @@ import { ReactNode } from "react";
 
 export default function Layout({ children }: { children: ReactNode }) {
   return (
-    <div>
+    <div className="flex-1 flex flex-col">
       <Navbar />
-      <div className="data-inert-when-menu-open">{children}</div>
+      {children}
     </div>
   );
 }
