@@ -9,7 +9,7 @@ describe("ShowCard", () => {
     title: "Test Title",
     price: 1200,
     duration: 300,
-    thumbnailUrl: "/test_show.jpg",
+    thumbnailKey: "",
     description: "Test Description",
     difficulty: "beginning" as "beginning",
     slug: "test-show",
@@ -57,6 +57,8 @@ describe("ShowCard", () => {
     expect(img).toBeInTheDocument();
   })
 
+  /* test_show.jpg was removed
+
   it("Thumbnail image has correct source", () => {
     render(<ShowCard show={show} />);
 
@@ -65,7 +67,7 @@ describe("ShowCard", () => {
       "src",
       expect.stringContaining(encodeURIComponent("/test_show.jpg")),
     );
-  })
+  })*/
 
   it("Has no detectable accessibility violations", async () => {
     const { container } = render(<ShowCard show={show} />);

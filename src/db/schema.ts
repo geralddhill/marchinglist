@@ -27,7 +27,7 @@ export const shows = pgTable(
     published: boolean("published").notNull().default(false),
     price: numeric("price", {precision: 10, scale: 2, mode: "number"}).notNull(),
     duration: smallint().notNull(),
-    thumbnailUrl: text("thumbnail_url"),
+    thumbnailKey: text("thumbnail_key"),
     description: text("description").notNull().default(""),
     difficulty: difficultyEnum("difficulty").notNull(),
     ownerId: text("owner_id")

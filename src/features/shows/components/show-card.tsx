@@ -4,13 +4,14 @@ import Link from "next/dist/client/link";
 import UserProfileLink from "@/features/users/components/user-profile-link";
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { publicFileUrl } from "@/lib/uploadthing-client";
 
 export type ShowData = {
   title: string;
   slug: string;
   price: number;
   duration: number;
-  thumbnailUrl: string | null;
+  thumbnailKey: string | null;
   difficulty: "beginning" | "intermediate" | "advanced";
   published?: boolean | undefined;
   owner?:
@@ -28,11 +29,13 @@ export default function ShowCard({show, toEdit = false}: {show: ShowData, toEdit
     slug,
     price,
     duration,
-    thumbnailUrl,
+    thumbnailKey,
     difficulty,
     owner,
     published,
   } = show;
+
+  const thumbnailUrl = thumbnailKey ? publicFileUrl(thumbnailKey) : null;
 
   return (
     <article>

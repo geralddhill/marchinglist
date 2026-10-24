@@ -5,6 +5,7 @@ import { formatDuration, formatPrice, secondsToISO } from "@/features/shows/util
 import UserProfileLink from "@/features/users/components/user-profile-link";
 import { slugSchema } from "@/features/shows/slug";
 import { cn } from "@/lib/utils";
+import { publicFileUrl } from "@/lib/uploadthing-client";
 
 
 export const instant = false;
@@ -17,7 +18,8 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
   const show = await findPublishedShowBySlug(parsedSlug.data);
   if (!show) notFound();
 
-  const {title, price, duration, thumbnailUrl, description, difficulty, owner} = show;
+  const {title, price, duration, thumbnailKey, description, difficulty, owner} = show;
+  const thumbnailUrl = thumbnailKey ? publicFileUrl(thumbnailKey) : null;
 
   return (
     <main className="p-8 md:px-24 xl:px-36 2xl:px-64">
@@ -34,9 +36,9 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
             user={owner}
           />
         </div>
-        {thumbnailUrl && (
-          <div className="flex-1 px-4 md:px-0">
-            <div className="relative aspect-5/4 h-auto w-full">
+        <div className="flex-1 px-4 md:px-0">
+          <div className="relative aspect-5/4 h-auto w-full bg-muted rounded-md">
+            {thumbnailUrl && (
               <Image
                 src={thumbnailUrl}
                 alt={title}
@@ -45,9 +47,10 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
                 loading="eager"
                 style={{ objectFit: "cover" }}
               />
-            </div>
+            )}
           </div>
-        )}
+        </div>
+
         <BasicInfo
           price={price}
           duration={duration}
