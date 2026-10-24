@@ -12,7 +12,8 @@ import { getQueryClient } from "@/lib/query-client";
 import { AuthProvider } from "./auth/auth-provider";
 import { Toaster } from "./ui/sonner";
 import { themePlugin } from "@/lib/auth/theme-plugin";
-import { publicFileUrl, uploadFiles } from "@/lib/uploadthing-client";
+import { uploadFiles } from "@/lib/uploadthing-client";
+import { publicFileUrl } from "@/lib/files";
 import { deleteUserAvatar } from "@/features/users/actions";
 
 export function Providers({ children }: { children: ReactNode }) {

@@ -4,7 +4,7 @@ import Link from "next/dist/client/link";
 import UserProfileLink from "@/features/users/components/user-profile-link";
 import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { publicFileUrl } from "@/lib/uploadthing-client";
+import { publicFileUrl } from "@/lib/files";
 
 export type ShowData = {
   title: string;

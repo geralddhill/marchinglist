@@ -3,7 +3,7 @@ import { db } from "@/db/drizzle";
 import { users } from "@/db/schema";
 import { eq } from "drizzle-orm";
 import { utapi } from "@/lib/uploadthing-server";
-import { publicFileUrl } from "@/lib/uploadthing-client";
+import { publicFileUrl } from "@/lib/files";
 
 /**
  * Updates user's avatar in database and deletes old avatar from Uploadthing

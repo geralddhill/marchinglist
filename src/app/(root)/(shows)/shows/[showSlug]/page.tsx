@@ -5,7 +5,7 @@ import { formatDuration, formatPrice, secondsToISO } from "@/features/shows/util
 import UserProfileLink from "@/features/users/components/user-profile-link";
 import { slugSchema } from "@/features/shows/slug";
 import { cn } from "@/lib/utils";
-import { publicFileUrl } from "@/lib/uploadthing-client";
+import { publicFileUrl } from "@/lib/files";
 
 
 export const instant = false;
