@@ -102,14 +102,9 @@ export default function CreateShowForm() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldContent>
-                      <FieldLabel htmlFor="difficulty">
-                        Difficulty <span className="text-destructive">*</span>
-                      </FieldLabel>
-                      {fieldState.invalid && (
-                        <FieldError errors={[fieldState.error]} />
-                      )}
-                    </FieldContent>
+                    <FieldLabel htmlFor="difficulty">
+                      Difficulty <span className="text-destructive">*</span>
+                    </FieldLabel>
                     <Select
                       name={field.name}
                       value={field.value}
@@ -135,6 +130,9 @@ export default function CreateShowForm() {
                         ))}
                       </SelectContent>
                     </Select>
+                    {fieldState.invalid && (
+                      <FieldError errors={[fieldState.error]} />
+                    )}
                   </Field>
                 )}
               />
@@ -177,7 +175,7 @@ export default function CreateShowForm() {
                 <FieldLegend variant="label" className="flex-0 text-nowrap">
                   Show Duration <span className="text-destructive">*</span>
                 </FieldLegend>
-                <div className="flex justify-between gap-2 flex-1 items-center">
+                <div className="flex flex-1 items-center justify-between gap-2">
                   <Controller
                     name="duration.minutes"
                     control={form.control}
@@ -193,10 +191,10 @@ export default function CreateShowForm() {
                           max={59}
                           aria-invalid={fieldState.invalid}
                           autoComplete="off"
-                          required
                           onChange={(e) =>
                             field.onChange(toNumber(e.target.value))
                           }
+                          required
                         />
                         {fieldState.invalid && (
                           <FieldError errors={[fieldState.error]} />
@@ -220,10 +218,10 @@ export default function CreateShowForm() {
                           max={59}
                           aria-invalid={fieldState.invalid}
                           autoComplete="off"
-                          required
                           onChange={(e) =>
                             field.onChange(toNumber(e.target.value))
                           }
+                          required
                         />
                         {fieldState.invalid && (
                           <FieldError errors={[fieldState.error]} />
