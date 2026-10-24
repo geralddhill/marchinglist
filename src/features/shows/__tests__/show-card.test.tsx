@@ -7,7 +7,7 @@ describe("ShowCard", () => {
   const show = {
     id: 1,
     title: "Test Title",
-    price: 1200,
+    price: 1200.50,
     duration: 300,
     thumbnailKey: "",
     description: "Test Description",
@@ -22,10 +22,10 @@ describe("ShowCard", () => {
   };
 
   it("Renders card as article", () => {
-    render(<ShowCard show={show}/>);
+    render(<ShowCard show={show} />);
 
     expect(screen.getByRole("article")).toBeInTheDocument();
-  })
+  });
 
   it("Renders correct heading with link inside", () => {
     render(<ShowCard show={show} />);
@@ -33,22 +33,27 @@ describe("ShowCard", () => {
     const heading = screen.getByRole("heading", { level: 3 });
     expect(heading).toHaveAccessibleName("Test Title");
     expect(heading).toBeInTheDocument();
-    expect(within(heading).getByRole("link")).toHaveAttribute("href", `/shows/${show.slug}`);
+    expect(within(heading).getByRole("link")).toHaveAttribute(
+      "href",
+      `/shows/${show.slug}`,
+    );
   });
 
-  it("Renders price with a machine-readable value", ()=> {
-    render(<ShowCard show={show}/>);
+  it("Renders price with a machine-readable value", () => {
+    render(<ShowCard show={show} />);
 
-    const price = screen.getByText("$1,200");
-    expect(price).toHaveAttribute("value", "1200");
-  })
+    const price = screen.getByText("$1,200.50");
+    expect(price).toHaveAttribute("value", "1200.5");
+  });
 
-  it("Renders duration with correct ISO duration", ()=> {
-    render(<ShowCard show={show}/>);
+  it("Renders duration with correct ISO duration", () => {
+    render(<ShowCard show={show} />);
 
     const duration = screen.getByText("5:00");
     expect(duration).toHaveAttribute("datetime", "PT0H5M0S");
-  })
+  });
+
+  /* test_show.jpg was removed
 
   it("Renders thumbnail with descriptive alt text", () => {
     render(<ShowCard show={show}/>);
@@ -56,8 +61,6 @@ describe("ShowCard", () => {
     const img = screen.getByRole('img', {name: /thumbnail/i})
     expect(img).toBeInTheDocument();
   })
-
-  /* test_show.jpg was removed
 
   it("Thumbnail image has correct source", () => {
     render(<ShowCard show={show} />);

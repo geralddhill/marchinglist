@@ -43,7 +43,7 @@ describe("Utils", () => {
 
   describe("formatPrice", () => {
     it("Valid price is formatted correctly", () => {
-      expect(formatPrice(1200)).toBe("$1,200");
+      expect(formatPrice(1200)).toBe("$1,200.00");
     })
 
     it("Negative price is rejected", () => {
