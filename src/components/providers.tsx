@@ -14,7 +14,7 @@ import { Toaster } from "./ui/sonner";
 import { themePlugin } from "@/lib/auth/theme-plugin";
 import { uploadFiles } from "@/lib/uploadthing-client";
 import { publicFileUrl } from "@/lib/files";
-import { deleteUserAvatar } from "@/features/users/actions";
+import { deleteUserAvatarAction } from "@/features/users/actions";
 
 export function Providers({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -45,7 +45,7 @@ export function Providers({ children }: { children: ReactNode }) {
             return publicFileUrl(response.key);
           },
           delete: async () => {
-            await deleteUserAvatar();
+            await deleteUserAvatarAction();
           }
         }}
       >
