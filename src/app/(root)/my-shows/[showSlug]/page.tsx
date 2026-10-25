@@ -18,7 +18,7 @@ export default async function Page({ params }: { params: Promise<{ showSlug: str
   if (!show) notFound();
 
   return (
-    <main className="flex flex-col gap-8 items-center justify-center flex-1 p-8">
+    <main className="flex flex-col md:grid md:grid-cols-2 2xl:grid-cols-3 gap-8 items-center justify-items-center flex-1 p-8">
       <UpdateShowForm show={show}/>
       <ThumbnailEditor id={show.id} title={show.title} thumbnailKey={show.thumbnailKey}/>
     </main>
