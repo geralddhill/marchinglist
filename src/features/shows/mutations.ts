@@ -60,3 +60,32 @@ export async function updateShowThumbnail(showId: number, userId: string, newKey
       );
   }
 }
+
+export async function deleteShowThumbnail(showId: number) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) {
+    throw new Error("Unauthorized");
+  }
+
+  const response = await db.query.shows.findFirst({
+    columns: {
+      thumbnailKey: true,
+    },
+    where: {
+      ownerId: session.user.id,
+      id: showId,
+    },
+  });
+
+  if (!response) throw new Error("Unauthorized");
+  const key = response.thumbnailKey;
+
+  await db
+    .update(shows)
+    .set({ thumbnailKey: null })
+    .where(and(eq(shows.ownerId, session.user.id), eq(shows.id, showId)));
+
+  return key;
+}
