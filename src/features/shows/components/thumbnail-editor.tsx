@@ -1,12 +1,13 @@
 "use client";
 
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardAction, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { UploadButton } from "@/components/uploadthing";
 import { Image } from "next/dist/client/image-component";
 import { publicFileUrl } from "@/lib/files";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { deleteShowThumbnailAction } from "@/features/shows/actions";
 
 type ThumbnailEditorProps = {
   id: number;
@@ -27,10 +28,20 @@ export default function ThumbnailEditor({
         <CardTitle>
           <h2>Upload Thumbnail</h2>
         </CardTitle>
+        {thumbnailKey && (
+          <CardAction>
+            <Button
+              type="button"
+              onClick={async () => await deleteShowThumbnailAction(id)}
+            >
+              Delete
+            </Button>
+          </CardAction>
+        )}
       </CardHeader>
       <CardContent className="flex flex-col gap-4">
         {thumbnailKey && (
-          <div className="bg-muted relative aspect-5/4 h-auto w-full rounded-md overflow-hidden">
+          <div className="bg-muted relative aspect-5/4 h-auto w-full overflow-hidden rounded-md">
             <Image
               src={publicFileUrl(thumbnailKey)}
               alt={title}
@@ -46,7 +57,8 @@ export default function ThumbnailEditor({
           endpoint="showThumbnail"
           input={id}
           appearance={{
-            button: buttonVariants({ variant: "default", size: "default" }),
+            button: cn(buttonVariants({ variant: "default", size: "default" })),
+            allowedContent: "text-muted-foreground",
           }}
           onClientUploadComplete={() => router.refresh()}
         />
