@@ -4,6 +4,7 @@ import { db } from "@/db/drizzle";
 import { username } from "better-auth/plugins";
 import { createAuthMiddleware, APIError } from "better-auth/api";
 import { Resend } from "resend";
+import { deleteAllUserFiles } from "@/features/users/actions";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -36,6 +37,7 @@ export const auth = betterAuth({
     },
     deleteUser: {
       enabled: true,
+      beforeDelete: async () => await deleteAllUserFiles(),
       sendDeleteAccountVerification: async ({ user, url }) => {
         void resend.emails.send({
           from: "MarchingList <no-reply@account.geralddhill.com>",
