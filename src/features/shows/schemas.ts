@@ -12,3 +12,5 @@ export const createShowSchema = z.object({
   }),
   description: z.string()
 })
+
+export const updateShowSchema = createShowSchema.safeExtend({id: z.number()})

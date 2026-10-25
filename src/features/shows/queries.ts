@@ -101,7 +101,6 @@ export async function findCurrentUserShowBySlug(slug: string) {
 
   return db.query.shows.findFirst({
     columns: {
-      id: false,
       ownerId: false,
     },
     where: {

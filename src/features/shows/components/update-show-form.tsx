@@ -2,7 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm, type Path } from "react-hook-form";
-import { createShowSchema } from "@/features/shows/schemas";
+import { updateShowSchema } from "@/features/shows/schemas";
 import { z } from "zod";
 import {
   Card,
@@ -36,10 +36,11 @@ import {
 } from "@/components/ui/input-group";
 import { Textarea } from "@/components/ui/textarea";
 import { startTransition, useActionState, useEffect } from "react";
-import { createShow } from "@/features/shows/actions";
+import { updateShowAction } from "@/features/shows/actions";
 
 type UpdateShowFormProps = {
   show: {
+    id: number;
     title: string;
     difficulty: "beginning" | "intermediate" | "advanced";
     price: number;
@@ -49,12 +50,13 @@ type UpdateShowFormProps = {
 }
 
 export default function UpdateShowForm({show}: UpdateShowFormProps) {
-  const [state, submitAction, isPending] = useActionState(createShow, null);
+  const [state, submitAction, isPending] = useActionState(updateShowAction, null);
 
-  const form = useForm<z.infer<typeof createShowSchema>>({
-    resolver: zodResolver(createShowSchema),
+  const form = useForm<z.infer<typeof updateShowSchema>>({
+    resolver: zodResolver(updateShowSchema),
     mode: "onBlur",
     defaultValues: {
+      id: show.id,
       title: show.title,
       difficulty: show.difficulty,
       price: show.price,
@@ -70,7 +72,7 @@ export default function UpdateShowForm({show}: UpdateShowFormProps) {
     if (state?.fieldErrors) {
       for (const [name, messages] of Object.entries(state.fieldErrors)) {
         if (messages) {
-          form.setError(name as Path<z.infer<typeof createShowSchema>>, {
+          form.setError(name as Path<z.infer<typeof updateShowSchema>>, {
             type: "server",
             message: messages[0],
           });
@@ -294,7 +296,7 @@ export default function UpdateShowForm({show}: UpdateShowFormProps) {
         <CardFooter>
           <Field orientation="horizontal">
             <Button type="submit" disabled={isPending}>
-              Create
+              Update
             </Button>
           </Field>
         </CardFooter>
