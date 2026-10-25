@@ -92,3 +92,21 @@ export async function listCurrentUserShows() {
     },
   });
 }
+
+export async function findCurrentUserShowBySlug(slug: string) {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+  if (!session) throw new Error("Unauthorized");
+
+  return db.query.shows.findFirst({
+    columns: {
+      id: false,
+      ownerId: false,
+    },
+    where: {
+      ownerId: session.user.id,
+      slug
+    },
+  });
+}
