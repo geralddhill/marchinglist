@@ -57,7 +57,3 @@ export function formatPrice(price: number): string {
   }
   return priceFormatter.format(price);
 }
-
-export function toNumber(v: string) {
-  return v === "" ? 0 : Number(v);
-}

@@ -7,7 +7,7 @@ export const createShowSchema = z.object({
   difficulty: z.enum(DIFFICULTY_VALUES, "Please select a difficulty"),
   price: z.number().nonnegative("Price cannot be negative"),
   duration: z.object({
-    minutes: z.number().int().min(0, "Minutes cannot be negative").max(59, "Your show is too long"),
+    minutes: z.number().int().min(0, "Minutes cannot be negative").max(59, {error: "Your show is too long", }),
     seconds: z.number().int().min(0, "Seconds cannot be negative").max(59, "Seconds cannot be more than 59"),
   }),
   description: z.string()

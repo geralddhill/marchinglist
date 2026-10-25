@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Controller, useForm } from "react-hook-form";
+import { Controller, useForm, type Path } from "react-hook-form";
 import { createShowSchema } from "@/features/shows/schemas";
 import { z } from "zod";
 import {
@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/card";
 import {
   Field,
-  FieldContent,
   FieldError,
   FieldGroup,
   FieldLabel,
@@ -37,9 +36,12 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { Textarea } from "@/components/ui/textarea";
-import { toNumber } from "@/features/shows/utils";
+import { startTransition, useActionState, useEffect } from "react";
+import { createShow } from "@/features/shows/actions";
 
 export default function CreateShowForm() {
+  const [ state, submitAction, isPending ] = useActionState(createShow, null)
+
   const form = useForm<z.infer<typeof createShowSchema>>({
     resolver: zodResolver(createShowSchema),
     mode: "onBlur",
@@ -55,12 +57,26 @@ export default function CreateShowForm() {
     },
   });
 
-  function onSubmit(data: z.infer<typeof createShowSchema>) {
-    console.log(data);
-  }
+  useEffect(() => {
+    if (state?.fieldErrors) {
+      for (const [name, messages] of Object.entries(state.fieldErrors)) {
+        if (messages) {
+          form.setError(name as Path<z.infer<typeof createShowSchema>>, {
+            type: "server",
+            message: messages[0],
+          });
+        }
+      }
+    }
+  }, [state, form.setError])
 
   return (
-    <form onSubmit={form.handleSubmit(onSubmit)} className="w-full sm:max-w-md">
+    <form
+      onSubmit={form.handleSubmit((data) => {
+        startTransition(() => submitAction(data));
+      })}
+      className="w-full sm:max-w-md"
+    >
       <Card>
         <CardHeader>
           <CardTitle>
@@ -156,9 +172,11 @@ export default function CreateShowForm() {
                         step={0.01}
                         aria-invalid={fieldState.invalid}
                         autoComplete="off"
-                        onChange={(e) =>
-                          field.onChange(toNumber(e.target.value))
-                        }
+                        value={isNaN(field.value) ? "" : field.value.toString()}
+                        onChange={(e) => {
+                          const output = parseFloat(e.target.value);
+                          field.onChange(isNaN(output) ? 0 : output);
+                        }}
                         required
                       />
                     </InputGroup>
@@ -191,14 +209,15 @@ export default function CreateShowForm() {
                           max={59}
                           aria-invalid={fieldState.invalid}
                           autoComplete="off"
-                          onChange={(e) =>
-                            field.onChange(toNumber(e.target.value))
+                          value={
+                            isNaN(field.value) ? "" : field.value.toString()
                           }
+                          onChange={(e) => {
+                            const output = parseInt(e.target.value);
+                            field.onChange(isNaN(output) ? 0 : output);
+                          }}
                           required
                         />
-                        {fieldState.invalid && (
-                          <FieldError errors={[fieldState.error]} />
-                        )}
                       </Field>
                     )}
                   />
@@ -218,19 +237,31 @@ export default function CreateShowForm() {
                           max={59}
                           aria-invalid={fieldState.invalid}
                           autoComplete="off"
-                          onChange={(e) =>
-                            field.onChange(toNumber(e.target.value))
+                          value={
+                            isNaN(field.value)
+                              ? ""
+                              : field.value.toString().length < 2
+                                ? `0${field.value.toString()}`
+                                : field.value.toString()
                           }
+                          onChange={(e) => {
+                            const output = parseInt(e.target.value);
+                            field.onChange(isNaN(output) ? 0 : output);
+                          }}
                           required
                         />
-                        {fieldState.invalid && (
-                          <FieldError errors={[fieldState.error]} />
-                        )}
                       </Field>
                     )}
                   />
                 </div>
               </div>
+              {form.formState.errors.duration?.message ? (
+                <FieldError errors={[form.formState.errors.duration]} />
+              ) : form.formState.errors.duration?.seconds?.message ? (
+                <FieldError errors={[form.formState.errors.duration.seconds]} />
+              ) : form.formState.errors.duration?.minutes?.message ? (
+                <FieldError errors={[form.formState.errors.duration.minutes]} />
+              ) : null}
             </FieldSet>
 
             <Controller
@@ -256,7 +287,9 @@ export default function CreateShowForm() {
         </CardContent>
         <CardFooter>
           <Field orientation="horizontal">
-            <Button type="submit">Create</Button>
+            <Button type="submit" disabled={isPending}>
+              Create
+            </Button>
             <Button
               type="button"
               variant="outline"
