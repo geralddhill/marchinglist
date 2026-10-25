@@ -6,7 +6,6 @@ import {headers} from "next/headers";
 export async function listPublishedShows() {
   return db.query.shows.findMany({
     columns: {
-      id: false,
       ownerId: false,
       published: false,
     },
@@ -28,7 +27,6 @@ export async function listPublishedShows() {
 export async function listPublishedShowsByUserId(userId: string) {
   return db.query.shows.findMany({
     columns: {
-      id: false,
       ownerId: false,
       published: false,
     },
@@ -43,7 +41,6 @@ export async function findPublishedShowBySlug(slug: string) {
   "use cache";
   return db.query.shows.findFirst({
     columns: {
-      id: false,
       ownerId: false,
       published: false,
     },
@@ -84,7 +81,6 @@ export async function listCurrentUserShows() {
 
   return db.query.shows.findMany({
     columns: {
-      id: false,
       ownerId: false,
     },
     where: {
