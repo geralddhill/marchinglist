@@ -17,7 +17,7 @@ type ActionState = {
   };
 } | null;
 
-export async function createShow(_prevState: ActionState, data: z.infer<typeof createShowSchema>) {
+export async function createShowAction(_prevState: ActionState, data: z.infer<typeof createShowSchema>) {
   const parsed = createShowSchema.safeParse(data);
   if (!parsed.success) {
     return {

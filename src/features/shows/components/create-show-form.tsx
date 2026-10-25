@@ -37,10 +37,10 @@ import {
 } from "@/components/ui/input-group";
 import { Textarea } from "@/components/ui/textarea";
 import { startTransition, useActionState, useEffect } from "react";
-import { createShow } from "@/features/shows/actions";
+import { createShowAction } from "@/features/shows/actions";
 
 export default function CreateShowForm() {
-  const [ state, submitAction, isPending ] = useActionState(createShow, null)
+  const [ state, submitAction, isPending ] = useActionState(createShowAction, null)
 
   const form = useForm<z.infer<typeof createShowSchema>>({
     resolver: zodResolver(createShowSchema),
