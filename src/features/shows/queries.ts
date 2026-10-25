@@ -109,3 +109,17 @@ export async function findCurrentUserShowBySlug(slug: string) {
     },
   });
 }
+
+export async function isShowOwnedByUser(showId: number, userId: string) {
+  const show = await db.query.shows.findFirst({
+    columns: {
+      id: true,
+    },
+    where: {
+      id: showId,
+      ownerId: userId,
+    }
+  })
+
+  return !!show;
+}
