@@ -64,7 +64,7 @@ export async function findPublishedShowBySlug(slug: string) {
 }
 
 export async function existsSlug(slug: string) {
-  const show = db.query.shows.findFirst({
+  const show = await db.query.shows.findFirst({
     columns: {
       id: true
     },
